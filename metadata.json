@@ -1,0 +1,6 @@
+{
+  "name": "MobileDev Kanban & Progress Audit Dashboard",
+  "description": "Unified progress monitoring dashboard for mobile development student teams, tracking GitHub Kanban boards, Google Form audits (Weeks 5-8), and historical document reports (Weeks 1-4) with presentation readiness scoring.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
