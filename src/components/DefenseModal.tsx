@@ -32,6 +32,7 @@ export const DefenseModal: React.FC<DefenseModalProps> = ({
   const [selectedTeamId, setSelectedTeamId] = useState<string>(initialTeamId || teams[0]?.id || '');
   const [loading, setLoading] = useState(false);
   const [evaluation, setEvaluation] = useState<DefenseEvaluation | null>(null);
+  const [evalSource, setEvalSource] = useState<string>('');
   const [error, setError] = useState<string>('');
   const [copied, setCopied] = useState(false);
 
@@ -75,6 +76,7 @@ export const DefenseModal: React.FC<DefenseModalProps> = ({
       }
 
       setEvaluation(json.evaluation);
+      setEvalSource(json.source || 'advisor');
     } catch (err: any) {
       console.error(err);
       setError(err.message || 'Error communicating with Gemini AI server');
@@ -191,9 +193,16 @@ export const DefenseModal: React.FC<DefenseModalProps> = ({
               {/* Verdict & Executive Summary */}
               <div className="p-4 rounded-2xl bg-slate-950 border border-slate-800 space-y-2">
                 <div className="flex items-center justify-between">
-                  <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold">
-                    Faculty Readiness Assessment
-                  </span>
+                  <div className="flex items-center gap-2">
+                    <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold">
+                      Faculty Readiness Assessment
+                    </span>
+                    {evalSource && (
+                      <span className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 border border-slate-700">
+                        {evalSource === 'gemini_ai' ? 'Gemini AI' : 'COD-IT Academic Engine'}
+                      </span>
+                    )}
+                  </div>
                   <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
                     {evaluation.readinessVerdict}
                   </span>
