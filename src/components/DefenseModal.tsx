@@ -199,7 +199,7 @@ export const DefenseModal: React.FC<DefenseModalProps> = ({
                     </span>
                     {evalSource && (
                       <span className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 border border-slate-700">
-                        {evalSource === 'gemini_ai' ? 'Gemini AI' : 'COD-IT Academic Engine'}
+                        {evalSource === 'gemini_ai' ? 'Gemini AI' : 'Local Advisor Engine'}
                       </span>
                     )}
                   </div>

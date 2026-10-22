@@ -1002,7 +1002,7 @@ export const STUDYSYNC_CANONICAL_AUDITS: AuditRecord[] = [
   },
 ];
 
-// 2. Synthesized Historical Document Reports (Weeks 1 to 4) - Using official UIC COD-IT Report format
+// 2. Synthesized Historical Document Reports (Weeks 1 to 4) - Using the standard Report format
 export const INITIAL_DOCUMENT_AUDITS: AuditRecord[] = [
   ...STUDYSYNC_CANONICAL_AUDITS,
   // ALLEAH POS (Pelpinosas, Militares, Espera)
@@ -1695,16 +1695,37 @@ export function computeTeams(
     const t = teamMap.get(teamId)!;
     t.audits.push(a);
 
-    // Track member
-    if (a.studentName && !t.membersMap.has(a.studentName)) {
-      t.membersMap.set(a.studentName, {
-        name: a.studentName,
-        studentId: a.studentId || '',
-        githubUsername: a.githubUsername || '',
-        email: a.studentEmail || '',
-        section: a.section || t.section || 'BSIT',
-        hasAcceptedOrg: a.orgInviteAccepted ?? true,
-      });
+    // Track member (deduplicated by email, studentId, or tokenized name)
+    if (a.studentName) {
+      let existingKey: string | null = null;
+      for (const [key, mem] of t.membersMap.entries()) {
+        const sameEmail = Boolean(a.studentEmail && mem.email && a.studentEmail.toLowerCase().trim() === mem.email.toLowerCase().trim());
+        const sameId = Boolean(a.studentId && mem.studentId && a.studentId.trim() === mem.studentId.trim());
+        const sameName = areNamesSamePerson(a.studentName, mem.name);
+        if (sameEmail || sameId || sameName) {
+          existingKey = key;
+          break;
+        }
+      }
+
+      if (existingKey) {
+        const mem = t.membersMap.get(existingKey)!;
+        t.membersMap.set(existingKey, {
+          ...mem,
+          studentId: mem.studentId || a.studentId || '',
+          githubUsername: mem.githubUsername || a.githubUsername || '',
+          email: mem.email || a.studentEmail || '',
+        });
+      } else {
+        t.membersMap.set(a.studentName, {
+          name: a.studentName,
+          studentId: a.studentId || '',
+          githubUsername: a.githubUsername || '',
+          email: a.studentEmail || '',
+          section: a.section || t.section || 'BSIT',
+          hasAcceptedOrg: a.orgInviteAccepted ?? true,
+        });
+      }
     }
   });
 
@@ -1872,7 +1893,7 @@ function getAppDescription(teamId: string): string {
 
 // Convert Audits to Kanban cards for interactive board
 export function generateKanbanCards(audits: AuditRecord[]): KanbanCard[] {
-  return audits.map((a) => {
+  const cards = audits.map((a) => {
     const rawStatus = a.ticketStatus;
     let status: 'backlog' | 'in_progress' | 'review' | 'done' = 'backlog';
     if (rawStatus === 'Done') status = 'done';
@@ -1899,7 +1920,151 @@ export function generateKanbanCards(audits: AuditRecord[]): KanbanCard[] {
       blockers: a.blockers || undefined,
       hasBlocker,
       updatedAt: a.timestamp || a.date || 'Recent',
-      priority: hasBlocker ? 'high' : status === 'done' ? 'low' : 'medium',
+      priority: (hasBlocker ? 'high' : status === 'done' ? 'low' : 'medium') as 'high' | 'medium' | 'low',
     };
   });
+  return deduplicateCardsList(cards);
 }
+
+// ==========================================
+// DEDUPLICATION & DETERMINISTIC MERGE UTILITIES
+// ==========================================
+
+export function normalizeNameTokens(name: string): string[] {
+  return (name || '')
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, ' ')
+    .split(/\s+/)
+    .filter(Boolean)
+    .sort();
+}
+
+export function areNamesSamePerson(name1: string, name2: string): boolean {
+  if (!name1 || !name2) return false;
+  const tokens1 = normalizeNameTokens(name1);
+  const tokens2 = normalizeNameTokens(name2);
+  if (tokens1.length === 0 || tokens2.length === 0) return false;
+  if (tokens1.join(' ') === tokens2.join(' ')) return true;
+  const mainTokens1 = tokens1.filter((t) => t.length > 1);
+  const mainTokens2 = tokens2.filter((t) => t.length > 1);
+  if (mainTokens1.length > 0 && mainTokens1.join(' ') === mainTokens2.join(' ')) return true;
+  return false;
+}
+
+export function areAuditsDuplicate(a: AuditRecord, b: AuditRecord): boolean {
+  if (a.id && b.id && a.id === b.id) return true;
+
+  const emailA = (a.studentEmail || '').toLowerCase().trim();
+  const emailB = (b.studentEmail || '').toLowerCase().trim();
+  const sameEmail = Boolean(emailA && emailB && emailA === emailB);
+
+  const idA = (a.studentId || '').trim();
+  const idB = (b.studentId || '').trim();
+  const sameStudentId = Boolean(idA && idB && idA === idB);
+
+  const sameName = areNamesSamePerson(a.studentName, b.studentName);
+
+  const isSameStudent = sameEmail || sameStudentId || sameName;
+  if (!isSameStudent) return false;
+
+  const timeA = (a.timestamp || '').trim();
+  const timeB = (b.timestamp || '').trim();
+  if (timeA && timeB && timeA === timeB) return true;
+
+  if (a.weekNumber && b.weekNumber && a.weekNumber === b.weekNumber) {
+    return true;
+  }
+
+  return false;
+}
+
+export function areCardsDuplicate(c1: KanbanCard, c2: KanbanCard): boolean {
+  if (c1.id && c2.id && c1.id === c2.id) return true;
+  const team1 = (c1.teamId || '').toLowerCase().trim();
+  const team2 = (c2.teamId || '').toLowerCase().trim();
+  if (team1 !== team2) return false;
+  const week1 = c1.weekNumber || 0;
+  const week2 = c2.weekNumber || 0;
+  if (week1 !== week2) return false;
+  return areNamesSamePerson(c1.assignee, c2.assignee);
+}
+
+export function deduplicateAuditsList(audits: AuditRecord[]): AuditRecord[] {
+  const result: AuditRecord[] = [];
+  for (const a of audits) {
+    const existingIndex = result.findIndex((existing) => areAuditsDuplicate(existing, a));
+    if (existingIndex >= 0) {
+      const existing = result[existingIndex];
+      const preferExistingId = existing.id.startsWith('gf-') || existing.id.startsWith('doc-');
+      result[existingIndex] = {
+        ...existing,
+        ...a,
+        id: preferExistingId ? existing.id : (a.id || existing.id),
+        timestamp: a.timestamp || existing.timestamp,
+        date: a.date || existing.date,
+        summary: a.summary || existing.summary,
+        blockers: (a.blockers && !a.blockers.toLowerCase().includes('none')) ? a.blockers : existing.blockers,
+        commitUrl: a.commitUrl || existing.commitUrl,
+      };
+    } else {
+      result.push(a);
+    }
+  }
+  return result;
+}
+
+export function deduplicateCardsList(cards: KanbanCard[]): KanbanCard[] {
+  const result: KanbanCard[] = [];
+  for (const c of cards) {
+    const existingIndex = result.findIndex((existing) => areCardsDuplicate(existing, c));
+    if (existingIndex >= 0) {
+      result[existingIndex] = {
+        ...result[existingIndex],
+        ...c,
+        id: result[existingIndex].id,
+      };
+    } else {
+      result.push(c);
+    }
+  }
+  return result;
+}
+
+export function mergeAuditsDeduplicated(
+  existingAudits: AuditRecord[],
+  incomingAudits: AuditRecord[]
+): {
+  merged: AuditRecord[];
+  addedCount: number;
+  updatedCount: number;
+} {
+  const result = [...existingAudits];
+  let addedCount = 0;
+  let updatedCount = 0;
+
+  for (const incoming of incomingAudits) {
+    const existingIndex = result.findIndex((existing) => areAuditsDuplicate(existing, incoming));
+    if (existingIndex >= 0) {
+      const existing = result[existingIndex];
+      const preferExistingId = existing.id.startsWith('gf-') || existing.id.startsWith('doc-');
+      result[existingIndex] = {
+        ...existing,
+        ...incoming,
+        id: preferExistingId ? existing.id : (incoming.id || existing.id),
+        timestamp: incoming.timestamp || existing.timestamp,
+        date: incoming.date || existing.date,
+        summary: incoming.summary || existing.summary,
+        blockers: (incoming.blockers && !incoming.blockers.toLowerCase().includes('none')) ? incoming.blockers : existing.blockers,
+        commitUrl: incoming.commitUrl || existing.commitUrl,
+        ticketStatus: incoming.ticketStatus || existing.ticketStatus,
+      };
+      updatedCount++;
+    } else {
+      result.push(incoming);
+      addedCount++;
+    }
+  }
+
+  return { merged: result, addedCount, updatedCount };
+}
+

@@ -3,6 +3,13 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
 import { GoogleGenAI } from '@google/genai';
+import {
+  INITIAL_UNIFIED_AUDITS,
+  generateKanbanCards,
+  deduplicateAuditsList,
+  deduplicateCardsList,
+  normalizeTeam,
+} from './src/data/defaultData';
 
 dotenv.config();
 
@@ -475,7 +482,7 @@ interface DefenseEvaluationResult {
   recommendedGradingAdjustment: string;
 }
 
-// Resilient Dynamic UIC COD-IT Academic Defense Advisor Engine
+// Resilient Dynamic Local Academic Defense Advisor Engine
 function buildDynamicDefenseEvaluation(
   teamName: string,
   repoName: string,
@@ -543,7 +550,7 @@ function buildDynamicDefenseEvaluation(
   defenseQuestions.push({
     targetMember: targetMember3,
     question: `Explain how data validation, input sanitization, and credential handling (e.g., JWT tokens or student IDs) are enforced between the mobile client and backend services.`,
-    rationale: `Evaluates adherence to COD-IT security standards and defensive programming principles for university deployment.`,
+    rationale: `Evaluates adherence to security standards and defensive programming principles for deployment.`,
     expectedKeyAnswers: `Secure storage (e.g., Flutter Secure Storage / Android Keystore), HTTPS parameter validation, server-side payload verification, and avoidance of cleartext logging.`,
   });
 
@@ -647,7 +654,7 @@ Only return valid parseable JSON.`;
           source = 'gemini_ai';
         }
       } catch (geminiErr: any) {
-        console.warn('Gemini API notice (' + geminiErr.message + '), switching seamlessly to UIC COD-IT defense engine.');
+        console.warn('Gemini API notice (' + geminiErr.message + '), switching seamlessly to the local defense engine.');
       }
     }
 
@@ -955,7 +962,8 @@ function parseCSVLines(text: string): string[][] {
 // Endpoint: Fetch live responses from a linked Google Sheet (CSV export)
 app.post('/api/forms/sync-live-sheet', async (req, res) => {
   try {
-    const { sheetUrl } = req.body;
+    const store = getTrackerStore();
+    const sheetUrl = req.body?.sheetUrl || store.googleSheetUrl || process.env.GOOGLE_SHEET_URL || '';
     if (!sheetUrl) {
       return res.status(400).json({ error: 'Please provide your Google Sheet response link.' });
     }
@@ -1033,17 +1041,26 @@ app.post('/api/forms/sync-live-sheet', async (req, res) => {
       else if (s.includes('review') || s.includes('qa')) ticketStatus = 'Review';
 
       const summary = (summaryIdx >= 0 ? r[summaryIdx] : r[13]) || '';
+      const email = (emailIdx >= 0 ? r[emailIdx] : r[1]) || '';
+      const name = (nameIdx >= 0 ? r[nameIdx] : r[4]) || 'Student';
+      const studentId = (studentIdIdx >= 0 ? r[studentIdIdx] : r[5]) || '';
+      const cleanIdent = (email || studentId || name).toLowerCase().replace(/[^a-z0-9]/g, '');
+      const id = `gform-${cleanIdent}-w${weekNumber}`;
+
+      const { teamId, teamName } = normalizeTeam(rawTeam);
 
       return {
-        id: `gsheet-live-${i}-${Date.now()}`,
+        id,
         timestamp: (timeIdx >= 0 ? r[timeIdx] : r[0]) || new Date().toISOString(),
-        studentEmail: (emailIdx >= 0 ? r[emailIdx] : r[1]) || '',
+        studentEmail: email,
         weekNumber,
         weekLabel: rawWeek,
         section: (sectionIdx >= 0 ? r[sectionIdx] : r[3]) || 'BSIT',
-        studentName: (nameIdx >= 0 ? r[nameIdx] : r[4]) || 'Student',
-        studentId: (studentIdIdx >= 0 ? r[studentIdIdx] : r[5]) || '',
+        studentName: name,
+        studentId,
         rawTeamName: rawTeam,
+        teamId,
+        teamName,
         githubUsername: (githubIdx >= 0 ? r[githubIdx] : r[7]) || '',
         orgInviteAccepted: ((inviteIdx >= 0 ? r[inviteIdx] : r[8]) || '').toLowerCase().includes('yes'),
         assignedFeature: (featureIdx >= 0 ? r[featureIdx] : r[9]) || 'Module Implementation',
@@ -1052,15 +1069,17 @@ app.post('/api/forms/sync-live-sheet', async (req, res) => {
         commitUrl: (commitIdx >= 0 ? r[commitIdx] : r[12]) || '',
         summary,
         blockers: summary.toLowerCase().includes('blocker') || summary.toLowerCase().includes('issue') ? summary : 'None',
-        sourceType: 'google_form',
+        sourceType: 'google_form' as const,
       };
     });
+
+    const dedupedAudits = deduplicateAuditsList(audits);
 
     return res.json({
       success: true,
       spreadsheetId,
-      audits,
-      count: audits.length,
+      audits: dedupedAudits,
+      count: dedupedAudits.length,
       syncedAt: new Date().toISOString(),
     });
   } catch (error: any) {
@@ -1133,6 +1152,162 @@ app.post('/api/webhooks/google-form', (req, res) => {
 // Endpoint: Polling endpoint for client to retrieve recent webhook audits
 app.get('/api/forms/live-webhook-audits', (_req, res) => {
   return res.json({ success: true, audits: liveWebhookAudits });
+});
+
+// ==========================================
+// SHARED TRACKER DATA STORE & ADMIN AUTH ENGINE
+// ==========================================
+
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'teacher2026';
+const DATA_DIR = path.join(__dirname, 'server_data');
+const STORE_PATH = path.join(DATA_DIR, 'tracker_store.json');
+
+function ensureDataDir() {
+  if (!fs.existsSync(DATA_DIR)) {
+    fs.mkdirSync(DATA_DIR, { recursive: true });
+  }
+}
+
+function getDefaultTrackerStore() {
+  return {
+    audits: INITIAL_UNIFIED_AUDITS,
+    customTeams: [],
+    customCards: generateKanbanCards(INITIAL_UNIFIED_AUDITS),
+    teamOverrides: {},
+    deletedTeamIds: [],
+    googleSheetUrl: process.env.GOOGLE_SHEET_URL || '',
+    lastSyncedAt: undefined,
+    lastUpdated: new Date().toISOString(),
+  };
+}
+
+function getTrackerStore() {
+  ensureDataDir();
+  if (!fs.existsSync(STORE_PATH)) {
+    const initial = getDefaultTrackerStore();
+    fs.writeFileSync(STORE_PATH, JSON.stringify(initial, null, 2), 'utf-8');
+    return initial;
+  }
+  try {
+    const content = fs.readFileSync(STORE_PATH, 'utf-8');
+    const parsed = JSON.parse(content);
+    if (!parsed.googleSheetUrl && process.env.GOOGLE_SHEET_URL) {
+      parsed.googleSheetUrl = process.env.GOOGLE_SHEET_URL;
+    }
+    if (parsed && Array.isArray(parsed.audits)) {
+      parsed.audits = deduplicateAuditsList(parsed.audits);
+    }
+    if (parsed && Array.isArray(parsed.customCards)) {
+      parsed.customCards = deduplicateCardsList(parsed.customCards);
+    }
+    return parsed;
+  } catch (err) {
+    console.error('Error reading tracker store from disk:', err);
+    return getDefaultTrackerStore();
+  }
+}
+
+function saveTrackerStore(data: any) {
+  ensureDataDir();
+  const rawAudits = Array.isArray(data.audits) ? data.audits : [];
+  const rawCards = Array.isArray(data.customCards) ? data.customCards : [];
+  const dedupedAudits = deduplicateAuditsList(rawAudits);
+  const dedupedCards = deduplicateCardsList(rawCards);
+
+  const payload = {
+    audits: dedupedAudits,
+    customTeams: Array.isArray(data.customTeams) ? data.customTeams : [],
+    customCards: dedupedCards,
+    teamOverrides: data.teamOverrides && typeof data.teamOverrides === 'object' ? data.teamOverrides : {},
+    deletedTeamIds: Array.isArray(data.deletedTeamIds) ? data.deletedTeamIds : [],
+    googleSheetUrl: data.googleSheetUrl !== undefined ? data.googleSheetUrl : (getTrackerStore().googleSheetUrl || process.env.GOOGLE_SHEET_URL || ''),
+    lastSyncedAt: data.lastSyncedAt || new Date().toISOString(),
+    lastUpdated: new Date().toISOString(),
+  };
+  const tempPath = path.join(DATA_DIR, `tracker_store_${Date.now()}.tmp`);
+  fs.writeFileSync(tempPath, JSON.stringify(payload, null, 2), 'utf-8');
+  fs.renameSync(tempPath, STORE_PATH);
+  return payload;
+}
+
+function verifyAdminToken(req: express.Request): boolean {
+  const authHeader = req.headers.authorization || '';
+  const token = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : (req.headers['x-admin-key'] as string);
+  if (!token) return false;
+  if (token === ADMIN_PASSWORD) return true;
+  try {
+    const decoded = Buffer.from(token, 'base64').toString('utf8');
+    const parts = decoded.split(':');
+    return parts[0] === 'admin' && parts[1] === ADMIN_PASSWORD;
+  } catch {
+    return false;
+  }
+}
+
+// Endpoint: Admin Login via Passcode
+app.post('/api/auth/login', (req, res) => {
+  try {
+    const { password } = req.body || {};
+    if (password && password.trim() === ADMIN_PASSWORD) {
+      const token = Buffer.from(`admin:${ADMIN_PASSWORD}:${Date.now()}`).toString('base64');
+      return res.json({
+        success: true,
+        token,
+        message: 'Successfully authenticated as Teacher/Admin',
+      });
+    }
+    return res.status(401).json({
+      success: false,
+      error: 'Incorrect teacher passcode. Please try again.',
+    });
+  } catch (err: any) {
+    return res.status(500).json({ error: 'Authentication service error', details: err.message });
+  }
+});
+
+// Endpoint: Check Admin Token Validity
+app.get('/api/auth/verify', (req, res) => {
+  const isValid = verifyAdminToken(req);
+  return res.json({ success: true, isAdmin: isValid });
+});
+
+// Endpoint: Fetch Shared Tracker State (Public for all students and teacher)
+app.get('/api/tracker/state', (_req, res) => {
+  try {
+    const state = getTrackerStore();
+    return res.json({ success: true, data: state });
+  } catch (err: any) {
+    console.error('Failed to get tracker state:', err);
+    return res.status(500).json({ error: 'Failed to retrieve tracker state', details: err.message });
+  }
+});
+
+// Endpoint: Update Shared Tracker State (Protected: Admin only)
+app.post('/api/tracker/state', (req, res) => {
+  if (!verifyAdminToken(req)) {
+    return res.status(403).json({ error: 'Unauthorized: Admin authentication required to update tracker state.' });
+  }
+  try {
+    const updated = saveTrackerStore(req.body);
+    return res.json({ success: true, data: updated });
+  } catch (err: any) {
+    console.error('Failed to save tracker state:', err);
+    return res.status(500).json({ error: 'Failed to persist tracker state', details: err.message });
+  }
+});
+
+// Endpoint: Reset Shared Tracker State to default seed (Protected: Admin only)
+app.post('/api/tracker/reset', (req, res) => {
+  if (!verifyAdminToken(req)) {
+    return res.status(403).json({ error: 'Unauthorized: Admin authentication required.' });
+  }
+  try {
+    const initial = getDefaultTrackerStore();
+    saveTrackerStore(initial);
+    return res.json({ success: true, message: 'Tracker state reset to default seed', data: initial });
+  } catch (err: any) {
+    return res.status(500).json({ error: 'Failed to reset tracker state', details: err.message });
+  }
 });
 
 // Production or Vite development middleware setup

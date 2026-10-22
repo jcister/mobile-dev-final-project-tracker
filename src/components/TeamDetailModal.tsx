@@ -24,6 +24,7 @@ interface TeamDetailModalProps {
   onOpenKanban: (teamId: string) => void;
   onEditTeam?: (team: Team) => void;
   onDeleteTeam?: (team: Team) => void;
+  isAdmin?: boolean;
 }
 
 export const TeamDetailModal: React.FC<TeamDetailModalProps> = ({
@@ -34,6 +35,7 @@ export const TeamDetailModal: React.FC<TeamDetailModalProps> = ({
   onOpenKanban,
   onEditTeam,
   onDeleteTeam,
+  isAdmin = false,
 }) => {
   if (!team) return null;
 
@@ -118,57 +120,61 @@ export const TeamDetailModal: React.FC<TeamDetailModalProps> = ({
               </a>
             )}
 
-            <button
-              onClick={() => {
-                onClose();
-                onOpenKanban(team.id);
-              }}
-              className="flex items-center gap-1 px-3 py-1.5 rounded-xl bg-indigo-600/20 hover:bg-indigo-600/30 text-indigo-300 border border-indigo-500/30 font-semibold"
-            >
-              <Layers className="w-3.5 h-3.5" />
-              <span>Internal Kanban</span>
-            </button>
-          </div>
-
-          <div className="flex items-center gap-2">
-            {onEditTeam && (
+            {isAdmin && (
               <button
                 onClick={() => {
                   onClose();
-                  onEditTeam(team);
+                  onOpenKanban(team.id);
                 }}
-                className="flex items-center gap-1 px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-semibold transition"
-                title="Edit Team, Repository, and Members"
+                className="flex items-center gap-1 px-3 py-1.5 rounded-xl bg-indigo-600/20 hover:bg-indigo-600/30 text-indigo-300 border border-indigo-500/30 font-semibold"
               >
-                <Edit2 className="w-3.5 h-3.5 text-indigo-400" />
-                <span>Edit Team</span>
+                <Layers className="w-3.5 h-3.5" />
+                <span>Internal Kanban</span>
               </button>
             )}
+          </div>
 
-            {onDeleteTeam && (
+          {isAdmin && (
+            <div className="flex items-center gap-2">
+              {onEditTeam && (
+                <button
+                  onClick={() => {
+                    onClose();
+                    onEditTeam(team);
+                  }}
+                  className="flex items-center gap-1 px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-semibold transition"
+                  title="Edit Team, Repository, and Members"
+                >
+                  <Edit2 className="w-3.5 h-3.5 text-indigo-400" />
+                  <span>Edit Team</span>
+                </button>
+              )}
+
+              {onDeleteTeam && (
+                <button
+                  onClick={() => {
+                    onClose();
+                    onDeleteTeam(team);
+                  }}
+                  className="p-1.5 rounded-xl bg-slate-800 hover:bg-rose-950/40 text-slate-400 hover:text-rose-400 border border-slate-700 transition"
+                  title="Delete Team from Tracker"
+                >
+                  <Trash2 className="w-4 h-4" />
+                </button>
+              )}
+
               <button
                 onClick={() => {
                   onClose();
-                  onDeleteTeam(team);
+                  onOpenDefense(team);
                 }}
-                className="p-1.5 rounded-xl bg-slate-800 hover:bg-rose-950/40 text-slate-400 hover:text-rose-400 border border-slate-700 transition"
-                title="Delete Team from Tracker"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold shadow-sm"
               >
-                <Trash2 className="w-4 h-4" />
+                <Sparkles className="w-3.5 h-3.5 text-amber-300" />
+                <span>AI Defense Advisor</span>
               </button>
-            )}
-
-            <button
-              onClick={() => {
-                onClose();
-                onOpenDefense(team);
-              }}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold shadow-sm"
-            >
-              <Sparkles className="w-3.5 h-3.5 text-amber-300" />
-              <span>AI Defense Advisor</span>
-            </button>
-          </div>
+            </div>
+          )}
         </div>
 
         {/* Scrollable details */}

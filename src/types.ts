@@ -116,3 +116,24 @@ export interface DocumentParseResult {
     tags?: string[];
   }[];
 }
+
+export type UserRole = 'admin' | 'student';
+
+export interface AuthState {
+  isAdmin: boolean;
+  previewAsStudent: boolean;
+  token: string | null;
+}
+
+export interface TrackerStoreState {
+  audits: AuditRecord[];
+  customTeams: Team[];
+  customCards: KanbanCard[];
+  teamOverrides: Record<string, Partial<Team>>;
+  deletedTeamIds: string[];
+  googleSheetUrl?: string;
+  lastSyncedAt?: string;
+  lastUpdated?: string;
+}
+
+

@@ -16,12 +16,14 @@ interface OverviewCardsProps {
   audits: AuditRecord[];
   onFilterStatus?: (status: string) => void;
   onOpenIngestion: () => void;
+  isAdmin?: boolean;
 }
 
 export const OverviewCards: React.FC<OverviewCardsProps> = ({
   teams,
   audits,
   onOpenIngestion,
+  isAdmin = false,
 }) => {
   const totalTeams = teams.length;
   const onTrackTeams = teams.filter((t) => t.healthStatus === 'on_track');
@@ -45,8 +47,8 @@ export const OverviewCards: React.FC<OverviewCardsProps> = ({
 
   return (
     <div className="space-y-4">
-      {/* Top Banner Alert for Blockers / Unmerged Work */}
-      {blockedTeams.length > 0 && (
+      {/* Top Banner Alert for Blockers / Unmerged Work (Admin Only) */}
+      {isAdmin && blockedTeams.length > 0 && (
         <div className="bg-amber-500/10 border border-amber-500/30 rounded-2xl p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-amber-200">
           <div className="flex items-start gap-3">
             <div className="p-2 rounded-xl bg-amber-500/20 text-amber-400 shrink-0">

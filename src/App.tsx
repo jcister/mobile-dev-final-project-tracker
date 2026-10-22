@@ -13,12 +13,17 @@ import { AddTeamModal } from './components/AddTeamModal';
 import { AddAuditModal } from './components/AddAuditModal';
 import { EditTeamModal } from './components/EditTeamModal';
 import { DeleteTeamModal } from './components/DeleteTeamModal';
+import { AdminLoginModal } from './components/AdminLoginModal';
 import {
   INITIAL_UNIFIED_AUDITS,
   computeTeams,
   generateKanbanCards,
   DEMO_SAMPLE_AUDITS,
   STUDYSYNC_CANONICAL_AUDITS,
+  deduplicateAuditsList,
+  deduplicateCardsList,
+  mergeAuditsDeduplicated,
+  areAuditsDuplicate,
 } from './data/defaultData';
 import { AuditRecord, Team, KanbanCard } from './types';
 
@@ -28,7 +33,7 @@ const CUSTOM_TEAMS_STORAGE_KEY = 'uic_mobile_dev_custom_teams_v1';
 const TEAM_OVERRIDES_STORAGE_KEY = 'uic_mobile_dev_team_overrides_v1';
 const DELETED_TEAMS_STORAGE_KEY = 'uic_mobile_dev_deleted_teams_v1';
 
-// Helper to consolidate any fragmented raw rows (e.g. 11 sub-clauses) into the 4 canonical weekly milestones
+// Helper to consolidate any fragmented raw rows and deduplicate records
 function sanitizeAudits(raw: AuditRecord[]): AuditRecord[] {
   const isStudySync = (a: AuditRecord) =>
     a.teamId === 'studysync' ||
@@ -39,16 +44,12 @@ function sanitizeAudits(raw: AuditRecord[]): AuditRecord[] {
   const studySyncAudits = raw.filter(isStudySync);
   const otherAudits = raw.filter((a) => !isStudySync(a));
 
-  if (studySyncAudits.length === 0) {
-    return [...STUDYSYNC_CANONICAL_AUDITS, ...otherAudits];
-  }
-
-  // If previous raw regex parsing split the 3 PDFs into 11 fragments, consolidate to the 4 canonical milestones
+  let baseAudits = raw;
   if (studySyncAudits.length !== 4) {
-    return [...STUDYSYNC_CANONICAL_AUDITS, ...otherAudits];
+    baseAudits = [...STUDYSYNC_CANONICAL_AUDITS, ...otherAudits];
   }
 
-  return raw;
+  return deduplicateAuditsList(baseAudits);
 }
 
 function sanitizeCards(cards: KanbanCard[]): KanbanCard[] {
@@ -57,12 +58,13 @@ function sanitizeCards(cards: KanbanCard[]): KanbanCard[] {
     (c.assignee && c.assignee.toLowerCase().includes('allawan'));
 
   const ssCards = cards.filter(isStudySyncCard);
+  let baseCards = cards;
   if (ssCards.length !== 4) {
     const nonSsCards = cards.filter((c) => !isStudySyncCard(c));
     const ssMilestones = generateKanbanCards(STUDYSYNC_CANONICAL_AUDITS);
-    return [...ssMilestones, ...nonSsCards];
+    baseCards = [...ssMilestones, ...nonSsCards];
   }
-  return cards;
+  return deduplicateCardsList(baseCards);
 }
 
 export default function App() {
@@ -181,8 +183,19 @@ export default function App() {
     [audits, customTeams, teamOverrides, deletedTeamIds]
   );
 
-  // Navigation & Filtering state
-  const [activeView, setActiveView] = useState<'teams' | 'kanban' | 'matrix' | 'blockers'>('teams');
+  // Authentication & Role State
+  const [adminToken, setAdminToken] = useState<string | null>(() => {
+    return localStorage.getItem('uic_mobile_dev_admin_token') || sessionStorage.getItem('uic_mobile_dev_admin_token') || null;
+  });
+  const [isAdmin, setIsAdmin] = useState<boolean>(false);
+  const [previewAsStudent, setPreviewAsStudent] = useState<boolean>(false);
+  const [adminLoginModalOpen, setAdminLoginModalOpen] = useState<boolean>(false);
+  const [isSavingToServer, setIsSavingToServer] = useState<boolean>(false);
+
+  const isEffectiveAdmin = isAdmin && !previewAsStudent;
+
+  // Navigation & Filtering state (Defaults to Progress Matrix for students)
+  const [activeView, setActiveView] = useState<'teams' | 'kanban' | 'matrix' | 'blockers'>('matrix');
   const [currentSection, setCurrentSection] = useState<string>('ALL');
   const [searchQuery, setSearchQuery] = useState<string>('');
 
@@ -202,12 +215,243 @@ export default function App() {
     studentName?: string;
     weekNumber?: number;
   }>({});
+  const [isSyncingForms, setIsSyncingForms] = useState<boolean>(false);
+  const [googleSheetUrl, setGoogleSheetUrl] = useState<string>(() => {
+    return localStorage.getItem('uic_gform_sheet_url') || '';
+  });
+  const [lastFormsSyncTime, setLastFormsSyncTime] = useState<string | null>(null);
+
   const [liveNotification, setLiveNotification] = useState<{
     studentName: string;
     teamName: string;
     weekLabel: string;
     feature: string;
   } | null>(null);
+
+  // Initial startup: verify admin token and fetch shared server state
+  useEffect(() => {
+    const initTracker = async () => {
+      // 1. Check admin token validity
+      if (adminToken) {
+        try {
+          const res = await fetch('/api/auth/verify', {
+            headers: { Authorization: `Bearer ${adminToken}` },
+          });
+          const data = await res.json();
+          if (data.success && data.isAdmin) {
+            setIsAdmin(true);
+          } else {
+            setIsAdmin(false);
+            setAdminToken(null);
+            localStorage.removeItem('uic_mobile_dev_admin_token');
+            sessionStorage.removeItem('uic_mobile_dev_admin_token');
+          }
+        } catch (e) {
+          console.warn('Admin token verification error:', e);
+        }
+      }
+
+      // 2. Fetch shared tracker state from server disk
+      try {
+        const stateRes = await fetch('/api/tracker/state');
+        const stateData = await stateRes.json();
+        if (stateData.success && stateData.data) {
+          const { audits: sAudits, customTeams: sTeams, customCards: sCards, teamOverrides: sOverrides, deletedTeamIds: sDeleted } = stateData.data;
+          let cleanedAudits: AuditRecord[] | null = null;
+          let cleanedCards: KanbanCard[] | null = null;
+
+          if (Array.isArray(sAudits) && sAudits.length > 0) {
+            cleanedAudits = sanitizeAudits(sAudits);
+            setAudits(cleanedAudits);
+          }
+          if (Array.isArray(sTeams)) {
+            setCustomTeams(sTeams);
+          }
+          if (Array.isArray(sCards) && sCards.length > 0) {
+            cleanedCards = sanitizeCards(sCards);
+            setCustomCards(cleanedCards);
+          }
+          if (sOverrides && typeof sOverrides === 'object') {
+            setTeamOverrides(sOverrides);
+          }
+          if (Array.isArray(sDeleted)) {
+            setDeletedTeamIds(sDeleted);
+          }
+
+          if (stateData.data.googleSheetUrl && !googleSheetUrl) {
+            setGoogleSheetUrl(stateData.data.googleSheetUrl);
+            localStorage.setItem('uic_gform_sheet_url', stateData.data.googleSheetUrl);
+          }
+          if (stateData.data.lastSyncedAt) {
+            setLastFormsSyncTime(stateData.data.lastSyncedAt);
+          }
+
+          // Auto-heal: If server store had duplicates, sync back the clean state
+          if (cleanedAudits && sAudits && cleanedAudits.length !== sAudits.length) {
+            syncTrackerToServer({
+              audits: cleanedAudits,
+              customCards: cleanedCards || (cleanedAudits ? generateKanbanCards(cleanedAudits) : undefined),
+            });
+          }
+        }
+      } catch (err) {
+        console.warn('Failed to load shared server state, using local cache:', err);
+      }
+    };
+
+    initTracker();
+  }, []);
+
+  // Sync state mutations to server
+  const syncTrackerToServer = async (payload: {
+    audits?: AuditRecord[];
+    customTeams?: Team[];
+    customCards?: KanbanCard[];
+    teamOverrides?: Record<string, Partial<Team>>;
+    deletedTeamIds?: string[];
+    googleSheetUrl?: string;
+    lastSyncedAt?: string;
+  }) => {
+    const token = adminToken || localStorage.getItem('uic_mobile_dev_admin_token') || sessionStorage.getItem('uic_mobile_dev_admin_token');
+    if (!token) return;
+
+    setIsSavingToServer(true);
+    try {
+      const body = {
+        audits: payload.audits ?? audits,
+        customTeams: payload.customTeams ?? customTeams,
+        customCards: payload.customCards ?? customCards,
+        teamOverrides: payload.teamOverrides ?? teamOverrides,
+        deletedTeamIds: payload.deletedTeamIds ?? deletedTeamIds,
+        googleSheetUrl: payload.googleSheetUrl ?? googleSheetUrl,
+        lastSyncedAt: payload.lastSyncedAt ?? lastFormsSyncTime,
+      };
+      await fetch('/api/tracker/state', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(body),
+      });
+    } catch (err) {
+      console.error('Failed to sync changes to server:', err);
+    } finally {
+      setTimeout(() => setIsSavingToServer(false), 500);
+    }
+  };
+
+  // 1-Click & Automated Quick Sync of Google Form responses
+  const handleQuickSyncForms = async (silent = false) => {
+    const targetUrl = googleSheetUrl || localStorage.getItem('uic_gform_sheet_url') || '';
+    if (!targetUrl.trim()) {
+      if (!silent) {
+        setIngestionModalOpen(true);
+      }
+      return;
+    }
+
+    setIsSyncingForms(true);
+    try {
+      const res = await fetch('/api/forms/sync-live-sheet', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ sheetUrl: targetUrl.trim() }),
+      });
+      const json = await res.json();
+      if (!res.ok || !json.success) {
+        throw new Error(json.error || json.details || 'Failed to sync Google Sheet');
+      }
+
+      if (json.audits && Array.isArray(json.audits)) {
+        const { merged, addedCount, updatedCount } = mergeAuditsDeduplicated(audits, json.audits);
+        const nextCards = deduplicateCardsList(generateKanbanCards(merged));
+        setAudits(merged);
+        setCustomCards(nextCards);
+        const now = new Date().toLocaleTimeString();
+        setLastFormsSyncTime(now);
+
+        syncTrackerToServer({
+          audits: merged,
+          customCards: nextCards,
+          googleSheetUrl: targetUrl.trim(),
+          lastSyncedAt: now,
+        });
+
+        if (!silent || addedCount > 0) {
+          setLiveNotification({
+            studentName: 'Google Forms Sync',
+            teamName: `${json.audits.length} Form Responses Verified`,
+            weekLabel: addedCount > 0 ? `${addedCount} New • ${updatedCount} Updated` : '0 New • Up to Date',
+            feature: `Synced with 0 duplicates (${merged.length} total active records).`,
+          });
+          setTimeout(() => setLiveNotification(null), 5000);
+        }
+      }
+    } catch (err: any) {
+      console.warn('Google Sheet auto-sync error:', err);
+      if (!silent) {
+        setLiveNotification({
+          studentName: 'Sync Notice',
+          teamName: 'Google Sheet Connection',
+          weekLabel: 'Could not connect',
+          feature: err.message || 'Check your Google Sheet sharing link',
+        });
+        setTimeout(() => setLiveNotification(null), 6000);
+      }
+    } finally {
+      setIsSyncingForms(false);
+    }
+  };
+
+  // Automated Background Sync Timer (polls every 5 minutes when instructor session is active)
+  useEffect(() => {
+    if (!isAdmin) return;
+    const interval = setInterval(() => {
+      handleQuickSyncForms(true);
+    }, 5 * 60 * 1000); // 5 minutes
+
+    return () => clearInterval(interval);
+  }, [isAdmin, googleSheetUrl, audits]);
+
+  const handleLoginSuccess = (token: string) => {
+    setAdminToken(token);
+    setIsAdmin(true);
+    setPreviewAsStudent(false);
+    setLiveNotification({
+      studentName: 'Administrator',
+      teamName: 'Teacher Controls Unlocked',
+      weekLabel: 'Admin Mode Active',
+      feature: 'Full editing, student management, and defense AI controls enabled.',
+    });
+    setTimeout(() => setLiveNotification(null), 5000);
+  };
+
+  const handleLogout = () => {
+    setAdminToken(null);
+    setIsAdmin(false);
+    setPreviewAsStudent(false);
+    setActiveView('matrix');
+    localStorage.removeItem('uic_mobile_dev_admin_token');
+    sessionStorage.removeItem('uic_mobile_dev_admin_token');
+    setLiveNotification({
+      studentName: 'Signed Out',
+      teamName: 'Student Portal (View Only)',
+      weekLabel: 'Logged Out',
+      feature: 'Returned to student read-only matrix view.',
+    });
+    setTimeout(() => setLiveNotification(null), 4000);
+  };
+
+  const handleTogglePreviewAsStudent = () => {
+    setPreviewAsStudent((prev) => {
+      const next = !prev;
+      if (next) {
+        setActiveView('matrix');
+      }
+      return next;
+    });
+  };
 
   // Poll for live Google Form webhook audits every 15 seconds
   useEffect(() => {
@@ -297,9 +541,9 @@ export default function App() {
   };
 
   const handleMoveCard = (cardId: string, newStatus: 'backlog' | 'in_progress' | 'review' | 'done') => {
-    setCustomCards((prev) =>
-      prev.map((c) => (c.id === cardId ? { ...c, status: newStatus } : c))
-    );
+    const next = customCards.map((c) => (c.id === cardId ? { ...c, status: newStatus } : c));
+    setCustomCards(next);
+    syncTrackerToServer({ customCards: next });
   };
 
   const handleAddCard = (newCardData: Omit<KanbanCard, 'id' | 'updatedAt'>) => {
@@ -308,100 +552,105 @@ export default function App() {
       id: `custom-card-${Date.now()}`,
       updatedAt: new Date().toLocaleDateString(),
     };
-    setCustomCards((prev) => [newCard, ...prev]);
+    const next = [newCard, ...customCards];
+    setCustomCards(next);
+    syncTrackerToServer({ customCards: next });
   };
 
   const handleMergeAudits = (newAudits: AuditRecord[]) => {
-    setAudits((prev) => {
-      const existingIds = new Set(prev.map((a) => a.id));
-      const filteredNew = newAudits.filter((a) => !existingIds.has(a.id));
-      const merged = [...prev, ...filteredNew];
-      // Also update cards
-      setCustomCards(generateKanbanCards(merged));
-      return merged;
+    const { merged, addedCount, updatedCount } = mergeAuditsDeduplicated(audits, newAudits);
+    const nextCards = deduplicateCardsList(generateKanbanCards(merged));
+    setAudits(merged);
+    setCustomCards(nextCards);
+    syncTrackerToServer({ audits: merged, customCards: nextCards });
+
+    setLiveNotification({
+      studentName: 'Live Google Sheet Sync',
+      teamName: `${newAudits.length} Form Responses Processed`,
+      weekLabel: `${addedCount} New • ${updatedCount} Updated`,
+      feature: `All responses verified and synchronized with 0 duplicates.`,
     });
+    setTimeout(() => setLiveNotification(null), 5000);
   };
 
   const handleApplySyncedCards = (newCards: KanbanCard[], teamId?: string) => {
-    setCustomCards((prev) => {
-      const newIds = new Set(newCards.map((c) => c.id));
-      let filtered = prev.filter((c) => !newIds.has(c.id));
-      if (teamId) {
-        filtered = filtered.filter((c) => c.teamId !== teamId);
-      }
-      return [...newCards, ...filtered];
-    });
+    const newIds = new Set(newCards.map((c) => c.id));
+    let filtered = customCards.filter((c) => !newIds.has(c.id));
+    if (teamId) {
+      filtered = filtered.filter((c) => c.teamId !== teamId);
+    }
+    const nextCards = [...newCards, ...filtered];
+    setCustomCards(nextCards);
 
     // Also reflect live issues in the audit matrix so presentation readiness stays live
-    setAudits((prev) => {
-      const updated = [...prev];
-      newCards.forEach((c) => {
-        const ticketStatus: 'Done' | 'In Progress' | 'Review' | 'Backlog' =
-          c.status === 'done' ? 'Done' : c.status === 'review' ? 'Review' : c.status === 'in_progress' ? 'In Progress' : 'Backlog';
+    const updated = [...audits];
+    newCards.forEach((c) => {
+      const ticketStatus: 'Done' | 'In Progress' | 'Review' | 'Backlog' =
+        c.status === 'done' ? 'Done' : c.status === 'review' ? 'Review' : c.status === 'in_progress' ? 'In Progress' : 'Backlog';
 
-        const existingIdx = updated.findIndex(
-          (a) => a.ticketNumber === c.ticketNumber || (a.teamId === c.teamId && a.assignedFeature === c.title)
-        );
+      const existingIdx = updated.findIndex(
+        (a) => a.ticketNumber === c.ticketNumber || (a.teamId === c.teamId && a.assignedFeature === c.title)
+      );
 
-        if (existingIdx >= 0) {
-          updated[existingIdx] = {
-            ...updated[existingIdx],
-            ticketStatus,
-            commitUrl: c.commitUrl || updated[existingIdx].commitUrl,
-            summary: c.summary || updated[existingIdx].summary,
-          };
-        } else {
-          const team = allTeams.find((t) => t.id === c.teamId);
-          updated.push({
-            id: `gh-live-${c.id}`,
-            timestamp: new Date().toISOString(),
-            studentEmail: `${(c.assigneeGithub || 'student').toLowerCase()}@uic.edu.ph`,
-            weekNumber: 7,
-            weekLabel: 'Week 7 (Live GitHub Sync)',
-            section: team?.section || 'BSIT',
-            studentName: c.assignee || 'Assigned Student',
-            studentId: '',
-            rawTeamName: team?.name || c.teamId,
-            teamId: c.teamId,
-            teamName: team?.name || c.teamId,
-            githubUsername: c.assigneeGithub || '',
-            orgInviteAccepted: true,
-            assignedFeature: c.title,
-            ticketNumber: c.ticketNumber,
-            ticketStatus,
-            commitUrl: c.commitUrl || '',
-            summary: c.summary,
-            blockers: c.blockers || 'None',
-            sourceType: 'google_form',
-          });
-        }
-      });
-      return updated;
+      if (existingIdx >= 0) {
+        updated[existingIdx] = {
+          ...updated[existingIdx],
+          ticketStatus,
+          commitUrl: c.commitUrl || updated[existingIdx].commitUrl,
+          summary: c.summary || updated[existingIdx].summary,
+        };
+      } else {
+        const team = allTeams.find((t) => t.id === c.teamId);
+        updated.push({
+          id: `gh-live-${c.id}`,
+          timestamp: new Date().toISOString(),
+          studentEmail: `${(c.assigneeGithub || 'student').toLowerCase()}@uic.edu.ph`,
+          weekNumber: 7,
+          weekLabel: 'Week 7 (Live GitHub Sync)',
+          section: team?.section || 'BSIT',
+          studentName: c.assignee || 'Assigned Student',
+          studentId: '',
+          rawTeamName: team?.name || c.teamId,
+          teamId: c.teamId,
+          teamName: team?.name || c.teamId,
+          githubUsername: c.assigneeGithub || '',
+          orgInviteAccepted: true,
+          assignedFeature: c.title,
+          ticketNumber: c.ticketNumber,
+          ticketStatus,
+          commitUrl: c.commitUrl || '',
+          summary: c.summary,
+          blockers: c.blockers || 'None',
+          sourceType: 'google_form',
+        });
+      }
     });
+    setAudits(updated);
+    syncTrackerToServer({ customCards: nextCards, audits: updated });
   };
 
   const handleSaveTeam = (newTeam: Team, initialAudits: AuditRecord[], initialCards: KanbanCard[]) => {
-    setCustomTeams((prev) => {
-      const existing = prev.filter((t) => t.id !== newTeam.id);
-      return [...existing, newTeam];
-    });
+    const nextCustomTeams = [...customTeams.filter((t) => t.id !== newTeam.id), newTeam];
+    setCustomTeams(nextCustomTeams);
 
+    let nextAudits = audits;
     if (initialAudits.length > 0) {
-      setAudits((prev) => {
-        // Cleanly replace any older or fragmented audits for this team
-        const otherAudits = prev.filter(
-          (a) => a.teamId !== newTeam.id && !a.rawTeamName?.toLowerCase().includes(newTeam.name.toLowerCase())
-        );
-        return [...initialAudits, ...otherAudits];
-      });
+      // Cleanly replace any older or fragmented audits for this team
+      const otherAudits = audits.filter(
+        (a) => a.teamId !== newTeam.id && !a.rawTeamName?.toLowerCase().includes(newTeam.name.toLowerCase())
+      );
+      nextAudits = [...initialAudits, ...otherAudits];
+      setAudits(nextAudits);
     }
 
+    let nextCards = customCards;
     if (initialCards.length > 0) {
-      setCustomCards((prev) => {
-        const otherCards = prev.filter((c) => c.teamId !== newTeam.id);
-        return [...initialCards, ...otherCards];
-      });
+      const otherCards = customCards.filter((c) => c.teamId !== newTeam.id);
+      nextCards = [...initialCards, ...otherCards];
+      setCustomCards(nextCards);
     }
+
+    syncTrackerToServer({ customTeams: nextCustomTeams, audits: nextAudits, customCards: nextCards });
 
     setLiveNotification({
       studentName: newTeam.members[0]?.name || newTeam.name,
@@ -418,17 +667,18 @@ export default function App() {
   };
 
   const handleSaveAudit = (newAudit: AuditRecord) => {
-    setAudits((prev) => {
-      const existingIndex = prev.findIndex(
-        (a) => a.studentName.toLowerCase() === newAudit.studentName.toLowerCase() && a.weekNumber === newAudit.weekNumber
-      );
-      if (existingIndex >= 0) {
-        const copy = [...prev];
-        copy[existingIndex] = newAudit;
-        return copy;
-      }
-      return [newAudit, ...prev];
-    });
+    const existingIndex = audits.findIndex((a) => areAuditsDuplicate(a, newAudit));
+    const nextAudits = [...audits];
+    if (existingIndex >= 0) {
+      nextAudits[existingIndex] = {
+        ...nextAudits[existingIndex],
+        ...newAudit,
+      };
+    } else {
+      nextAudits.unshift(newAudit);
+    }
+    const cleanAudits = deduplicateAuditsList(nextAudits);
+    setAudits(cleanAudits);
 
     let cardStatus: 'backlog' | 'in_progress' | 'review' | 'done' = 'backlog';
     if (newAudit.ticketStatus === 'Done') cardStatus = 'done';
@@ -452,10 +702,10 @@ export default function App() {
       priority: newAudit.ticketStatus === 'Done' ? 'low' : 'medium',
     };
 
-    setCustomCards((prev) => {
-      const filtered = prev.filter((c) => c.id !== newCard.id);
-      return [newCard, ...filtered];
-    });
+    const nextCards = [newCard, ...customCards.filter((c) => c.id !== newCard.id)];
+    setCustomCards(nextCards);
+
+    syncTrackerToServer({ audits: nextAudits, customCards: nextCards });
 
     setLiveNotification({
       studentName: newAudit.studentName,
@@ -467,21 +717,19 @@ export default function App() {
   };
 
   const handleUpdateTeam = (updatedTeam: Team) => {
-    // If it's a custom registered team, update it in customTeams
-    setCustomTeams((prev) =>
-      prev.map((t) => (t.id === updatedTeam.id ? { ...t, ...updatedTeam } : t))
-    );
-
-    // Also persist in teamOverrides so default or custom teams keep updates
-    setTeamOverrides((prev) => ({
-      ...prev,
+    const nextCustomTeams = customTeams.map((t) => (t.id === updatedTeam.id ? { ...t, ...updatedTeam } : t));
+    const nextOverrides = {
+      ...teamOverrides,
       [updatedTeam.id]: updatedTeam,
-    }));
+    };
+    setCustomTeams(nextCustomTeams);
+    setTeamOverrides(nextOverrides);
 
-    // Update active modal if open
     if (selectedTeamForModal && selectedTeamForModal.id === updatedTeam.id) {
       setSelectedTeamForModal(updatedTeam);
     }
+
+    syncTrackerToServer({ customTeams: nextCustomTeams, teamOverrides: nextOverrides });
 
     setLiveNotification({
       studentName: 'Updated',
@@ -496,24 +744,26 @@ export default function App() {
     const targetTeam = allTeams.find((t) => t.id === teamId);
     const teamName = targetTeam?.name || teamId;
 
-    // Add to deletedTeamIds
-    setDeletedTeamIds((prev) => (prev.includes(teamId) ? prev : [...prev, teamId]));
+    const nextDeleted = deletedTeamIds.includes(teamId) ? deletedTeamIds : [...deletedTeamIds, teamId];
+    const nextCustomTeams = customTeams.filter((t) => t.id !== teamId);
+    const nextOverrides = { ...teamOverrides };
+    delete nextOverrides[teamId];
 
-    // Remove from customTeams and teamOverrides
-    setCustomTeams((prev) => prev.filter((t) => t.id !== teamId));
-    setTeamOverrides((prev) => {
-      const copy = { ...prev };
-      delete copy[teamId];
-      return copy;
-    });
-
+    let nextAudits = audits;
     if (deleteAudits) {
-      setAudits((prev) => prev.filter((a) => a.teamId !== teamId));
+      nextAudits = audits.filter((a) => a.teamId !== teamId);
+      setAudits(nextAudits);
     }
 
+    let nextCards = customCards;
     if (deleteCards) {
-      setCustomCards((prev) => prev.filter((c) => c.teamId !== teamId));
+      nextCards = customCards.filter((c) => c.teamId !== teamId);
+      setCustomCards(nextCards);
     }
+
+    setDeletedTeamIds(nextDeleted);
+    setCustomTeams(nextCustomTeams);
+    setTeamOverrides(nextOverrides);
 
     if (selectedTeamForModal?.id === teamId) {
       setSelectedTeamForModal(null);
@@ -521,6 +771,14 @@ export default function App() {
     if (selectedTeamForKanban === teamId) {
       setSelectedTeamForKanban('ALL');
     }
+
+    syncTrackerToServer({
+      deletedTeamIds: nextDeleted,
+      customTeams: nextCustomTeams,
+      teamOverrides: nextOverrides,
+      audits: nextAudits,
+      customCards: nextCards,
+    });
 
     setLiveNotification({
       studentName: 'Deleted',
@@ -532,37 +790,36 @@ export default function App() {
   };
 
   const handleEditCard = (updatedCard: KanbanCard) => {
-    setCustomCards((prev) =>
-      prev.map((c) => (c.id === updatedCard.id ? updatedCard : c))
-    );
+    const nextCards = customCards.map((c) => (c.id === updatedCard.id ? updatedCard : c));
+    setCustomCards(nextCards);
 
-    // Sync back to audit record if this card corresponds to an audit
-    setAudits((prev) =>
-      prev.map((a) => {
-        if (a.ticketNumber === updatedCard.ticketNumber && a.teamId === updatedCard.teamId) {
-          const ticketStatus: 'Done' | 'In Progress' | 'Review' | 'Backlog' =
-            updatedCard.status === 'done'
-              ? 'Done'
-              : updatedCard.status === 'review'
-              ? 'Review'
-              : updatedCard.status === 'in_progress'
-              ? 'In Progress'
-              : 'Backlog';
+    const nextAudits = audits.map((a) => {
+      if (a.ticketNumber === updatedCard.ticketNumber && a.teamId === updatedCard.teamId) {
+        const ticketStatus: 'Done' | 'In Progress' | 'Review' | 'Backlog' =
+          updatedCard.status === 'done'
+            ? 'Done'
+            : updatedCard.status === 'review'
+            ? 'Review'
+            : updatedCard.status === 'in_progress'
+            ? 'In Progress'
+            : 'Backlog';
 
-          return {
-            ...a,
-            assignedFeature: updatedCard.title,
-            studentName: updatedCard.assignee || a.studentName,
-            githubUsername: updatedCard.assigneeGithub || a.githubUsername,
-            ticketStatus,
-            summary: updatedCard.summary,
-            blockers: updatedCard.blockers || a.blockers,
-            commitUrl: updatedCard.commitUrl || a.commitUrl,
-          };
-        }
-        return a;
-      })
-    );
+        return {
+          ...a,
+          assignedFeature: updatedCard.title,
+          studentName: updatedCard.assignee || a.studentName,
+          githubUsername: updatedCard.assigneeGithub || a.githubUsername,
+          ticketStatus,
+          summary: updatedCard.summary,
+          blockers: updatedCard.blockers || a.blockers,
+          commitUrl: updatedCard.commitUrl || a.commitUrl,
+        };
+      }
+      return a;
+    });
+
+    setAudits(nextAudits);
+    syncTrackerToServer({ customCards: nextCards, audits: nextAudits });
 
     setLiveNotification({
       studentName: updatedCard.assignee,
@@ -575,7 +832,9 @@ export default function App() {
 
   const handleDeleteCard = (cardId: string) => {
     const cardToDelete = customCards.find((c) => c.id === cardId);
-    setCustomCards((prev) => prev.filter((c) => c.id !== cardId));
+    const nextCards = customCards.filter((c) => c.id !== cardId);
+    setCustomCards(nextCards);
+    syncTrackerToServer({ customCards: nextCards });
 
     setLiveNotification({
       studentName: 'Removed',
@@ -586,7 +845,7 @@ export default function App() {
     setTimeout(() => setLiveNotification(null), 4000);
   };
 
-  const handleResetToDefault = () => {
+  const handleResetToDefault = async () => {
     setAudits(INITIAL_UNIFIED_AUDITS);
     setCustomCards(generateKanbanCards(INITIAL_UNIFIED_AUDITS));
     setCustomTeams([]);
@@ -598,6 +857,15 @@ export default function App() {
       localStorage.removeItem(CUSTOM_TEAMS_STORAGE_KEY);
       localStorage.removeItem(TEAM_OVERRIDES_STORAGE_KEY);
       localStorage.removeItem(DELETED_TEAMS_STORAGE_KEY);
+
+      if (adminToken) {
+        await fetch('/api/tracker/reset', {
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${adminToken}`,
+          },
+        });
+      }
     } catch (e) {
       console.error(e);
     }
@@ -621,22 +889,38 @@ export default function App() {
         onOpenGitHubSync={() => setGitHubSyncModalOpen(true)}
         onOpenAddTeam={() => setAddTeamModalOpen(true)}
         onExport={() => setIngestionModalOpen(true)}
-        activeView={activeView}
-        onViewChange={setActiveView}
+        activeView={isEffectiveAdmin ? activeView : 'matrix'}
+        onViewChange={(v) => {
+          if (isEffectiveAdmin) setActiveView(v);
+        }}
         stats={stats}
+        isAdmin={isAdmin}
+        previewAsStudent={previewAsStudent}
+        onTogglePreviewAsStudent={handleTogglePreviewAsStudent}
+        onOpenLogin={() => setAdminLoginModalOpen(true)}
+        onLogout={handleLogout}
+        isSavingToServer={isSavingToServer}
+        onQuickSyncForms={() => handleQuickSyncForms(false)}
+        isSyncingForms={isSyncingForms}
+        lastFormsSyncTime={lastFormsSyncTime}
       />
 
       {/* Main Container */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+      <main
+        className={`flex-1 w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6 ${
+          !isEffectiveAdmin || activeView === 'matrix' ? 'max-w-[1800px]' : 'max-w-7xl'
+        }`}
+      >
         {/* High-level Metric Cards & Professor Alerts */}
         <OverviewCards
           teams={filteredTeams}
           audits={filteredAudits}
           onOpenIngestion={() => setIngestionModalOpen(true)}
+          isAdmin={isEffectiveAdmin}
         />
 
         {/* Dynamic View Content */}
-        {activeView === 'teams' && (
+        {isEffectiveAdmin && activeView === 'teams' && (
           <TeamsView
             teams={filteredTeams}
             onSelectTeam={(t) => setSelectedTeamForModal(t)}
@@ -648,7 +932,7 @@ export default function App() {
           />
         )}
 
-        {activeView === 'kanban' && (
+        {isEffectiveAdmin && activeView === 'kanban' && (
           <KanbanBoardView
             cards={customCards}
             teams={allTeams}
@@ -663,17 +947,19 @@ export default function App() {
           />
         )}
 
-        {activeView === 'matrix' && (
+        {/* Progress Matrix View (Default for students or when selected) */}
+        {(!isEffectiveAdmin || activeView === 'matrix') && (
           <UnifiedMatrixView
             teams={filteredTeams}
             audits={filteredAudits}
             onOpenTeam={(t) => setSelectedTeamForModal(t)}
             onOpenAddAudit={handleOpenAddAuditWithPrefill}
             onOpenAddTeam={() => setAddTeamModalOpen(true)}
+            isAdmin={isEffectiveAdmin}
           />
         )}
 
-        {activeView === 'blockers' && (
+        {isEffectiveAdmin && activeView === 'blockers' && (
           <BlockersView
             teams={filteredTeams}
             audits={filteredAudits}
@@ -684,18 +970,25 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-slate-900 bg-slate-950 py-4 text-center text-xs text-slate-400">
-        <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
+      <footer className="border-t border-slate-900 bg-slate-950 py-4 text-xs text-slate-400">
+        <div className="max-w-7xl mx-auto px-4 flex flex-col lg:flex-row items-center justify-between gap-2 text-center lg:text-left">
           <span>
-            University of the Immaculate Conception • College of Computer Studies (COD-IT)
+            Unofficial class tracker for the Mobile Application Development students of Joshua M. Cister.
+            Not an official UIC course system.
           </span>
-          <span className="font-mono text-[11px] text-slate-400">
-            Official Course Tracker: CC020 Mobile Applications Development 2026–2027
+          <span className="text-[11px] text-slate-500">
+            Built with Google AI Studio &amp; Antigravity (AI-assisted development).
           </span>
         </div>
       </footer>
 
       {/* Modals */}
+      <AdminLoginModal
+        isOpen={adminLoginModalOpen}
+        onClose={() => setAdminLoginModalOpen(false)}
+        onLoginSuccess={handleLoginSuccess}
+      />
+
       <TeamDetailModal
         team={selectedTeamForModal}
         onClose={() => setSelectedTeamForModal(null)}
@@ -704,6 +997,7 @@ export default function App() {
         onOpenKanban={handleOpenKanbanForTeam}
         onEditTeam={(t) => setEditingTeam(t)}
         onDeleteTeam={(t) => setDeletingTeam(t)}
+        isAdmin={isEffectiveAdmin}
       />
 
       <EditTeamModal

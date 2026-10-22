@@ -520,8 +520,11 @@ export const DataIngestionModal: React.FC<DataIngestionModalProps> = ({
         const weekNum = parseWeekNumber(rawWeek);
         const { teamId, teamName } = normalizeTeam(rawTeam);
 
+        const cleanIdent = (email || studentId || name).toLowerCase().replace(/[^a-z0-9]/g, '');
+        const id = `gform-csv-${cleanIdent}-w${weekNum}`;
+
         return {
-          id: `custom-csv-${Date.now()}-${idx}`,
+          id,
           timestamp,
           studentEmail: email,
           weekNumber: weekNum,
@@ -575,17 +578,18 @@ export const DataIngestionModal: React.FC<DataIngestionModalProps> = ({
       }
 
       if (json.audits && json.audits.length > 0) {
-        const mappedAudits: AuditRecord[] = json.audits.map((a: any, i: number) => {
-          const { teamId, teamName } = normalizeTeam(a.rawTeamName);
+        const mappedAudits: AuditRecord[] = json.audits.map((a: any) => {
+          const { teamId, teamName } = normalizeTeam(a.rawTeamName || a.teamName);
+          const cleanIdent = (a.studentEmail || a.studentId || a.studentName || '').toLowerCase().replace(/[^a-z0-9]/g, '');
           return {
             ...a,
-            id: `gsheet-live-${Date.now()}-${i}`,
+            id: a.id || `gform-${cleanIdent}-w${a.weekNumber}`,
             teamId,
             teamName,
           };
         });
         onMergeAudits(mappedAudits);
-        setSheetSyncSuccess(`Successfully synchronized ${mappedAudits.length} live responses from your Google Sheet!`);
+        setSheetSyncSuccess(`Successfully synchronized ${mappedAudits.length} live responses from your Google Sheet without duplicates!`);
         localStorage.setItem('uic_gform_sheet_url', sheetUrl.trim());
       } else {
         setSheetSyncSuccess('Connected to Google Sheet successfully! (0 new responses waiting)');
@@ -811,7 +815,7 @@ function onFormSubmit(e) {
                       StudySprint (Matthew Crispino)
                     </h5>
                     <p className="text-[11px] text-slate-400 mt-0.5 leading-snug">
-                      Load standard UIC COD-IT progress report template for pre-registered StudySprint team.
+                      Load standard progress report template for pre-registered StudySprint team.
                     </p>
                   </div>
                   <button
@@ -1343,7 +1347,7 @@ function onFormSubmit(e) {
                   Export Unified Faculty Audit Dossier
                 </h4>
                 <p className="mt-0.5 text-indigo-300/80 leading-relaxed">
-                  Download a complete reconciled report of all 8 weeks formatted for academic accreditation, Dean review, or COD-IT departmental progress documentation.
+                  Download a complete reconciled report of all 8 weeks formatted for progress review and documentation.
                 </p>
               </div>
 
@@ -1374,7 +1378,7 @@ function onFormSubmit(e) {
                     </span>
                     <span className="text-[10px] font-mono text-slate-500">Print / PDF</span>
                   </div>
-                  <h4 className="font-bold text-white text-xs">Print Official Audit Summary</h4>
+                  <h4 className="font-bold text-white text-xs">Print Audit Summary</h4>
                   <p className="text-[11px] text-slate-400">
                     Faculty-formatted print view displaying team readiness, milestones, and status.
                   </p>
