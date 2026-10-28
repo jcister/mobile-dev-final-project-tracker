@@ -1505,6 +1505,28 @@
       "summary": "Convert the code into apk to test it on smartphone.",
       "blockers": "None",
       "sourceType": "google_form"
+    },
+    {
+      "id": "gform-dramos240000000449uiceduph-w8",
+      "timestamp": "10/28/2026 10:57:28",
+      "studentEmail": "dramos_240000000449@uic.edu.ph",
+      "weekNumber": 8,
+      "weekLabel": "Week 8 (Oct 17 - Oct 23)",
+      "section": "BSIT 3B",
+      "studentName": "Ramos, Dave Noel T.",
+      "studentId": "240000000449",
+      "rawTeamName": "BiteTrack",
+      "teamId": "bitetrack",
+      "teamName": "BiteTrack",
+      "githubUsername": "Daveey22-prog",
+      "orgInviteAccepted": true,
+      "assignedFeature": "Developer",
+      "ticketNumber": "Issue #1 - Development",
+      "ticketStatus": "Done",
+      "commitUrl": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/BiteTrack-Fuentes-Ramos/commit/6e0520e20b5165c91aaa91f0c6c708916c092ea2",
+      "summary": "I develop the system, and the issue i faced is about backend specially in firebase.",
+      "blockers": "I develop the system, and the issue i faced is about backend specially in firebase.",
+      "sourceType": "google_form"
     }
   ],
   "customTeams": [],
@@ -2561,11 +2583,27 @@
       "hasBlocker": false,
       "updatedAt": "10/28/2026 9:48:43",
       "priority": "low"
+    },
+    {
+      "id": "kc-gform-dramos240000000449uiceduph-w8",
+      "teamId": "bitetrack",
+      "title": "Developer",
+      "ticketNumber": "Issue #1 - Development",
+      "status": "done",
+      "assignee": "Ramos, Dave Noel T.",
+      "assigneeGithub": "Daveey22-prog",
+      "commitUrl": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/BiteTrack-Fuentes-Ramos/commit/6e0520e20b5165c91aaa91f0c6c708916c092ea2",
+      "weekNumber": 8,
+      "summary": "I develop the system, and the issue i faced is about backend specially in firebase.",
+      "blockers": "I develop the system, and the issue i faced is about backend specially in firebase.",
+      "hasBlocker": true,
+      "updatedAt": "10/28/2026 10:57:28",
+      "priority": "high"
     }
   ],
   "teamOverrides": {},
   "deletedTeamIds": [],
   "googleSheetUrl": "https://docs.google.com/spreadsheets/d/1cfHSrSh8_BTOARHs58iavb3Zuxh-ehkZZFknmO8M_0o/edit?gid=200139442#gid=200139442",
-  "lastSyncedAt": "10:31:05 AM",
-  "lastUpdated": "2026-10-28T02:31:05.444Z"
+  "lastSyncedAt": "12:46:04 PM",
+  "lastUpdated": "2026-10-28T04:46:04.077Z"
 }
