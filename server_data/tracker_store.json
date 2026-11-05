@@ -109,7 +109,7 @@
       ]
     },
     {
-      "id": "gf-1",
+      "id": "gform-rsalibay240000001605uiceduph-w7-10152026113417",
       "timestamp": "10/15/2026 11:34:17",
       "studentEmail": "rsalibay_240000001605@uic.edu.ph",
       "weekNumber": 7,
@@ -127,12 +127,11 @@
       "ticketStatus": "Backlog",
       "commitUrl": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/WordQuest/commit/a180593",
       "summary": "Implemented UI layout",
-      "blockers": "None stated, but card still marked Backlog despite initial commit.",
-      "sourceType": "google_form",
-      "date": "2026-10-15"
+      "blockers": "None",
+      "sourceType": "google_form"
     },
     {
-      "id": "gf-2",
+      "id": "gform-nolpenado240000001755uiceduph-w7-10152026114949",
       "timestamp": "10/15/2026 11:49:49",
       "studentEmail": "nolpenado_240000001755@uic.edu.ph",
       "weekNumber": 7,
@@ -150,12 +149,11 @@
       "ticketStatus": "Done",
       "commitUrl": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/LearnLuau-Olpenado-Palencia/commit/55e8d70f8c4be86e40fcf69d1aa978f7067284d5, https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/LearnLuau-Olpenado-Palencia/commit/84ea4c02778a874601b0e224f374c97669628567, https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/LearnLuau-Olpenado-Palencia/commit/5673aacbb0718b22027d1a005aee85fdd84222a3",
       "summary": "- worked on connecting the blank application to the database\n- completed basic register, login, and logout features",
-      "blockers": "Initial DB authentication handshake latency resolved.",
-      "sourceType": "google_form",
-      "date": "2026-10-15"
+      "blockers": "None",
+      "sourceType": "google_form"
     },
     {
-      "id": "gf-3",
+      "id": "gform-edelossantos240000001315uiceduph-w7-10152026134219",
       "timestamp": "10/15/2026 13:42:19",
       "studentEmail": "edelossantos_240000001315@uic.edu.ph",
       "weekNumber": 7,
@@ -174,11 +172,10 @@
       "commitUrl": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/Edu-Iskolar_Eucare_Delos_Santos/commit/6d1b10b05b338ca9fc6572e4a5ba0928f0b7a672        https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/Edu-Iskolar_Eucare_Delos_Santos/commit/24d750e514cf1f0cf970ebab93763c4f6a4cd93e",
       "summary": "implementing the proper logic for login and register for users, the issues i faced was creating the DB since still learning or recalling what to do for it",
       "blockers": "implementing the proper logic for login and register for users, the issues i faced was creating the DB since still learning or recalling what to do for it",
-      "sourceType": "google_form",
-      "date": "2026-10-15"
+      "sourceType": "google_form"
     },
     {
-      "id": "gf-4",
+      "id": "gform-edelossantos240000001315uiceduph-w5-10152026135134",
       "timestamp": "10/15/2026 13:51:34",
       "studentEmail": "edelossantos_240000001315@uic.edu.ph",
       "weekNumber": 5,
@@ -197,11 +194,10 @@
       "commitUrl": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/Edu-Iskolar_Eucare_Delos_Santos/commit/98a9da0d9d820e17dca33fcea3d3c0466ca00336",
       "summary": "transfer the prototype to the vscode for initial system, Facing the issue having same design as the prototype we made",
       "blockers": "transfer the prototype to the vscode for initial system, Facing the issue having same design as the prototype we made",
-      "sourceType": "google_form",
-      "date": "2026-10-15"
+      "sourceType": "google_form"
     },
     {
-      "id": "gf-5",
+      "id": "gform-edelossantos240000001315uiceduph-w6-10152026135938",
       "timestamp": "10/15/2026 13:59:38",
       "studentEmail": "edelossantos_240000001315@uic.edu.ph",
       "weekNumber": 6,
@@ -219,12 +215,11 @@
       "ticketStatus": "In Progress",
       "commitUrl": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/Edu-Iskolar_Eucare_Delos_Santos/commit/89b7e0899b1c456ffbace35e84ea564ea20b4580",
       "summary": "Just initial merge on the initial commits",
-      "blockers": "Remote git branches conflict resolved.",
-      "sourceType": "google_form",
-      "date": "2026-10-15"
+      "blockers": "None",
+      "sourceType": "google_form"
     },
     {
-      "id": "gf-6",
+      "id": "gform-mcrispino240000000173uiceduph-w7-10162026105905",
       "timestamp": "10/16/2026 10:59:05",
       "studentEmail": "mcrispino_240000000173@uic.edu.ph",
       "weekNumber": 7,
@@ -242,12 +237,11 @@
       "ticketStatus": "Backlog",
       "commitUrl": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/studysprint_Crispino-lulab/commits/main/",
       "summary": "Updated project title in README.md and initialized repository structure for the Flutter application. Blockers: None.",
-      "blockers": "None. Still in initial setup phase.",
-      "sourceType": "google_form",
-      "date": "2026-10-16"
+      "blockers": "Updated project title in README.md and initialized repository structure for the Flutter application. Blockers: None.",
+      "sourceType": "google_form"
     },
     {
-      "id": "gf-7",
+      "id": "gform-jreponoya240000001805uiceduph-w8-1017202695605",
       "timestamp": "10/17/2026 9:56:05",
       "studentEmail": "jreponoya_240000001805@uic.edu.ph",
       "weekNumber": 8,
@@ -265,12 +259,11 @@
       "ticketStatus": "Done",
       "commitUrl": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/SpendLens-Ampi-Reponoya/commit/d0f68ae1fce453474bd363a8a6aa602869d406b2",
       "summary": "• Created The Login and Registration UI and the Backend Auth Controller",
-      "blockers": "None. Code merged and verified.",
-      "sourceType": "google_form",
-      "date": "2026-10-17"
+      "blockers": "None",
+      "sourceType": "google_form"
     },
     {
-      "id": "gf-8",
+      "id": "gform-jreponoya240000001805uiceduph-w7-1017202695920",
       "timestamp": "10/17/2026 9:59:20",
       "studentEmail": "jreponoya_240000001805@uic.edu.ph",
       "weekNumber": 7,
@@ -289,11 +282,10 @@
       "commitUrl": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/SpendLens-Ampi-Reponoya/commit/d0f68ae1fce453474bd363a8a6aa602869d406b2",
       "summary": "• Finished the Camera and AI analysis by sending a request to Gemini through our backend Receipt Controller\n• Issues: connecting React Native with ASP.NET Core Backend through HTTPS. Solution, we just changed it to HTTP",
       "blockers": "• Finished the Camera and AI analysis by sending a request to Gemini through our backend Receipt Controller\n• Issues: connecting React Native with ASP.NET Core Backend through HTTPS. Solution, we just changed it to HTTP",
-      "sourceType": "google_form",
-      "date": "2026-10-17"
+      "sourceType": "google_form"
     },
     {
-      "id": "gf-9",
+      "id": "gform-jreponoya240000001805uiceduph-w6-10172026100225",
       "timestamp": "10/17/2026 10:02:25",
       "studentEmail": "jreponoya_240000001805@uic.edu.ph",
       "weekNumber": 6,
@@ -312,11 +304,10 @@
       "commitUrl": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/SpendLens-Ampi-Reponoya/commit/d0f68ae1fce453474bd363a8a6aa602869d406b2",
       "summary": "• Created the camera button, which, upon clicking, will ask for the user's permission to open their camera and do so\n• Issues: originally, we were using a virtual Android device in Android Studio, but that doesn't have a place to save images. Solution: we use Expo Go instead, directly connecting it to my Android phone",
       "blockers": "• Created the camera button, which, upon clicking, will ask for the user's permission to open their camera and do so\n• Issues: originally, we were using a virtual Android device in Android Studio, but that doesn't have a place to save images. Solution: we use Expo Go instead, directly connecting it to my Android phone",
-      "sourceType": "google_form",
-      "date": "2026-10-17"
+      "sourceType": "google_form"
     },
     {
-      "id": "gf-10",
+      "id": "gform-jreponoya240000001805uiceduph-w5-10172026100634",
       "timestamp": "10/17/2026 10:06:34",
       "studentEmail": "jreponoya_240000001805@uic.edu.ph",
       "weekNumber": 5,
@@ -335,11 +326,10 @@
       "commitUrl": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/SpendLens-Ampi-Reponoya/commit/d0f68ae1fce453474bd363a8a6aa602869d406b2",
       "summary": "• This week, I was basically just figuring out how I would create the camera UI, take a picture, somehow send that to my backend controller, and then delegate it to Gemini AI, which will give a JSON response back to the UI.\n• Issues: It was my first time dealing with Gemini AI, and taking pictures and then directly sending it to a backend controller is also new to me",
       "blockers": "• This week, I was basically just figuring out how I would create the camera UI, take a picture, somehow send that to my backend controller, and then delegate it to Gemini AI, which will give a JSON response back to the UI.\n• Issues: It was my first time dealing with Gemini AI, and taking pictures and then directly sending it to a backend controller is also new to me",
-      "sourceType": "google_form",
-      "date": "2026-10-17"
+      "sourceType": "google_form"
     },
     {
-      "id": "gf-11",
+      "id": "gform-elohera240000001068uiceduph-w7-10182026141755",
       "timestamp": "10/18/2026 14:17:55",
       "studentEmail": "elohera_240000001068@uic.edu.ph",
       "weekNumber": 7,
@@ -357,12 +347,11 @@
       "ticketStatus": "In Progress",
       "commitUrl": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/WordQuest/commit/a180593e21081ca1d7e7c09504445b1c70d63b83",
       "summary": "Implemented the WordQuest Puzzle Practice screen with a letter grid, vocabulary clues, word validation, scoring, and feedback. Added the results screen and tests for the puzzle engine and practice flow. Fixed the compilation errors, and both `flutter analyze` and `flutter test` passed.",
-      "blockers": "Fixed compilation errors in letter grid builder.",
-      "sourceType": "google_form",
-      "date": "2026-10-18"
+      "blockers": "None",
+      "sourceType": "google_form"
     },
     {
-      "id": "gf-12",
+      "id": "gform-cattos240000000912uiceduph-w7-10192026141855",
       "timestamp": "10/19/2026 14:18:55",
       "studentEmail": "cattos_240000000912@uic.edu.ph",
       "weekNumber": 7,
@@ -380,12 +369,11 @@
       "ticketStatus": "In Progress",
       "commitUrl": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/Beyond-Attos-Millondaga/issues/3",
       "summary": "The five destinations are accessible.\nMap selection does not move the player directly.\nThe player can return to the main game flow without getting stuck.",
-      "blockers": "State loop between mini-map and return to main game canvas.",
-      "sourceType": "google_form",
-      "date": "2026-10-19"
+      "blockers": "None",
+      "sourceType": "google_form"
     },
     {
-      "id": "gf-13",
+      "id": "gform-emillondaga240000000686uiceduph-w7-10192026141933",
       "timestamp": "10/19/2026 14:19:33",
       "studentEmail": "emillondaga_240000000686@uic.edu.ph",
       "weekNumber": 7,
@@ -403,13 +391,12 @@
       "ticketStatus": "In Progress",
       "commitUrl": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/Beyond-Attos-Millondaga/issues/1",
       "summary": "The app launches without a blocking error.\nExisting navigation and screens are checked.\nAny presentation-blocking setup problem is recorded.",
-      "blockers": "Presentation-blocking setup in emulator recorded and mitigated.",
-      "sourceType": "google_form",
-      "date": "2026-10-19"
+      "blockers": "None",
+      "sourceType": "google_form"
     },
     {
-      "id": "gf-14",
-      "timestamp": "10/23/2026 17:16:22",
+      "id": "gform-cgalorio240000001297uiceduph-w5-10212026100612",
+      "timestamp": "10/21/2026 10:06:12",
       "studentEmail": "cgalorio_240000001297@uic.edu.ph",
       "weekNumber": 5,
       "weekLabel": "Week 5 (Sept 26 - Oct 2)",
@@ -421,17 +408,16 @@
       "teamName": "23:5 Cafe - Mobile Ordering & Barista Dispatch",
       "githubUsername": "Enchanjii",
       "orgInviteAccepted": true,
-      "assignedFeature": "Secure and update backend configuration by migrating Supabase credentials to environment variables",
-      "ticketNumber": "# 3",
+      "assignedFeature": "built and integrated new functional capabilities into the existing codebase to ensure smooth data flow and a seamless user experience.",
+      "ticketNumber": "add features #2",
       "ticketStatus": "Done",
-      "commitUrl": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/23-5-cafe-mobileApp-Galorio-Vergara/commit/e5e67ebd6bce1b577fec60f4a84867eb68f847fc",
-      "summary": "successfully integrated the Supabase backend with the Flutter application to handle remote database operations.",
-      "blockers": "Smooth cart data flow established.",
-      "sourceType": "google_form",
-      "date": "2026-10-21"
+      "commitUrl": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/23-5-cafe-mobileApp-Galorio-Vergara/commit/41c0333cd94f13bdfbfe340b78cb53a9ff117429",
+      "summary": "Successfully integrated additional functional capabilities into the main codebase for the Cafe Mobile App repositor",
+      "blockers": "None",
+      "sourceType": "google_form"
     },
     {
-      "id": "gf-15",
+      "id": "gform-lalconera240000001395uiceduph-w5-10212026100632",
       "timestamp": "10/21/2026 10:06:32",
       "studentEmail": "lalconera_240000001395@uic.edu.ph",
       "weekNumber": 5,
@@ -449,12 +435,11 @@
       "ticketStatus": "Backlog",
       "commitUrl": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/SpendWise-Nanual-Alconera",
       "summary": "Planning",
-      "blockers": "Slow transition into coding tasks.",
-      "sourceType": "google_form",
-      "date": "2026-10-21"
+      "blockers": "None",
+      "sourceType": "google_form"
     },
     {
-      "id": "gf-16",
+      "id": "gform-jnanual240000000820uiceduph-w5-10212026101157",
       "timestamp": "10/21/2026 10:11:57",
       "studentEmail": "jnanual_240000000820@uic.edu.ph",
       "weekNumber": 5,
@@ -472,12 +457,11 @@
       "ticketStatus": "Backlog",
       "commitUrl": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/SpendWise-Nanual-Alconera",
       "summary": "Planning",
-      "blockers": "Awaiting team repository feature assignment.",
-      "sourceType": "google_form",
-      "date": "2026-10-21"
+      "blockers": "None",
+      "sourceType": "google_form"
     },
     {
-      "id": "gf-17",
+      "id": "gform-mespera240000001373uiceduph-w5-10212026102503",
       "timestamp": "10/21/2026 10:25:03",
       "studentEmail": "mespera_240000001373@uic.edu.ph",
       "weekNumber": 5,
@@ -495,12 +479,11 @@
       "ticketStatus": "In Progress",
       "commitUrl": "None / not yet applicable",
       "summary": "None problems faced",
-      "blockers": "None.",
-      "sourceType": "google_form",
-      "date": "2026-10-21"
+      "blockers": "None",
+      "sourceType": "google_form"
     },
     {
-      "id": "gf-18",
+      "id": "gform-jpelpinosas240000001765uiceduph-w5-10212026104323",
       "timestamp": "10/21/2026 10:43:23",
       "studentEmail": "jpelpinosas_240000001765@uic.edu.ph",
       "weekNumber": 5,
@@ -518,12 +501,11 @@
       "ticketStatus": "Done",
       "commitUrl": "Not applicable at the time",
       "summary": "Me and our teammates discussed and brainstormed regarding the user friendly interface.",
-      "blockers": "None.",
-      "sourceType": "google_form",
-      "date": "2026-10-21"
+      "blockers": "None",
+      "sourceType": "google_form"
     },
     {
-      "id": "gf-19",
+      "id": "gform-imilitares240000000524uiceduph-w5-10212026104411",
       "timestamp": "10/21/2026 10:44:11",
       "studentEmail": "imilitares_240000000524@uic.edu.ph",
       "weekNumber": 5,
@@ -541,35 +523,33 @@
       "ticketStatus": "Done",
       "commitUrl": "Not applicable at the time",
       "summary": "As a team we discussed about user friendly user interfaces on the internet.",
-      "blockers": "None.",
-      "sourceType": "google_form",
-      "date": "2026-10-21"
+      "blockers": "None",
+      "sourceType": "google_form"
     },
     {
-      "id": "gf-20",
-      "timestamp": "10/21/2026 10:53:40",
-      "studentEmail": "nmahipus_240000001368@uic.edu.ph",
-      "weekNumber": 5,
-      "weekLabel": "Week 5 (Sept 26 - Oct 2)",
-      "section": "BSIT 3A & CS",
-      "studentName": "Mahipus, Nico",
-      "studentId": "240000001368",
-      "rawTeamName": "BrainBox",
-      "teamId": "brainbox",
-      "teamName": "BrainBox - Cognitive Learning Companion",
-      "githubUsername": "Niconnect_Ka_Kai_Nico",
+      "id": "gform-dramos240000000449uiceduph-w6-116202601859",
+      "timestamp": "11/6/2026 0:18:59",
+      "studentEmail": "dramos_240000000449@uic.edu.ph",
+      "weekNumber": 6,
+      "weekLabel": "Week 6 (Oct 3 - Oct 9)",
+      "section": "BSIT 3B",
+      "studentName": "Ramos, Dave Noel T.",
+      "studentId": "240000000449",
+      "rawTeamName": "BiteTrack",
+      "teamId": "bitetrack",
+      "teamName": "BiteTrack",
+      "githubUsername": "Davee22-prog",
       "orgInviteAccepted": true,
-      "assignedFeature": "Lead Programmer",
-      "ticketNumber": "Issue #1",
-      "ticketStatus": "In Progress",
-      "commitUrl": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/BrainBox-Mobile-App.git",
-      "summary": "As of now we've implemented the UI we designed but still trying to implement the feautres and functional requirements.",
-      "blockers": "Connecting UI widgets to logic controllers.",
-      "sourceType": "google_form",
-      "date": "2026-10-21"
+      "assignedFeature": "Prototype and System Designing",
+      "ticketNumber": "7",
+      "ticketStatus": "Done",
+      "commitUrl": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/BiteTrack-Fuentes-Ramos.git",
+      "summary": "i assigned in this week to proceed and work to our prototype and trying to build the system, and the issue i face in this week is that in the developing side i cant do it correctly because there's an issue in our UI and lack of communication with my pair",
+      "blockers": "i assigned in this week to proceed and work to our prototype and trying to build the system, and the issue i face in this week is that in the developing side i cant do it correctly because there's an issue in our UI and lack of communication with my pair",
+      "sourceType": "google_form"
     },
     {
-      "id": "gf-21",
+      "id": "gform-imilitares240000000524uiceduph-w6-10212026110944",
       "timestamp": "10/21/2026 11:09:44",
       "studentEmail": "imilitares_240000000524@uic.edu.ph",
       "weekNumber": 6,
@@ -587,35 +567,33 @@
       "ticketStatus": "In Progress",
       "commitUrl": "Not yet applicable.",
       "summary": "Planning out the system features and functions, and make sure the core features are implemented to avoid scope creep.",
-      "blockers": "Scope creep mitigation.",
-      "sourceType": "google_form",
-      "date": "2026-10-21"
+      "blockers": "None",
+      "sourceType": "google_form"
     },
     {
-      "id": "gf-22",
-      "timestamp": "10/21/2026 11:15:22",
-      "studentEmail": "nmahipus_240000001368@uic.edu.ph",
-      "weekNumber": 6,
-      "weekLabel": "Week 6 (Oct 3 - Oct 9)",
+      "id": "gform-dramos240000000449uiceduph-w7-116202602052",
+      "timestamp": "11/6/2026 0:20:52",
+      "studentEmail": "dramos_240000000449@uic.edu.ph",
+      "weekNumber": 7,
+      "weekLabel": "Week 7 (Oct 10 - Oct 16)",
       "section": "BSIT 3B",
-      "studentName": "Mahipus Nico",
-      "studentId": "240000001368",
-      "rawTeamName": "Brain Box",
-      "teamId": "brainbox",
-      "teamName": "BrainBox - Cognitive Learning Companion",
-      "githubUsername": "Niconnect_ka_kai_Nico",
+      "studentName": "Ramos, Dave Noel T.",
+      "studentId": "240000000449",
+      "rawTeamName": "BiteTrack",
+      "teamId": "bitetrack",
+      "teamName": "BiteTrack",
+      "githubUsername": "Daveey22-prog",
       "orgInviteAccepted": true,
-      "assignedFeature": "Overall functionality",
-      "ticketNumber": "Issue #2",
+      "assignedFeature": "Developing the system and showing to my pair",
+      "ticketNumber": "1",
       "ticketStatus": "Done",
-      "commitUrl": "580a2632d0e39d457e9f834c0c9ed068f2937d1d",
-      "summary": "UI is finished but still trying to fix the logic errors in the code that preventing the UI to work with what its designed for. specially the functional requirements",
-      "blockers": "Logic errors in state updates resolved.",
-      "sourceType": "google_form",
-      "date": "2026-10-21"
+      "commitUrl": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/BiteTrack-Fuentes-Ramos.git",
+      "summary": "in this week im done developing the system and im showing it to my pair so that he can check what to improve or to change and the issue i face in this week is that the testing and the apk because i dont know how to apk since this is my first time.",
+      "blockers": "in this week im done developing the system and im showing it to my pair so that he can check what to improve or to change and the issue i face in this week is that the testing and the apk because i dont know how to apk since this is my first time.",
+      "sourceType": "google_form"
     },
     {
-      "id": "gf-23",
+      "id": "gform-mespera240000001373uiceduph-w6-10212026111605",
       "timestamp": "10/21/2026 11:16:05",
       "studentEmail": "mespera_240000001373@uic.edu.ph",
       "weekNumber": 6,
@@ -633,12 +611,11 @@
       "ticketStatus": "In Progress",
       "commitUrl": "None",
       "summary": "Reach out with team mates to discuss about it.",
-      "blockers": "Awaiting repo access sync.",
-      "sourceType": "google_form",
-      "date": "2026-10-21"
+      "blockers": "None",
+      "sourceType": "google_form"
     },
     {
-      "id": "gf-24",
+      "id": "gform-imilitares240000000524uiceduph-w7-10212026111642",
       "timestamp": "10/21/2026 11:16:42",
       "studentEmail": "imilitares_240000000524@uic.edu.ph",
       "weekNumber": 7,
@@ -656,12 +633,11 @@
       "ticketStatus": "In Progress",
       "commitUrl": "Not applicable yet.",
       "summary": "Invited to the GitHub Organization Access & Team Repository. The team programmer started to set up the environment for the app development.",
-      "blockers": "None.",
-      "sourceType": "google_form",
-      "date": "2026-10-21"
+      "blockers": "None",
+      "sourceType": "google_form"
     },
     {
-      "id": "gf-25",
+      "id": "gform-jpelpinosas240000001765uiceduph-w6-10212026111734",
       "timestamp": "10/21/2026 11:17:34",
       "studentEmail": "jpelpinosas_240000001765@uic.edu.ph",
       "weekNumber": 6,
@@ -679,35 +655,33 @@
       "ticketStatus": "Done",
       "commitUrl": "not applicable",
       "summary": "discussed with teammates the system architecture, and features",
-      "blockers": "None.",
-      "sourceType": "google_form",
-      "date": "2026-10-21"
+      "blockers": "None",
+      "sourceType": "google_form"
     },
     {
-      "id": "gf-26",
-      "timestamp": "10/21/2026 11:21:20",
+      "id": "gform-nmahipus240000001368uiceduph-w5-10212026105340",
+      "timestamp": "10/21/2026 10:53:40",
       "studentEmail": "nmahipus_240000001368@uic.edu.ph",
-      "weekNumber": 7,
-      "weekLabel": "Week 7 (Oct 10 - Oct 16)",
+      "weekNumber": 5,
+      "weekLabel": "Week 5 (Sept 26 - Oct 2)",
       "section": "BSIT 3A & CS",
-      "studentName": "Mahipus Nico",
+      "studentName": "Mahipus, Nico",
       "studentId": "240000001368",
-      "rawTeamName": "Brain Box",
+      "rawTeamName": "BrainBox",
       "teamId": "brainbox",
       "teamName": "BrainBox - Cognitive Learning Companion",
       "githubUsername": "Niconnect_Ka_Kai_Nico",
       "orgInviteAccepted": true,
-      "assignedFeature": "Overall functionality",
-      "ticketNumber": "issue #3",
+      "assignedFeature": "Lead Programmer",
+      "ticketNumber": "Issue #1",
       "ticketStatus": "In Progress",
-      "commitUrl": "b02c7c551963f220ccad5ae441552101daa3a543",
-      "summary": "as of now functionality is coming together somehow half of what we want working is working.",
-      "blockers": "Async state timing on question transition.",
-      "sourceType": "google_form",
-      "date": "2026-10-21"
+      "commitUrl": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/BrainBox-Mobile-App.git",
+      "summary": "As of now we've implemented the UI we designed but still trying to implement the feautres and functional requirements.",
+      "blockers": "None",
+      "sourceType": "google_form"
     },
     {
-      "id": "gf-27",
+      "id": "gform-jpelpinosas240000001765uiceduph-w7-10212026112141",
       "timestamp": "10/21/2026 11:21:41",
       "studentEmail": "jpelpinosas_240000001765@uic.edu.ph",
       "weekNumber": 7,
@@ -725,12 +699,11 @@
       "ticketStatus": "Done",
       "commitUrl": "Not applicable",
       "summary": "Invited to the official github for the mobile dev and created the kanban board for our projects.",
-      "blockers": "None.",
-      "sourceType": "google_form",
-      "date": "2026-10-21"
+      "blockers": "None",
+      "sourceType": "google_form"
     },
     {
-      "id": "gf-28",
+      "id": "gform-mespera240000001373uiceduph-w7-10212026112628",
       "timestamp": "10/21/2026 11:26:28",
       "studentEmail": "mespera_240000001373@uic.edu.ph",
       "weekNumber": 7,
@@ -748,12 +721,11 @@
       "ticketStatus": "In Progress",
       "commitUrl": "None",
       "summary": "To discuss and plan out the implementation of the system.",
-      "blockers": "None.",
-      "sourceType": "google_form",
-      "date": "2026-10-21"
+      "blockers": "None",
+      "sourceType": "google_form"
     },
     {
-      "id": "gf-29",
+      "id": "gform-imilitares240000000524uiceduph-w8-10212026112958",
       "timestamp": "10/21/2026 11:29:58",
       "studentEmail": "imilitares_240000000524@uic.edu.ph",
       "weekNumber": 8,
@@ -771,12 +743,11 @@
       "ticketStatus": "In Progress",
       "commitUrl": "The commit link is provided by our team programmer. Mr. Pelpinosas has the Key Commit Link for this on our github project.",
       "summary": "Our team programmer is currently working on the system, providing us updates through the github project kanban board, and the rest of the members are keeping up with the progress of the system. For a mean time we will focus first on delivering at least a Minimum Viable Product, with core features integrated and fully functional when the presentation day comes.",
-      "blockers": "Synchronizing final presentation demo assets.",
-      "sourceType": "google_form",
-      "date": "2026-10-21"
+      "blockers": "None",
+      "sourceType": "google_form"
     },
     {
-      "id": "gf-30",
+      "id": "gform-jpelpinosas240000001765uiceduph-w8-10212026113054",
       "timestamp": "10/21/2026 11:30:54",
       "studentEmail": "jpelpinosas_240000001765@uic.edu.ph",
       "weekNumber": 8,
@@ -794,12 +765,11 @@
       "ticketStatus": "Done",
       "commitUrl": "383172eed123d8e12f00664bcb384658c878adcb",
       "summary": "First, On the UI front, we fully constructed the primary dashboard workspace to closely match your design specifications. This includes the top hardware status banner, dynamic real-time date and clock tracking, the multi-role navigation header, the left sidebar drawer, the interactive table overview grid with status badges, and the itemized order details panel complete with customer note containers and action controls. Then, we expanded the front-end feature set by building three dedicated workspace modules: the camera-based barcode scanner screen (scanner_screen.dart) with flashlight controls and manual SKU entry dialogs, the searchable menu catalog (menu_catalog_view.dart) with category filter chips, and the payment checkout terminal (payments_view.dart) equipped with payment method selectors, quick-cash tender buttons, and live change calculation. Lastly, we established the user entry flow by building the authentication and onboarding screens (login_screen.dart and register_screen.dart), setting LoginScreen as the root route so operators register their store name and manager details before entering the workspace.",
-      "blockers": "None. Comprehensive high-velocity delivery completed.",
-      "sourceType": "google_form",
-      "date": "2026-10-21"
+      "blockers": "None",
+      "sourceType": "google_form"
     },
     {
-      "id": "gf-31",
+      "id": "gform-mespera240000001373uiceduph-w8-10212026114133",
       "timestamp": "10/21/2026 11:41:33",
       "studentEmail": "mespera_240000001373@uic.edu.ph",
       "weekNumber": 8,
@@ -817,12 +787,11 @@
       "ticketStatus": "In Progress",
       "commitUrl": "Our programmer has the key commit link.",
       "summary": "Meet and discuss with the group about the system's progress",
-      "blockers": "None.",
-      "sourceType": "google_form",
-      "date": "2026-10-21"
+      "blockers": "None",
+      "sourceType": "google_form"
     },
     {
-      "id": "gf-32",
+      "id": "gform-crivera240000001717uiceduph-w5-10212026145718",
       "timestamp": "10/21/2026 14:57:18",
       "studentEmail": "crivera_240000001717@uic.edu.ph",
       "weekNumber": 5,
@@ -840,12 +809,11 @@
       "ticketStatus": "Backlog",
       "commitUrl": "None to provide",
       "summary": "No substantial work done for week 5 aside from discussing with Stephanie on what logic we still had to improve. The main concern being the model (at the time) was not giving correct replies.",
-      "blockers": "Main concern: AI model not providing accurate legal responses; delayed GitHub invite.",
-      "sourceType": "google_form",
-      "date": "2026-10-21"
+      "blockers": "None",
+      "sourceType": "google_form"
     },
     {
-      "id": "gf-33",
+      "id": "gform-crivera240000001717uiceduph-w6-10212026150839",
       "timestamp": "10/21/2026 15:08:39",
       "studentEmail": "crivera_240000001717@uic.edu.ph",
       "weekNumber": 6,
@@ -864,11 +832,10 @@
       "commitUrl": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/Batid-Patas-Aniag-Rivera/commit/c891696f72139df39d0a575062dbf434836d3802",
       "summary": "Fixed a minor UI error in the chat history screen. Also began to work on Issue #3 where the model's answers had to be fixed for accuracy.",
       "blockers": "Fixed a minor UI error in the chat history screen. Also began to work on Issue #3 where the model's answers had to be fixed for accuracy.",
-      "sourceType": "google_form",
-      "date": "2026-10-21"
+      "sourceType": "google_form"
     },
     {
-      "id": "gf-34",
+      "id": "gform-crivera240000001717uiceduph-w7-10212026153027",
       "timestamp": "10/21/2026 15:30:27",
       "studentEmail": "crivera_240000001717@uic.edu.ph",
       "weekNumber": 7,
@@ -887,12 +854,11 @@
       "commitUrl": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/Batid-Patas-Aniag-Rivera/commit/13fcb5c8f4d9e5827dc3a9d9c6f23590af953cce",
       "summary": "- Adjusted text chunk size for vector and text extraction used by the model to find relevant information from laws.\n- Experienced minor issue where the app crashed due to exceeding memory use, fixed by lowering text chunk size from 350 to 250.\n- Adjusted reply rules of model, and included Data Privacy Act Document.",
       "blockers": "- Adjusted text chunk size for vector and text extraction used by the model to find relevant information from laws.\n- Experienced minor issue where the app crashed due to exceeding memory use, fixed by lowering text chunk size from 350 to 250.\n- Adjusted reply rules of model, and included Data Privacy Act Document.",
-      "sourceType": "google_form",
-      "date": "2026-10-21"
+      "sourceType": "google_form"
     },
     {
-      "id": "gform-mpavo230000000156uiceduph-w7",
-      "timestamp": "10/28/2026 2:22:38",
+      "id": "gform-mpavo230000000156uiceduph-w7-1022202691846",
+      "timestamp": "10/22/2026 9:18:46",
       "studentEmail": "mpavo_230000000156@uic.edu.ph",
       "weekNumber": 7,
       "weekLabel": "Week 7 (Oct 10 - Oct 16)",
@@ -900,20 +866,20 @@
       "studentName": "Pavo, Mariella",
       "studentId": "230000000156",
       "rawTeamName": "HealthLine PH",
+      "teamId": "healthline-ph",
+      "teamName": "HealthLine PH",
       "githubUsername": "@mariella-pavo",
       "orgInviteAccepted": true,
-      "assignedFeature": "ConsumerWidget Integration, Async State Handling, and Stateless UI Components",
-      "ticketNumber": "#9",
-      "ticketStatus": "Done",
-      "commitUrl": "e37e2f413b0e8e5023f93d35e0be8134ce259a11",
+      "assignedFeature": "We are utilizing a simple state provider for all the features. This is what we've been working on since last October 5 as we're still have difficulty with the coding aspect.",
+      "ticketNumber": "Issue #",
+      "ticketStatus": "Backlog",
+      "commitUrl": "",
       "summary": "We've already started developing our application which includes 2-4 pages of each features in the app including the login page for patients. As for the technical issues, we apologize, we might not be able to present our actual progress (the codes) as the initial repository of the app was on my account (@mariella-pavo) and is still local on my device as it failed to sync online. However, we will try to work on this today's session.",
       "blockers": "We've already started developing our application which includes 2-4 pages of each features in the app including the login page for patients. As for the technical issues, we apologize, we might not be able to present our actual progress (the codes) as the initial repository of the app was on my account (@mariella-pavo) and is still local on my device as it failed to sync online. However, we will try to work on this today's session.",
-      "sourceType": "google_form",
-      "teamId": "healthline-ph",
-      "teamName": "HealthLine PH"
+      "sourceType": "google_form"
     },
     {
-      "id": "gform-saniag250000001888uiceduph-w5",
+      "id": "gform-saniag250000001888uiceduph-w5-1022202692226",
       "timestamp": "10/22/2026 9:22:26",
       "studentEmail": "saniag_250000001888@uic.edu.ph",
       "weekNumber": 5,
@@ -922,6 +888,8 @@
       "studentName": "Aniag, Stephanie Princess Grace",
       "studentId": "250000001888",
       "rawTeamName": "Batid Patas App",
+      "teamId": "batid-patas",
+      "teamName": "Batid Patas - Legal Aid & Law AI Assistant",
       "githubUsername": "@theftphi",
       "orgInviteAccepted": true,
       "assignedFeature": "N/A",
@@ -930,12 +898,10 @@
       "commitUrl": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/Batid-Patas-Aniag-Rivera.git",
       "summary": "N/A",
       "blockers": "None",
-      "sourceType": "google_form",
-      "teamId": "batid-patas",
-      "teamName": "Batid Patas - Legal Aid & Law AI Assistant"
+      "sourceType": "google_form"
     },
     {
-      "id": "gform-saniag250000001888uiceduph-w6",
+      "id": "gform-saniag250000001888uiceduph-w6-1022202693042",
       "timestamp": "10/22/2026 9:30:42",
       "studentEmail": "saniag_250000001888@uic.edu.ph",
       "weekNumber": 6,
@@ -944,6 +910,8 @@
       "studentName": "Aniag, Stephanie Princess Grace",
       "studentId": "250000001888",
       "rawTeamName": "Batid Patas App",
+      "teamId": "batid-patas",
+      "teamName": "Batid Patas - Legal Aid & Law AI Assistant",
       "githubUsername": "@theftphi",
       "orgInviteAccepted": true,
       "assignedFeature": "N/A",
@@ -952,12 +920,10 @@
       "commitUrl": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/Batid-Patas-Aniag-Rivera.git",
       "summary": "N/A",
       "blockers": "None",
-      "sourceType": "google_form",
-      "teamId": "batid-patas",
-      "teamName": "Batid Patas - Legal Aid & Law AI Assistant"
+      "sourceType": "google_form"
     },
     {
-      "id": "gform-meucare240000002220uiceduph-w7",
+      "id": "gform-meucare240000002220uiceduph-w7-10222026111634",
       "timestamp": "10/22/2026 11:16:34",
       "studentEmail": "meucare_240000002220@uic.edu.ph",
       "weekNumber": 7,
@@ -966,6 +932,8 @@
       "studentName": "Eucare, Mitch Ghynne G.",
       "studentId": "240000002220",
       "rawTeamName": "Edu-Iskolar",
+      "teamId": "edu-iskolar",
+      "teamName": "Edu-Iskolar - Scholarship & Student Portal",
       "githubUsername": "@Ghynnx",
       "orgInviteAccepted": true,
       "assignedFeature": "Kanban, ReadMe",
@@ -974,12 +942,10 @@
       "commitUrl": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/Edu-Iskolar_Eucare_Delos_Santos/issues/4",
       "summary": "Edited the readme file based on the outline given",
       "blockers": "None",
-      "sourceType": "google_form",
-      "teamId": "edu-iskolar",
-      "teamName": "Edu-Iskolar - Scholarship & Student Portal"
+      "sourceType": "google_form"
     },
     {
-      "id": "gform-mpalencia240000000452uiceduph-w7",
+      "id": "gform-mpalencia240000000452uiceduph-w7-10222026114740",
       "timestamp": "10/22/2026 11:47:40",
       "studentEmail": "mpalencia_240000000452@uic.edu.ph",
       "weekNumber": 7,
@@ -988,6 +954,8 @@
       "studentName": "Palencia Mark Vincent C",
       "studentId": "240000000452",
       "rawTeamName": "LearnLuau",
+      "teamId": "learn-luau",
+      "teamName": "Learn Luau - Interactive Coding & Scripting App",
       "githubUsername": "NorRuski",
       "orgInviteAccepted": true,
       "assignedFeature": "Outline for the resource and UI",
@@ -996,12 +964,10 @@
       "commitUrl": "",
       "summary": "I used my own projects and experience in roblox to create the outline",
       "blockers": "None",
-      "sourceType": "google_form",
-      "teamId": "learn-luau",
-      "teamName": "Learn Luau - Interactive Coding & Scripting App"
+      "sourceType": "google_form"
     },
     {
-      "id": "gform-knarita240000001591uiceduph-w5",
+      "id": "gform-knarita240000001591uiceduph-w5-10222026192748",
       "timestamp": "10/22/2026 19:27:48",
       "studentEmail": "knarita_240000001591@uic.edu.ph",
       "weekNumber": 5,
@@ -1010,6 +976,8 @@
       "studentName": "Narita, Khristine May A.",
       "studentId": "240000001591",
       "rawTeamName": "Alaga",
+      "teamId": "alaga",
+      "teamName": "Alaga",
       "githubUsername": "khristinenarita",
       "orgInviteAccepted": true,
       "assignedFeature": "Built the interactive navigation prototype of Alaga, with a patient side (Home, Medicines, SOS) and a family side (Dashboard, Messages, Assign Medicine), plus role selection and login/create account",
@@ -1018,12 +986,10 @@
       "commitUrl": "https://github.com/khristinenarita/Alaga-Amoncio-Narita.git",
       "summary": "I built the screen navigation between the patient and family sides. I also added login and create account, with a family code that links a family member to a patient. When the patient taps “I took it” or SOS, a message goes to the family, and the family can assign a new medicine to the patient.\n\nBlockers: The prototype saves nothing, so accounts and messages reset when the page refreshes, and it needs a real backend.",
       "blockers": "I built the screen navigation between the patient and family sides. I also added login and create account, with a family code that links a family member to a patient. When the patient taps “I took it” or SOS, a message goes to the family, and the family can assign a new medicine to the patient.\n\nBlockers: The prototype saves nothing, so accounts and messages reset when the page refreshes, and it needs a real backend.",
-      "sourceType": "google_form",
-      "teamId": "alaga",
-      "teamName": "Alaga"
+      "sourceType": "google_form"
     },
     {
-      "id": "gform-fmatol240000000927uiceduph-w8",
+      "id": "gform-fmatol240000000927uiceduph-w8-10222026220838",
       "timestamp": "10/22/2026 22:08:38",
       "studentEmail": "fmatol_240000000927@uic.edu.ph",
       "weekNumber": 8,
@@ -1045,7 +1011,7 @@
       "sourceType": "google_form"
     },
     {
-      "id": "gform-mcrispino240000000173uiceduph-w5",
+      "id": "gform-mcrispino240000000173uiceduph-w5-1023202664831",
       "timestamp": "10/23/2026 6:48:31",
       "studentEmail": "mcrispino_240000000173@uic.edu.ph",
       "weekNumber": 5,
@@ -1067,7 +1033,7 @@
       "sourceType": "google_form"
     },
     {
-      "id": "gform-mcrispino240000000173uiceduph-w6",
+      "id": "gform-mcrispino240000000173uiceduph-w6-1023202665316",
       "timestamp": "10/23/2026 6:53:16",
       "studentEmail": "mcrispino_240000000173@uic.edu.ph",
       "weekNumber": 6,
@@ -1089,7 +1055,7 @@
       "sourceType": "google_form"
     },
     {
-      "id": "gform-jmendoza240000001091uiceduph-w5",
+      "id": "gform-jmendoza240000001091uiceduph-w5-10232026104359",
       "timestamp": "10/23/2026 10:43:59",
       "studentEmail": "jmendoza_240000001091@uic.edu.ph",
       "weekNumber": 5,
@@ -1111,7 +1077,7 @@
       "sourceType": "google_form"
     },
     {
-      "id": "gform-jmendoza240000001091uiceduph-w6",
+      "id": "gform-jmendoza240000001091uiceduph-w6-10232026105543",
       "timestamp": "10/23/2026 10:55:43",
       "studentEmail": "jmendoza_240000001091@uic.edu.ph",
       "weekNumber": 6,
@@ -1133,7 +1099,7 @@
       "sourceType": "google_form"
     },
     {
-      "id": "gform-jmendoza240000001091uiceduph-w7",
+      "id": "gform-jmendoza240000001091uiceduph-w7-10232026105725",
       "timestamp": "10/23/2026 10:57:25",
       "studentEmail": "jmendoza_240000001091@uic.edu.ph",
       "weekNumber": 7,
@@ -1155,7 +1121,7 @@
       "sourceType": "google_form"
     },
     {
-      "id": "gform-mcrispino240000000173uiceduph-w8",
+      "id": "gform-mcrispino240000000173uiceduph-w8-10232026152134",
       "timestamp": "10/23/2026 15:21:34",
       "studentEmail": "mcrispino_240000000173@uic.edu.ph",
       "weekNumber": 8,
@@ -1177,7 +1143,29 @@
       "sourceType": "google_form"
     },
     {
-      "id": "gform-cgalorio240000001297uiceduph-w7",
+      "id": "gform-cgalorio240000001297uiceduph-w5-10232026171622",
+      "timestamp": "10/23/2026 17:16:22",
+      "studentEmail": "cgalorio_240000001297@uic.edu.ph",
+      "weekNumber": 5,
+      "weekLabel": "Week 5 (Sept 26 - Oct 2)",
+      "section": "BSIT 3B",
+      "studentName": "Galorio, Christian Jay",
+      "studentId": "240000001297",
+      "rawTeamName": "23:5 Cafe Mobile Ordering System",
+      "teamId": "cafe-235",
+      "teamName": "23:5 Cafe - Mobile Ordering & Barista Dispatch",
+      "githubUsername": "Enchanjii",
+      "orgInviteAccepted": true,
+      "assignedFeature": "Secure and update backend configuration by migrating Supabase credentials to environment variables",
+      "ticketNumber": "# 3",
+      "ticketStatus": "Done",
+      "commitUrl": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/23-5-cafe-mobileApp-Galorio-Vergara/commit/e5e67ebd6bce1b577fec60f4a84867eb68f847fc",
+      "summary": "successfully integrated the Supabase backend with the Flutter application to handle remote database operations.",
+      "blockers": "None",
+      "sourceType": "google_form"
+    },
+    {
+      "id": "gform-cgalorio240000001297uiceduph-w7-10232026171922",
       "timestamp": "10/23/2026 17:19:22",
       "studentEmail": "cgalorio_240000001297@uic.edu.ph",
       "weekNumber": 7,
@@ -1199,7 +1187,7 @@
       "sourceType": "google_form"
     },
     {
-      "id": "gform-cgalorio240000001297uiceduph-w8",
+      "id": "gform-cgalorio240000001297uiceduph-w8-10232026173841",
       "timestamp": "10/23/2026 17:38:41",
       "studentEmail": "cgalorio_240000001297@uic.edu.ph",
       "weekNumber": 8,
@@ -1221,7 +1209,7 @@
       "sourceType": "google_form"
     },
     {
-      "id": "gform-kenola240000000030uiceduph-w5",
+      "id": "gform-kenola240000000030uiceduph-w5-10232026205101",
       "timestamp": "10/23/2026 20:51:01",
       "studentEmail": "kenola_240000000030@uic.edu.ph",
       "weekNumber": 5,
@@ -1243,7 +1231,95 @@
       "sourceType": "google_form"
     },
     {
-      "id": "gform-emillondaga240000000686uiceduph-w8",
+      "id": "gform-emillondaga240000000686uiceduph-w8-10252026195424",
+      "timestamp": "10/25/2026 19:54:24",
+      "studentEmail": "emillondaga_240000000686@uic.edu.ph",
+      "weekNumber": 8,
+      "weekLabel": "Week 8 (Oct 17 - Oct 23)",
+      "section": "BSIT 3B",
+      "studentName": "Millondaga, Eduardo II L.",
+      "studentId": "240000000686",
+      "rawTeamName": "Beyond",
+      "teamId": "beyond",
+      "teamName": "Beyond - Interactive Campus & Gamified Map Navigator",
+      "githubUsername": "HexKonEdung",
+      "orgInviteAccepted": true,
+      "assignedFeature": "Character Creation and Opening Story",
+      "ticketNumber": "TICKET-003 — Character Creation and Opening Story",
+      "ticketStatus": "In Progress",
+      "commitUrl": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/Beyond-Attos-Millondaga/issues/4",
+      "summary": "Required character fields and stat allocation are validated.\nThe introduction explains the wanderer seeking a path beyond ordinary limits.\nThe first objective is clear and actionable.\nUse one playable class or a simplified class choice if time is limited.",
+      "blockers": "None",
+      "sourceType": "google_form"
+    },
+    {
+      "id": "gform-emillondaga240000000686uiceduph-w8-10262026155149",
+      "timestamp": "10/26/2026 15:51:49",
+      "studentEmail": "emillondaga_240000000686@uic.edu.ph",
+      "weekNumber": 8,
+      "weekLabel": "Week 8 (Oct 17 - Oct 23)",
+      "section": "BSIT 3B",
+      "studentName": "Millondaga, Eduardo II L.",
+      "studentId": "240000000686",
+      "rawTeamName": "Beyond",
+      "teamId": "beyond",
+      "teamName": "Beyond - Interactive Campus & Gamified Map Navigator",
+      "githubUsername": "HexKonEdung",
+      "orgInviteAccepted": true,
+      "assignedFeature": "One Objective Unlocks One Route",
+      "ticketNumber": "TICKET-005 — One Objective Unlocks One Route",
+      "ticketStatus": "In Progress",
+      "commitUrl": "",
+      "summary": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/Beyond-Attos-Millondaga/issues/6",
+      "blockers": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/Beyond-Attos-Millondaga/issues/6",
+      "sourceType": "google_form"
+    },
+    {
+      "id": "gform-emillondaga240000000686uiceduph-w8-10262026155251",
+      "timestamp": "10/26/2026 15:52:51",
+      "studentEmail": "emillondaga_240000000686@uic.edu.ph",
+      "weekNumber": 8,
+      "weekLabel": "Week 8 (Oct 17 - Oct 23)",
+      "section": "BSIT 3B",
+      "studentName": "Millondaga, Eduardo II L.",
+      "studentId": "240000000686",
+      "rawTeamName": "Beyond",
+      "teamId": "beyond",
+      "teamName": "Beyond - Interactive Campus & Gamified Map Navigator",
+      "githubUsername": "HexKonEdung",
+      "orgInviteAccepted": true,
+      "assignedFeature": "One Complete Turn-Based Battle",
+      "ticketNumber": "TICKET-006 — One Complete Turn-Based Battle",
+      "ticketStatus": "In Progress",
+      "commitUrl": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/Beyond-Attos-Millondaga/issues/7",
+      "summary": "",
+      "blockers": "None",
+      "sourceType": "google_form"
+    },
+    {
+      "id": "gform-emillondaga240000000686uiceduph-w8-10262026224402",
+      "timestamp": "10/26/2026 22:44:02",
+      "studentEmail": "emillondaga_240000000686@uic.edu.ph",
+      "weekNumber": 8,
+      "weekLabel": "Week 8 (Oct 17 - Oct 23)",
+      "section": "BSIT 3B",
+      "studentName": "MIllondaga, Eduardo II L. Millondaga",
+      "studentId": "240000000686",
+      "rawTeamName": "Beyond",
+      "teamId": "beyond",
+      "teamName": "Beyond - Interactive Campus & Gamified Map Navigator",
+      "githubUsername": "HhexKonEdung",
+      "orgInviteAccepted": true,
+      "assignedFeature": "Basic Rewards and Defeat Rules",
+      "ticketNumber": "TICKET-007 — Basic Rewards and Defeat Rules",
+      "ticketStatus": "In Progress",
+      "commitUrl": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/Beyond-Attos-Millondaga/issues/8",
+      "summary": "",
+      "blockers": "None",
+      "sourceType": "google_form"
+    },
+    {
+      "id": "gform-emillondaga240000000686uiceduph-w8-10262026224501",
       "timestamp": "10/26/2026 22:45:01",
       "studentEmail": "emillondaga_240000000686@uic.edu.ph",
       "weekNumber": 8,
@@ -1260,12 +1336,12 @@
       "ticketNumber": "TICKET-008 — One Usable Inventory Item",
       "ticketStatus": "In Progress",
       "commitUrl": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/Beyond-Attos-Millondaga/issues/9",
-      "summary": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/Beyond-Attos-Millondaga/issues/6",
-      "blockers": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/Beyond-Attos-Millondaga/issues/6",
+      "summary": "",
+      "blockers": "None",
       "sourceType": "google_form"
     },
     {
-      "id": "gform-edelossantos240000001315uiceduph-w8",
+      "id": "gform-edelossantos240000001315uiceduph-w8-1027202694937",
       "timestamp": "10/27/2026 9:49:37",
       "studentEmail": "edelossantos_240000001315@uic.edu.ph",
       "weekNumber": 8,
@@ -1287,7 +1363,7 @@
       "sourceType": "google_form"
     },
     {
-      "id": "gform-lfuentes240000000631uiceduph-w5",
+      "id": "gform-lfuentes240000000631uiceduph-w5-1028202610106",
       "timestamp": "10/28/2026 1:01:06",
       "studentEmail": "lfuentes_240000000631@uic.edu.ph",
       "weekNumber": 5,
@@ -1309,7 +1385,29 @@
       "sourceType": "google_form"
     },
     {
-      "id": "gform-vlulab240000000740uiceduph-w8",
+      "id": "gform-mpavo230000000156uiceduph-w7-1028202622238",
+      "timestamp": "10/28/2026 2:22:38",
+      "studentEmail": "mpavo_230000000156@uic.edu.ph",
+      "weekNumber": 7,
+      "weekLabel": "Week 7 (Oct 10 - Oct 16)",
+      "section": "BSIT 3A & CS",
+      "studentName": "Pavo, Mariella",
+      "studentId": "230000000156",
+      "rawTeamName": "HealthLine PH",
+      "teamId": "healthline-ph",
+      "teamName": "HealthLine PH",
+      "githubUsername": "@mariella-pavo",
+      "orgInviteAccepted": true,
+      "assignedFeature": "ConsumerWidget Integration, Async State Handling, and Stateless UI Components",
+      "ticketNumber": "#9",
+      "ticketStatus": "Done",
+      "commitUrl": "e37e2f413b0e8e5023f93d35e0be8134ce259a11",
+      "summary": "",
+      "blockers": "None",
+      "sourceType": "google_form"
+    },
+    {
+      "id": "gform-vlulab240000000740uiceduph-w8-1028202691358",
       "timestamp": "10/28/2026 9:13:58",
       "studentEmail": "vlulab_240000000740@uic.edu.ph",
       "weekNumber": 8,
@@ -1331,7 +1429,7 @@
       "sourceType": "google_form"
     },
     {
-      "id": "gform-vlulab240000000740uiceduph-w7",
+      "id": "gform-vlulab240000000740uiceduph-w7-1028202691540",
       "timestamp": "10/28/2026 9:15:40",
       "studentEmail": "vlulab_240000000740@uic.edu.ph",
       "weekNumber": 7,
@@ -1353,7 +1451,7 @@
       "sourceType": "google_form"
     },
     {
-      "id": "gform-vlulab240000000740uiceduph-w6",
+      "id": "gform-vlulab240000000740uiceduph-w6-1028202691647",
       "timestamp": "10/28/2026 9:16:47",
       "studentEmail": "vlulab_240000000740@uic.edu.ph",
       "weekNumber": 6,
@@ -1375,7 +1473,7 @@
       "sourceType": "google_form"
     },
     {
-      "id": "gform-vlulab240000000740uiceduph-w5",
+      "id": "gform-vlulab240000000740uiceduph-w5-1028202691747",
       "timestamp": "10/28/2026 9:17:47",
       "studentEmail": "vlulab_240000000740@uic.edu.ph",
       "weekNumber": 5,
@@ -1397,7 +1495,7 @@
       "sourceType": "google_form"
     },
     {
-      "id": "gform-jmendoza240000001091uiceduph-w8",
+      "id": "gform-jmendoza240000001091uiceduph-w8-1028202693815",
       "timestamp": "10/28/2026 9:38:15",
       "studentEmail": "jmendoza_240000001091@uic.edu.ph",
       "weekNumber": 8,
@@ -1419,7 +1517,7 @@
       "sourceType": "google_form"
     },
     {
-      "id": "gform-dreyes240000001485uiceduph-w7",
+      "id": "gform-dreyes240000001485uiceduph-w7-1028202693917",
       "timestamp": "10/28/2026 9:39:17",
       "studentEmail": "dreyes_240000001485@uic.edu.ph",
       "weekNumber": 7,
@@ -1441,7 +1539,7 @@
       "sourceType": "google_form"
     },
     {
-      "id": "gform-lfuentes240000000631uiceduph-w8",
+      "id": "gform-lfuentes240000000631uiceduph-w8-1028202693948",
       "timestamp": "10/28/2026 9:39:48",
       "studentEmail": "lfuentes_240000000631@uic.edu.ph",
       "weekNumber": 8,
@@ -1463,7 +1561,7 @@
       "sourceType": "google_form"
     },
     {
-      "id": "gform-lfuentes240000000631uiceduph-w7",
+      "id": "gform-lfuentes240000000631uiceduph-w7-1028202694515",
       "timestamp": "10/28/2026 9:45:15",
       "studentEmail": "lfuentes_240000000631@uic.edu.ph",
       "weekNumber": 7,
@@ -1485,7 +1583,7 @@
       "sourceType": "google_form"
     },
     {
-      "id": "gform-lfuentes240000000631uiceduph-w6",
+      "id": "gform-lfuentes240000000631uiceduph-w6-1028202694843",
       "timestamp": "10/28/2026 9:48:43",
       "studentEmail": "lfuentes_240000000631@uic.edu.ph",
       "weekNumber": 6,
@@ -1507,7 +1605,7 @@
       "sourceType": "google_form"
     },
     {
-      "id": "gform-dramos240000000449uiceduph-w8",
+      "id": "gform-dramos240000000449uiceduph-w8-10282026105728",
       "timestamp": "10/28/2026 10:57:28",
       "studentEmail": "dramos_240000000449@uic.edu.ph",
       "weekNumber": 8,
@@ -1526,6 +1624,204 @@
       "commitUrl": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/BiteTrack-Fuentes-Ramos/commit/6e0520e20b5165c91aaa91f0c6c708916c092ea2",
       "summary": "I develop the system, and the issue i faced is about backend specially in firebase.",
       "blockers": "I develop the system, and the issue i faced is about backend specially in firebase.",
+      "sourceType": "google_form"
+    },
+    {
+      "id": "gform-nmahipus240000001368uiceduph-w6-10212026111522",
+      "timestamp": "10/21/2026 11:15:22",
+      "studentEmail": "nmahipus_240000001368@uic.edu.ph",
+      "weekNumber": 6,
+      "weekLabel": "Week 6 (Oct 3 - Oct 9)",
+      "section": "BSIT 3B",
+      "studentName": "Mahipus Nico",
+      "studentId": "240000001368",
+      "rawTeamName": "Brain Box",
+      "teamId": "brainbox",
+      "teamName": "BrainBox - Cognitive Learning Companion",
+      "githubUsername": "Niconnect_ka_kai_Nico",
+      "orgInviteAccepted": true,
+      "assignedFeature": "Overall functionality",
+      "ticketNumber": "Issue #2",
+      "ticketStatus": "Done",
+      "commitUrl": "580a2632d0e39d457e9f834c0c9ed068f2937d1d",
+      "summary": "UI is finished but still trying to fix the logic errors in the code that preventing the UI to work with what its designed for. specially the functional requirements",
+      "blockers": "None",
+      "sourceType": "google_form"
+    },
+    {
+      "id": "gform-nmahipus240000001368uiceduph-w7-10212026112120",
+      "timestamp": "10/21/2026 11:21:20",
+      "studentEmail": "nmahipus_240000001368@uic.edu.ph",
+      "weekNumber": 7,
+      "weekLabel": "Week 7 (Oct 10 - Oct 16)",
+      "section": "BSIT 3A & CS",
+      "studentName": "Mahipus Nico",
+      "studentId": "240000001368",
+      "rawTeamName": "Brain Box",
+      "teamId": "brainbox",
+      "teamName": "BrainBox - Cognitive Learning Companion",
+      "githubUsername": "Niconnect_Ka_Kai_Nico",
+      "orgInviteAccepted": true,
+      "assignedFeature": "Overall functionality",
+      "ticketNumber": "issue #3",
+      "ticketStatus": "In Progress",
+      "commitUrl": "b02c7c551963f220ccad5ae441552101daa3a543",
+      "summary": "as of now functionality is coming together somehow half of what we want working is working.",
+      "blockers": "None",
+      "sourceType": "google_form"
+    },
+    {
+      "id": "gform-bmalaga200000000123uiceduph-w8-1029202695844",
+      "timestamp": "10/29/2026 9:58:44",
+      "studentEmail": "bmalaga_200000000123@uic.edu.ph",
+      "weekNumber": 8,
+      "weekLabel": "Week 8 (Oct 17 - Oct 23)",
+      "section": "BSIT 3A & CS",
+      "studentName": "Malaga, Bobby Jr",
+      "studentId": "200000000123",
+      "rawTeamName": "MedCare: Medicine Reminder App",
+      "teamId": "medcare-medicine-reminder-app",
+      "teamName": "MedCare: Medicine Reminder App",
+      "githubUsername": "bobby736",
+      "orgInviteAccepted": true,
+      "assignedFeature": "login and registration page, navigation bar",
+      "ticketNumber": "issue #1 #2 #3",
+      "ticketStatus": "Done",
+      "commitUrl": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/Medicine-Reminder-App",
+      "summary": "i implemented so many issues like bug and the errors",
+      "blockers": "i implemented so many issues like bug and the errors",
+      "sourceType": "google_form"
+    },
+    {
+      "id": "gform-elohera240000001068uiceduph-w8-1112026121559",
+      "timestamp": "11/1/2026 12:15:59",
+      "studentEmail": "elohera_240000001068@uic.edu.ph",
+      "weekNumber": 8,
+      "weekLabel": "Week 8 (Oct 17 - Oct 23)",
+      "section": "BSIT 3A & CS",
+      "studentName": "Lohera, Edziel R.",
+      "studentId": "240000001068",
+      "rawTeamName": "WordQuest",
+      "teamId": "wordquest",
+      "teamName": "WordQuest - Vocabulary Puzzle Engine",
+      "githubUsername": "Edziel-Tr",
+      "orgInviteAccepted": true,
+      "assignedFeature": "Achievements and Profile UI/UX Improvements",
+      "ticketNumber": "#7",
+      "ticketStatus": "In Progress",
+      "commitUrl": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/WordQuest/commit/f23174ee1480541d5bfd08a7a1a8f0f2f0f04c13",
+      "summary": "This week I worked on the Boss Battle feature and on dictionary sourcing for the lesson vocabulary in WordQuest. implemented a boss battle map of 6 and added reward logic and updated the adventure map so the boss node shows locked, current progress or compeleted.\n\ntechnical blockers:\nA boss widget test failed with “Bad state: No element”. The cause was that Flutter reused the previous fight’s State when the same widget type was pumped again. I fixed it by giving the screen a UniqueKey so each fight starts fresh.\nSome dictionary pages could not be opened (Cambridge and Collins always failed, and some Oxford pages failed on the first try). I recorded those honestly as unverified instead of marking them Verified.\nThe A1 levels could not be confirmed from the dictionary entries we read, so we treat them as WordQuest course levels, labelled as ours.\nRemaining: finish verifying the other words and build the release APK.",
+      "blockers": "This week I worked on the Boss Battle feature and on dictionary sourcing for the lesson vocabulary in WordQuest. implemented a boss battle map of 6 and added reward logic and updated the adventure map so the boss node shows locked, current progress or compeleted.\n\ntechnical blockers:\nA boss widget test failed with “Bad state: No element”. The cause was that Flutter reused the previous fight’s State when the same widget type was pumped again. I fixed it by giving the screen a UniqueKey so each fight starts fresh.\nSome dictionary pages could not be opened (Cambridge and Collins always failed, and some Oxford pages failed on the first try). I recorded those honestly as unverified instead of marking them Verified.\nThe A1 levels could not be confirmed from the dictionary entries we read, so we treat them as WordQuest course levels, labelled as ours.\nRemaining: finish verifying the other words and build the release APK.",
+      "sourceType": "google_form"
+    },
+    {
+      "id": "gform-cvillacampa240000001082uiceduph-w8-1112026182409",
+      "timestamp": "11/1/2026 18:24:09",
+      "studentEmail": "cvillacampa_240000001082@uic.edu.ph",
+      "weekNumber": 8,
+      "weekLabel": "Week 8 (Oct 17 - Oct 23)",
+      "section": "BSIT 3B",
+      "studentName": "Villacampa,Christian Louise",
+      "studentId": "240000001082",
+      "rawTeamName": "Baonbuddy",
+      "teamId": "baonbuddy",
+      "teamName": "Baonbuddy",
+      "githubUsername": "CLVillacampa2",
+      "orgInviteAccepted": true,
+      "assignedFeature": "Programer",
+      "ticketNumber": "Issue #",
+      "ticketStatus": "Done",
+      "commitUrl": "",
+      "summary": "Using supabase",
+      "blockers": "None",
+      "sourceType": "google_form"
+    },
+    {
+      "id": "gform-crivera240000001717uiceduph-w8-116202601502",
+      "timestamp": "11/6/2026 0:15:02",
+      "studentEmail": "crivera_240000001717@uic.edu.ph",
+      "weekNumber": 8,
+      "weekLabel": "Week 8 (Oct 17 - Oct 23)",
+      "section": "BSIT 3A & CS",
+      "studentName": "Rivera, Chantal M.",
+      "studentId": "240000001717",
+      "rawTeamName": "Batid-Patas",
+      "teamId": "batid-patas",
+      "teamName": "Batid Patas - Legal Aid & Law AI Assistant",
+      "githubUsername": "@CreateToExtirpate",
+      "orgInviteAccepted": true,
+      "assignedFeature": "Android APK Implementation",
+      "ticketNumber": "Issue #9",
+      "ticketStatus": "Done",
+      "commitUrl": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/Batid-Patas-Aniag-Rivera/commit/761d62e3302fe54f00113535bca2870914103557",
+      "summary": "- Set API_HOST variable to localhost:8000\n- Changed Android App name to \"Batid Patas\"\n- Added app icon to assets/icon folder\n- Tested app by uploading RA 1458 using Android phone",
+      "blockers": "None",
+      "sourceType": "google_form"
+    },
+    {
+      "id": "gform-dramos240000000449uiceduph-w5-116202601616",
+      "timestamp": "11/6/2026 0:16:16",
+      "studentEmail": "dramos_240000000449@uic.edu.ph",
+      "weekNumber": 5,
+      "weekLabel": "Week 5 (Sept 26 - Oct 2)",
+      "section": "BSIT 3B",
+      "studentName": "Ramos, Dave Noel T.",
+      "studentId": "240000000449",
+      "rawTeamName": "BiteTrack",
+      "teamId": "bitetrack",
+      "teamName": "BiteTrack",
+      "githubUsername": "Davey22-prog",
+      "orgInviteAccepted": true,
+      "assignedFeature": "planning",
+      "ticketNumber": "2",
+      "ticketStatus": "Done",
+      "commitUrl": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/BiteTrack-Fuentes-Ramos.git",
+      "summary": "in this week im planning about our system and the issue i face is that there is so much system and we cant plan directly because we want a unique one",
+      "blockers": "in this week im planning about our system and the issue i face is that there is so much system and we cant plan directly because we want a unique one",
+      "sourceType": "google_form"
+    },
+    {
+      "id": "gform-nmahipus240000001368uiceduph-w8-10282026225814",
+      "timestamp": "10/28/2026 22:58:14",
+      "studentEmail": "nmahipus_240000001368@uic.edu.ph",
+      "weekNumber": 8,
+      "weekLabel": "Week 8 (Oct 17 - Oct 23)",
+      "section": "BSIT 3A & CS",
+      "studentName": "Nico Mahipus",
+      "studentId": "24000001368",
+      "rawTeamName": "BrainBox",
+      "teamId": "brainbox",
+      "teamName": "BrainBox - Cognitive Learning Companion",
+      "githubUsername": "Niconnect_Ka_kai Nico",
+      "orgInviteAccepted": true,
+      "assignedFeature": "Main Programmer",
+      "ticketNumber": "Issue #4",
+      "ticketStatus": "Done",
+      "commitUrl": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/BrainBox-Mobile-App/commit/6fd5af79771a51d8edc247fa0b34c151ad3a6a1f",
+      "summary": "Debugging lots of errors from the UI",
+      "blockers": "None",
+      "sourceType": "google_form"
+    },
+    {
+      "id": "gform-nmahipus240000001368uiceduph-w8-10282026230300",
+      "timestamp": "10/28/2026 23:03:00",
+      "studentEmail": "nmahipus_240000001368@uic.edu.ph",
+      "weekNumber": 8,
+      "weekLabel": "Week 8 (Oct 17 - Oct 23)",
+      "section": "BSIT 3A & CS",
+      "studentName": "Mahipus, Nico",
+      "studentId": "24000001368",
+      "rawTeamName": "BrainBox",
+      "teamId": "brainbox",
+      "teamName": "BrainBox - Cognitive Learning Companion",
+      "githubUsername": "Niconnect_Ka_Kai_Nico",
+      "orgInviteAccepted": true,
+      "assignedFeature": "Backend polishing and debuggin",
+      "ticketNumber": "Issue #6",
+      "ticketStatus": "Done",
+      "commitUrl": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/BrainBox-Mobile-App/commit/75c2b5e3865d1b96ca6f60f0314a4fd74aa60b0c",
+      "summary": "A lot of code bloating due to the bugs",
+      "blockers": "None",
       "sourceType": "google_form"
     }
   ],
@@ -1596,7 +1892,7 @@
       "priority": "high"
     },
     {
-      "id": "kc-gf-1",
+      "id": "kc-gform-rsalibay240000001605uiceduph-w7-10152026113417",
       "teamId": "wordquest",
       "title": "UI Layout",
       "ticketNumber": "1",
@@ -1606,13 +1902,13 @@
       "commitUrl": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/WordQuest/commit/a180593",
       "weekNumber": 7,
       "summary": "Implemented UI layout",
-      "blockers": "None stated, but card still marked Backlog despite initial commit.",
+      "blockers": "None",
       "hasBlocker": false,
       "updatedAt": "10/15/2026 11:34:17",
       "priority": "medium"
     },
     {
-      "id": "kc-gf-2",
+      "id": "kc-gform-nolpenado240000001755uiceduph-w7-10152026114949",
       "teamId": "learn-luau",
       "title": "Database Connection, Register, Login, Logout",
       "ticketNumber": "Database Connection #11, Register #2, Login #3, Logout #4",
@@ -1622,13 +1918,13 @@
       "commitUrl": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/LearnLuau-Olpenado-Palencia/commit/55e8d70f8c4be86e40fcf69d1aa978f7067284d5, https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/LearnLuau-Olpenado-Palencia/commit/84ea4c02778a874601b0e224f374c97669628567, https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/LearnLuau-Olpenado-Palencia/commit/5673aacbb0718b22027d1a005aee85fdd84222a3",
       "weekNumber": 7,
       "summary": "- worked on connecting the blank application to the database\n- completed basic register, login, and logout features",
-      "blockers": "Initial DB authentication handshake latency resolved.",
-      "hasBlocker": true,
+      "blockers": "None",
+      "hasBlocker": false,
       "updatedAt": "10/15/2026 11:49:49",
-      "priority": "high"
+      "priority": "low"
     },
     {
-      "id": "kc-gf-3",
+      "id": "kc-gform-edelossantos240000001315uiceduph-w7-10152026134219",
       "teamId": "edu-iskolar",
       "title": "Updating UI/UX, Fixing Buttons, Kanban(progress report), repository, initial backend",
       "ticketNumber": "Issue #3, 6, 7 ,1",
@@ -1644,7 +1940,7 @@
       "priority": "high"
     },
     {
-      "id": "kc-gf-4",
+      "id": "kc-gform-edelossantos240000001315uiceduph-w5-10152026135134",
       "teamId": "edu-iskolar",
       "title": "initial commit",
       "ticketNumber": "Issue # 3",
@@ -1660,7 +1956,7 @@
       "priority": "high"
     },
     {
-      "id": "kc-gf-5",
+      "id": "kc-gform-edelossantos240000001315uiceduph-w6-10152026135938",
       "teamId": "edu-iskolar",
       "title": "merge initial remote setup",
       "ticketNumber": "Issues # 7, 2",
@@ -1670,13 +1966,13 @@
       "commitUrl": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/Edu-Iskolar_Eucare_Delos_Santos/commit/89b7e0899b1c456ffbace35e84ea564ea20b4580",
       "weekNumber": 6,
       "summary": "Just initial merge on the initial commits",
-      "blockers": "Remote git branches conflict resolved.",
-      "hasBlocker": true,
+      "blockers": "None",
+      "hasBlocker": false,
       "updatedAt": "10/15/2026 13:59:38",
-      "priority": "high"
+      "priority": "medium"
     },
     {
-      "id": "kc-gf-6",
+      "id": "kc-gform-mcrispino240000000173uiceduph-w7-10162026105905",
       "teamId": "studysprint",
       "title": "Flutter Code Setup & Repository Initialization (or Initial Flutter Project Setup)",
       "ticketNumber": "Issue #2",
@@ -1686,13 +1982,13 @@
       "commitUrl": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/studysprint_Crispino-lulab/commits/main/",
       "weekNumber": 7,
       "summary": "Updated project title in README.md and initialized repository structure for the Flutter application. Blockers: None.",
-      "blockers": "None. Still in initial setup phase.",
+      "blockers": "Updated project title in README.md and initialized repository structure for the Flutter application. Blockers: None.",
       "hasBlocker": false,
       "updatedAt": "10/16/2026 10:59:05",
       "priority": "medium"
     },
     {
-      "id": "kc-gf-7",
+      "id": "kc-gform-jreponoya240000001805uiceduph-w8-1017202695605",
       "teamId": "spendlens",
       "title": "backend-auth-controller",
       "ticketNumber": "Issue #13",
@@ -1702,13 +1998,13 @@
       "commitUrl": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/SpendLens-Ampi-Reponoya/commit/d0f68ae1fce453474bd363a8a6aa602869d406b2",
       "weekNumber": 8,
       "summary": "• Created The Login and Registration UI and the Backend Auth Controller",
-      "blockers": "None. Code merged and verified.",
+      "blockers": "None",
       "hasBlocker": false,
       "updatedAt": "10/17/2026 9:56:05",
       "priority": "low"
     },
     {
-      "id": "kc-gf-8",
+      "id": "kc-gform-jreponoya240000001805uiceduph-w7-1017202695920",
       "teamId": "spendlens",
       "title": "Camera-and-AI Analysis",
       "ticketNumber": "Issue #12",
@@ -1724,7 +2020,7 @@
       "priority": "high"
     },
     {
-      "id": "kc-gf-9",
+      "id": "kc-gform-jreponoya240000001805uiceduph-w6-10172026100225",
       "teamId": "spendlens",
       "title": "camera-ui",
       "ticketNumber": "#8",
@@ -1740,7 +2036,7 @@
       "priority": "high"
     },
     {
-      "id": "kc-gf-10",
+      "id": "kc-gform-jreponoya240000001805uiceduph-w5-10172026100634",
       "teamId": "spendlens",
       "title": "ERD Design, camera-ui, camera-and-ai-analysis",
       "ticketNumber": "#14, #12,",
@@ -1756,7 +2052,7 @@
       "priority": "high"
     },
     {
-      "id": "kc-gf-11",
+      "id": "kc-gform-elohera240000001068uiceduph-w7-10182026141755",
       "teamId": "wordquest",
       "title": "practice screen",
       "ticketNumber": "Issue #2",
@@ -1766,13 +2062,13 @@
       "commitUrl": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/WordQuest/commit/a180593e21081ca1d7e7c09504445b1c70d63b83",
       "weekNumber": 7,
       "summary": "Implemented the WordQuest Puzzle Practice screen with a letter grid, vocabulary clues, word validation, scoring, and feedback. Added the results screen and tests for the puzzle engine and practice flow. Fixed the compilation errors, and both `flutter analyze` and `flutter test` passed.",
-      "blockers": "Fixed compilation errors in letter grid builder.",
-      "hasBlocker": true,
+      "blockers": "None",
+      "hasBlocker": false,
       "updatedAt": "10/18/2026 14:17:55",
-      "priority": "high"
+      "priority": "medium"
     },
     {
-      "id": "kc-gf-12",
+      "id": "kc-gform-cattos240000000912uiceduph-w7-10192026141855",
       "teamId": "beyond",
       "title": "Finish the Main Navigation Flow",
       "ticketNumber": "TICKET-002 — Finish the Main Navigation Flow",
@@ -1782,13 +2078,13 @@
       "commitUrl": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/Beyond-Attos-Millondaga/issues/3",
       "weekNumber": 7,
       "summary": "The five destinations are accessible.\nMap selection does not move the player directly.\nThe player can return to the main game flow without getting stuck.",
-      "blockers": "State loop between mini-map and return to main game canvas.",
-      "hasBlocker": true,
+      "blockers": "None",
+      "hasBlocker": false,
       "updatedAt": "10/19/2026 14:18:55",
-      "priority": "high"
+      "priority": "medium"
     },
     {
-      "id": "kc-gf-13",
+      "id": "kc-gform-emillondaga240000000686uiceduph-w7-10192026141933",
       "teamId": "beyond",
       "title": "Confirm the Existing App Runs",
       "ticketNumber": "TICKET-001 — Confirm the Existing App Runs",
@@ -1798,13 +2094,13 @@
       "commitUrl": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/Beyond-Attos-Millondaga/issues/1",
       "weekNumber": 7,
       "summary": "The app launches without a blocking error.\nExisting navigation and screens are checked.\nAny presentation-blocking setup problem is recorded.",
-      "blockers": "Presentation-blocking setup in emulator recorded and mitigated.",
-      "hasBlocker": true,
+      "blockers": "None",
+      "hasBlocker": false,
       "updatedAt": "10/19/2026 14:19:33",
-      "priority": "high"
+      "priority": "medium"
     },
     {
-      "id": "kc-gf-14",
+      "id": "kc-gform-cgalorio240000001297uiceduph-w5-10212026100612",
       "teamId": "cafe-235",
       "title": "Secure and update backend configuration by migrating Supabase credentials to environment variables",
       "ticketNumber": "# 3",
@@ -1814,13 +2110,13 @@
       "commitUrl": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/23-5-cafe-mobileApp-Galorio-Vergara/commit/e5e67ebd6bce1b577fec60f4a84867eb68f847fc",
       "weekNumber": 5,
       "summary": "successfully integrated the Supabase backend with the Flutter application to handle remote database operations.",
-      "blockers": "Smooth cart data flow established.",
-      "hasBlocker": true,
+      "blockers": "None",
+      "hasBlocker": false,
       "updatedAt": "10/23/2026 17:16:22",
-      "priority": "high"
+      "priority": "low"
     },
     {
-      "id": "kc-gf-15",
+      "id": "kc-gform-lalconera240000001395uiceduph-w5-10212026100632",
       "teamId": "spendwise",
       "title": "Brainstorming",
       "ticketNumber": "Planning",
@@ -1830,13 +2126,13 @@
       "commitUrl": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/SpendWise-Nanual-Alconera",
       "weekNumber": 5,
       "summary": "Planning",
-      "blockers": "Slow transition into coding tasks.",
-      "hasBlocker": true,
+      "blockers": "None",
+      "hasBlocker": false,
       "updatedAt": "10/21/2026 10:06:32",
-      "priority": "high"
+      "priority": "medium"
     },
     {
-      "id": "kc-gf-16",
+      "id": "kc-gform-jnanual240000000820uiceduph-w5-10212026101157",
       "teamId": "spendwise",
       "title": "Planning",
       "ticketNumber": "Planning",
@@ -1846,13 +2142,13 @@
       "commitUrl": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/SpendWise-Nanual-Alconera",
       "weekNumber": 5,
       "summary": "Planning",
-      "blockers": "Awaiting team repository feature assignment.",
-      "hasBlocker": true,
+      "blockers": "None",
+      "hasBlocker": false,
       "updatedAt": "10/21/2026 10:11:57",
-      "priority": "high"
+      "priority": "medium"
     },
     {
-      "id": "kc-gf-17",
+      "id": "kc-gform-mespera240000001373uiceduph-w5-10212026102503",
       "teamId": "alleah-pos",
       "title": "Research about user friendly interfaces on the internet",
       "ticketNumber": "No issues so far",
@@ -1862,13 +2158,13 @@
       "commitUrl": "None / not yet applicable",
       "weekNumber": 5,
       "summary": "None problems faced",
-      "blockers": "None.",
+      "blockers": "None",
       "hasBlocker": false,
       "updatedAt": "10/21/2026 10:25:03",
       "priority": "medium"
     },
     {
-      "id": "kc-gf-18",
+      "id": "kc-gform-jpelpinosas240000001765uiceduph-w5-10212026104323",
       "teamId": "alleah-pos",
       "title": "Research and discussion with teammates regarding user friendly interface",
       "ticketNumber": "No issues yet",
@@ -1878,13 +2174,13 @@
       "commitUrl": "Not applicable at the time",
       "weekNumber": 5,
       "summary": "Me and our teammates discussed and brainstormed regarding the user friendly interface.",
-      "blockers": "None.",
+      "blockers": "None",
       "hasBlocker": false,
       "updatedAt": "10/21/2026 10:43:23",
       "priority": "low"
     },
     {
-      "id": "kc-gf-19",
+      "id": "kc-gform-imilitares240000000524uiceduph-w5-10212026104411",
       "teamId": "alleah-pos",
       "title": "Research and Discussion",
       "ticketNumber": "No issues.",
@@ -1894,29 +2190,29 @@
       "commitUrl": "Not applicable at the time",
       "weekNumber": 5,
       "summary": "As a team we discussed about user friendly user interfaces on the internet.",
-      "blockers": "None.",
+      "blockers": "None",
       "hasBlocker": false,
       "updatedAt": "10/21/2026 10:44:11",
       "priority": "low"
     },
     {
-      "id": "kc-gf-20",
-      "teamId": "brainbox",
-      "title": "Lead Programmer",
-      "ticketNumber": "Issue #1",
-      "status": "in_progress",
-      "assignee": "Mahipus, Nico",
-      "assigneeGithub": "Niconnect_Ka_Kai_Nico",
-      "commitUrl": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/BrainBox-Mobile-App.git",
-      "weekNumber": 5,
-      "summary": "As of now we've implemented the UI we designed but still trying to implement the feautres and functional requirements.",
-      "blockers": "Connecting UI widgets to logic controllers.",
+      "id": "kc-gform-dramos240000000449uiceduph-w6-116202601859",
+      "teamId": "bitetrack",
+      "title": "Prototype and System Designing",
+      "ticketNumber": "7",
+      "status": "done",
+      "assignee": "Ramos, Dave Noel T.",
+      "assigneeGithub": "Davee22-prog",
+      "commitUrl": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/BiteTrack-Fuentes-Ramos.git",
+      "weekNumber": 6,
+      "summary": "i assigned in this week to proceed and work to our prototype and trying to build the system, and the issue i face in this week is that in the developing side i cant do it correctly because there's an issue in our UI and lack of communication with my pair",
+      "blockers": "i assigned in this week to proceed and work to our prototype and trying to build the system, and the issue i face in this week is that in the developing side i cant do it correctly because there's an issue in our UI and lack of communication with my pair",
       "hasBlocker": true,
-      "updatedAt": "10/21/2026 10:53:40",
+      "updatedAt": "11/6/2026 0:18:59",
       "priority": "high"
     },
     {
-      "id": "kc-gf-21",
+      "id": "kc-gform-imilitares240000000524uiceduph-w6-10212026110944",
       "teamId": "alleah-pos",
       "title": "System Layout",
       "ticketNumber": "No issue number.",
@@ -1926,29 +2222,29 @@
       "commitUrl": "Not yet applicable.",
       "weekNumber": 6,
       "summary": "Planning out the system features and functions, and make sure the core features are implemented to avoid scope creep.",
-      "blockers": "Scope creep mitigation.",
-      "hasBlocker": true,
+      "blockers": "None",
+      "hasBlocker": false,
       "updatedAt": "10/21/2026 11:09:44",
-      "priority": "high"
+      "priority": "medium"
     },
     {
-      "id": "kc-gf-22",
-      "teamId": "brainbox",
-      "title": "Overall functionality",
-      "ticketNumber": "Issue #2",
+      "id": "kc-gform-dramos240000000449uiceduph-w7-116202602052",
+      "teamId": "bitetrack",
+      "title": "Developing the system and showing to my pair",
+      "ticketNumber": "1",
       "status": "done",
-      "assignee": "Mahipus Nico",
-      "assigneeGithub": "Niconnect_ka_kai_Nico",
-      "commitUrl": "580a2632d0e39d457e9f834c0c9ed068f2937d1d",
-      "weekNumber": 6,
-      "summary": "UI is finished but still trying to fix the logic errors in the code that preventing the UI to work with what its designed for. specially the functional requirements",
-      "blockers": "Logic errors in state updates resolved.",
+      "assignee": "Ramos, Dave Noel T.",
+      "assigneeGithub": "Daveey22-prog",
+      "commitUrl": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/BiteTrack-Fuentes-Ramos.git",
+      "weekNumber": 7,
+      "summary": "in this week im done developing the system and im showing it to my pair so that he can check what to improve or to change and the issue i face in this week is that the testing and the apk because i dont know how to apk since this is my first time.",
+      "blockers": "in this week im done developing the system and im showing it to my pair so that he can check what to improve or to change and the issue i face in this week is that the testing and the apk because i dont know how to apk since this is my first time.",
       "hasBlocker": true,
-      "updatedAt": "10/21/2026 11:15:22",
+      "updatedAt": "11/6/2026 0:20:52",
       "priority": "high"
     },
     {
-      "id": "kc-gf-23",
+      "id": "kc-gform-mespera240000001373uiceduph-w6-10212026111605",
       "teamId": "alleah-pos",
       "title": "Planning out the system features and functions.",
       "ticketNumber": "Not applicable",
@@ -1958,13 +2254,13 @@
       "commitUrl": "None",
       "weekNumber": 6,
       "summary": "Reach out with team mates to discuss about it.",
-      "blockers": "Awaiting repo access sync.",
-      "hasBlocker": true,
+      "blockers": "None",
+      "hasBlocker": false,
       "updatedAt": "10/21/2026 11:16:05",
-      "priority": "high"
+      "priority": "medium"
     },
     {
-      "id": "kc-gf-24",
+      "id": "kc-gform-imilitares240000000524uiceduph-w7-10212026111642",
       "teamId": "alleah-pos",
       "title": "Setting up for system creation and github collaboration.",
       "ticketNumber": "No assigned issue.",
@@ -1974,13 +2270,13 @@
       "commitUrl": "Not applicable yet.",
       "weekNumber": 7,
       "summary": "Invited to the GitHub Organization Access & Team Repository. The team programmer started to set up the environment for the app development.",
-      "blockers": "None.",
+      "blockers": "None",
       "hasBlocker": false,
       "updatedAt": "10/21/2026 11:16:42",
       "priority": "medium"
     },
     {
-      "id": "kc-gf-25",
+      "id": "kc-gform-jpelpinosas240000001765uiceduph-w6-10212026111734",
       "teamId": "alleah-pos",
       "title": "planning out the system features and functions, discussing next steps for proposal.",
       "ticketNumber": "not applicable",
@@ -1990,29 +2286,29 @@
       "commitUrl": "not applicable",
       "weekNumber": 6,
       "summary": "discussed with teammates the system architecture, and features",
-      "blockers": "None.",
+      "blockers": "None",
       "hasBlocker": false,
       "updatedAt": "10/21/2026 11:17:34",
       "priority": "low"
     },
     {
-      "id": "kc-gf-26",
+      "id": "kc-gform-nmahipus240000001368uiceduph-w5-10212026105340",
       "teamId": "brainbox",
-      "title": "Overall functionality",
-      "ticketNumber": "issue #3",
+      "title": "Lead Programmer",
+      "ticketNumber": "Issue #1",
       "status": "in_progress",
-      "assignee": "Mahipus Nico",
+      "assignee": "Mahipus, Nico",
       "assigneeGithub": "Niconnect_Ka_Kai_Nico",
-      "commitUrl": "b02c7c551963f220ccad5ae441552101daa3a543",
-      "weekNumber": 7,
-      "summary": "as of now functionality is coming together somehow half of what we want working is working.",
-      "blockers": "Async state timing on question transition.",
-      "hasBlocker": true,
-      "updatedAt": "10/21/2026 11:21:20",
-      "priority": "high"
+      "commitUrl": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/BrainBox-Mobile-App.git",
+      "weekNumber": 5,
+      "summary": "As of now we've implemented the UI we designed but still trying to implement the feautres and functional requirements.",
+      "blockers": "None",
+      "hasBlocker": false,
+      "updatedAt": "10/21/2026 10:53:40",
+      "priority": "medium"
     },
     {
-      "id": "kc-gf-27",
+      "id": "kc-gform-jpelpinosas240000001765uiceduph-w7-10212026112141",
       "teamId": "alleah-pos",
       "title": "Invited to the official github repository",
       "ticketNumber": "not applicable",
@@ -2022,13 +2318,13 @@
       "commitUrl": "Not applicable",
       "weekNumber": 7,
       "summary": "Invited to the official github for the mobile dev and created the kanban board for our projects.",
-      "blockers": "None.",
+      "blockers": "None",
       "hasBlocker": false,
       "updatedAt": "10/21/2026 11:21:41",
       "priority": "low"
     },
     {
-      "id": "kc-gf-28",
+      "id": "kc-gform-mespera240000001373uiceduph-w7-10212026112628",
       "teamId": "alleah-pos",
       "title": "Invited to the GitHub Organization Access & Team Repository",
       "ticketNumber": "Not applicable yet",
@@ -2038,13 +2334,13 @@
       "commitUrl": "None",
       "weekNumber": 7,
       "summary": "To discuss and plan out the implementation of the system.",
-      "blockers": "None.",
+      "blockers": "None",
       "hasBlocker": false,
       "updatedAt": "10/21/2026 11:26:28",
       "priority": "medium"
     },
     {
-      "id": "kc-gf-29",
+      "id": "kc-gform-imilitares240000000524uiceduph-w8-10212026112958",
       "teamId": "alleah-pos",
       "title": "Flutter and Dart",
       "ticketNumber": "Issue #8, #9, #10, #11",
@@ -2054,13 +2350,13 @@
       "commitUrl": "The commit link is provided by our team programmer. Mr. Pelpinosas has the Key Commit Link for this on our github project.",
       "weekNumber": 8,
       "summary": "Our team programmer is currently working on the system, providing us updates through the github project kanban board, and the rest of the members are keeping up with the progress of the system. For a mean time we will focus first on delivering at least a Minimum Viable Product, with core features integrated and fully functional when the presentation day comes.",
-      "blockers": "Synchronizing final presentation demo assets.",
-      "hasBlocker": true,
+      "blockers": "None",
+      "hasBlocker": false,
       "updatedAt": "10/21/2026 11:29:58",
-      "priority": "high"
+      "priority": "medium"
     },
     {
-      "id": "kc-gf-30",
+      "id": "kc-gform-jpelpinosas240000001765uiceduph-w8-10212026113054",
       "teamId": "alleah-pos",
       "title": "Dashboard POS, Stae management for Cart, check-out screen",
       "ticketNumber": "Issue # 8, 9, 10, 11",
@@ -2070,13 +2366,13 @@
       "commitUrl": "383172eed123d8e12f00664bcb384658c878adcb",
       "weekNumber": 8,
       "summary": "First, On the UI front, we fully constructed the primary dashboard workspace to closely match your design specifications. This includes the top hardware status banner, dynamic real-time date and clock tracking, the multi-role navigation header, the left sidebar drawer, the interactive table overview grid with status badges, and the itemized order details panel complete with customer note containers and action controls. Then, we expanded the front-end feature set by building three dedicated workspace modules: the camera-based barcode scanner screen (scanner_screen.dart) with flashlight controls and manual SKU entry dialogs, the searchable menu catalog (menu_catalog_view.dart) with category filter chips, and the payment checkout terminal (payments_view.dart) equipped with payment method selectors, quick-cash tender buttons, and live change calculation. Lastly, we established the user entry flow by building the authentication and onboarding screens (login_screen.dart and register_screen.dart), setting LoginScreen as the root route so operators register their store name and manager details before entering the workspace.",
-      "blockers": "None. Comprehensive high-velocity delivery completed.",
+      "blockers": "None",
       "hasBlocker": false,
       "updatedAt": "10/21/2026 11:30:54",
       "priority": "low"
     },
     {
-      "id": "kc-gf-31",
+      "id": "kc-gform-mespera240000001373uiceduph-w8-10212026114133",
       "teamId": "alleah-pos",
       "title": "Dasboard UI",
       "ticketNumber": "Issue # 8, 9, 10, 11",
@@ -2086,13 +2382,13 @@
       "commitUrl": "Our programmer has the key commit link.",
       "weekNumber": 8,
       "summary": "Meet and discuss with the group about the system's progress",
-      "blockers": "None.",
+      "blockers": "None",
       "hasBlocker": false,
       "updatedAt": "10/21/2026 11:41:33",
       "priority": "medium"
     },
     {
-      "id": "kc-gf-32",
+      "id": "kc-gform-crivera240000001717uiceduph-w5-10212026145718",
       "teamId": "batid-patas",
       "title": "Work",
       "ticketNumber": "Not applicable as I did not yet receive the invitation",
@@ -2102,13 +2398,13 @@
       "commitUrl": "None to provide",
       "weekNumber": 5,
       "summary": "No substantial work done for week 5 aside from discussing with Stephanie on what logic we still had to improve. The main concern being the model (at the time) was not giving correct replies.",
-      "blockers": "Main concern: AI model not providing accurate legal responses; delayed GitHub invite.",
-      "hasBlocker": true,
+      "blockers": "None",
+      "hasBlocker": false,
       "updatedAt": "10/21/2026 14:57:18",
-      "priority": "high"
+      "priority": "medium"
     },
     {
-      "id": "kc-gf-33",
+      "id": "kc-gform-crivera240000001717uiceduph-w6-10212026150839",
       "teamId": "batid-patas",
       "title": "UI Fixing for the Chat Screen",
       "ticketNumber": "Not applicable, worked on before the invite to the organization",
@@ -2124,7 +2420,7 @@
       "priority": "high"
     },
     {
-      "id": "kc-gf-34",
+      "id": "kc-gform-crivera240000001717uiceduph-w7-10212026153027",
       "teamId": "batid-patas",
       "title": "Model Chat Feature",
       "ticketNumber": "Issue #3",
@@ -2140,7 +2436,7 @@
       "priority": "high"
     },
     {
-      "id": "kc-gform-mpavo230000000156uiceduph-w7",
+      "id": "kc-gform-mpavo230000000156uiceduph-w7-1022202691846",
       "teamId": "healthline-ph",
       "title": "ConsumerWidget Integration, Async State Handling, and Stateless UI Components",
       "ticketNumber": "#9",
@@ -2149,14 +2445,14 @@
       "assigneeGithub": "@mariella-pavo",
       "commitUrl": "e37e2f413b0e8e5023f93d35e0be8134ce259a11",
       "weekNumber": 7,
-      "summary": "We've already started developing our application which includes 2-4 pages of each features in the app including the login page for patients. As for the technical issues, we apologize, we might not be able to present our actual progress (the codes) as the initial repository of the app was on my account (@mariella-pavo) and is still local on my device as it failed to sync online. However, we will try to work on this today's session.",
-      "blockers": "We've already started developing our application which includes 2-4 pages of each features in the app including the login page for patients. As for the technical issues, we apologize, we might not be able to present our actual progress (the codes) as the initial repository of the app was on my account (@mariella-pavo) and is still local on my device as it failed to sync online. However, we will try to work on this today's session.",
-      "hasBlocker": true,
+      "summary": "",
+      "blockers": "None",
+      "hasBlocker": false,
       "updatedAt": "10/28/2026 2:22:38",
-      "priority": "high"
+      "priority": "low"
     },
     {
-      "id": "kc-gform-saniag250000001888uiceduph-w5",
+      "id": "kc-gform-saniag250000001888uiceduph-w5-1022202692226",
       "teamId": "batid-patas",
       "title": "N/A",
       "ticketNumber": "N/A",
@@ -2172,7 +2468,7 @@
       "priority": "low"
     },
     {
-      "id": "kc-gform-saniag250000001888uiceduph-w6",
+      "id": "kc-gform-saniag250000001888uiceduph-w6-1022202693042",
       "teamId": "batid-patas",
       "title": "N/A",
       "ticketNumber": "N/A",
@@ -2188,7 +2484,7 @@
       "priority": "medium"
     },
     {
-      "id": "kc-gform-meucare240000002220uiceduph-w7",
+      "id": "kc-gform-meucare240000002220uiceduph-w7-10222026111634",
       "teamId": "edu-iskolar",
       "title": "Kanban, ReadMe",
       "ticketNumber": "Issue #4",
@@ -2204,7 +2500,7 @@
       "priority": "low"
     },
     {
-      "id": "kc-gform-mpalencia240000000452uiceduph-w7",
+      "id": "kc-gform-mpalencia240000000452uiceduph-w7-10222026114740",
       "teamId": "learn-luau",
       "title": "Outline for the resource and UI",
       "ticketNumber": "#18",
@@ -2219,7 +2515,7 @@
       "priority": "medium"
     },
     {
-      "id": "kc-gform-knarita240000001591uiceduph-w5",
+      "id": "kc-gform-knarita240000001591uiceduph-w5-10222026192748",
       "teamId": "alaga",
       "title": "Built the interactive navigation prototype of Alaga, with a patient side (Home, Medicines, SOS) and a family side (Dashboard, Messages, Assign Medicine), plus role selection and login/create account",
       "ticketNumber": "Issue #8",
@@ -2235,7 +2531,7 @@
       "priority": "high"
     },
     {
-      "id": "kc-gform-fmatol240000000927uiceduph-w8",
+      "id": "kc-gform-fmatol240000000927uiceduph-w8-10222026220838",
       "teamId": "nexo",
       "title": "Node.js/Express API Backend Integration, HTTP Service Layer, & Modern UI Redesign (HomeView)",
       "ticketNumber": "#1, #3, and #4",
@@ -2251,7 +2547,7 @@
       "priority": "high"
     },
     {
-      "id": "kc-gform-mcrispino240000000173uiceduph-w5",
+      "id": "kc-gform-mcrispino240000000173uiceduph-w5-1023202664831",
       "teamId": "studysprint",
       "title": "N/A",
       "ticketNumber": "N/A",
@@ -2267,7 +2563,7 @@
       "priority": "medium"
     },
     {
-      "id": "kc-gform-mcrispino240000000173uiceduph-w6",
+      "id": "kc-gform-mcrispino240000000173uiceduph-w6-1023202665316",
       "teamId": "studysprint",
       "title": "Research on flutter",
       "ticketNumber": "n/a",
@@ -2283,7 +2579,7 @@
       "priority": "medium"
     },
     {
-      "id": "kc-gform-jmendoza240000001091uiceduph-w5",
+      "id": "kc-gform-jmendoza240000001091uiceduph-w5-10232026104359",
       "teamId": "bantayko",
       "title": "App Sign-in Implementation",
       "ticketNumber": "Issue #",
@@ -2298,7 +2594,7 @@
       "priority": "medium"
     },
     {
-      "id": "kc-gform-jmendoza240000001091uiceduph-w6",
+      "id": "kc-gform-jmendoza240000001091uiceduph-w6-10232026105543",
       "teamId": "bantayko",
       "title": "Fix missing translations",
       "ticketNumber": "Issue #",
@@ -2314,7 +2610,7 @@
       "priority": "low"
     },
     {
-      "id": "kc-gform-jmendoza240000001091uiceduph-w7",
+      "id": "kc-gform-jmendoza240000001091uiceduph-w7-10232026105725",
       "teamId": "bantayko",
       "title": "Orient proper scaling with uploaded pictures",
       "ticketNumber": "Issue #2",
@@ -2329,7 +2625,7 @@
       "priority": "medium"
     },
     {
-      "id": "kc-gform-mcrispino240000000173uiceduph-w8",
+      "id": "kc-gform-mcrispino240000000173uiceduph-w8-10232026152134",
       "teamId": "studysprint",
       "title": "Research",
       "ticketNumber": "11",
@@ -2345,7 +2641,7 @@
       "priority": "low"
     },
     {
-      "id": "kc-gform-cgalorio240000001297uiceduph-w7",
+      "id": "kc-gform-cgalorio240000001297uiceduph-w7-10232026171922",
       "teamId": "cafe-235",
       "title": "Fetch and display menu items from Supabase",
       "ticketNumber": "# 4",
@@ -2361,7 +2657,7 @@
       "priority": "low"
     },
     {
-      "id": "kc-gform-cgalorio240000001297uiceduph-w8",
+      "id": "kc-gform-cgalorio240000001297uiceduph-w8-10232026173841",
       "teamId": "cafe-235",
       "title": "Implement Event Booking Logic and Supabase Integration",
       "ticketNumber": "# 5",
@@ -2377,7 +2673,7 @@
       "priority": "low"
     },
     {
-      "id": "kc-gform-kenola240000000030uiceduph-w5",
+      "id": "kc-gform-kenola240000000030uiceduph-w5-10232026205101",
       "teamId": "mobile-app",
       "title": "I engineered the modern Dark Mode UI, built the Date Strip navigation, and implemented the logic for scheduling tasks up to 30 days in advance",
       "ticketNumber": "#10",
@@ -2393,7 +2689,7 @@
       "priority": "medium"
     },
     {
-      "id": "kc-gform-emillondaga240000000686uiceduph-w8",
+      "id": "kc-gform-emillondaga240000000686uiceduph-w8-10252026195424",
       "teamId": "beyond",
       "title": "TICKET-008 — One Usable Inventory Item",
       "ticketNumber": "TICKET-008 — One Usable Inventory Item",
@@ -2402,14 +2698,30 @@
       "assigneeGithub": "HexKonEdung",
       "commitUrl": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/Beyond-Attos-Millondaga/issues/9",
       "weekNumber": 8,
-      "summary": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/Beyond-Attos-Millondaga/issues/6",
-      "blockers": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/Beyond-Attos-Millondaga/issues/6",
-      "hasBlocker": true,
+      "summary": "",
+      "blockers": "None",
+      "hasBlocker": false,
       "updatedAt": "10/26/2026 22:45:01",
-      "priority": "high"
+      "priority": "medium"
     },
     {
-      "id": "kc-gform-edelossantos240000001315uiceduph-w8",
+      "id": "kc-gform-emillondaga240000000686uiceduph-w8-10262026224402",
+      "teamId": "beyond",
+      "title": "Basic Rewards and Defeat Rules",
+      "ticketNumber": "TICKET-007 — Basic Rewards and Defeat Rules",
+      "status": "in_progress",
+      "assignee": "MIllondaga, Eduardo II L. Millondaga",
+      "assigneeGithub": "HhexKonEdung",
+      "commitUrl": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/Beyond-Attos-Millondaga/issues/8",
+      "weekNumber": 8,
+      "summary": "",
+      "blockers": "None",
+      "hasBlocker": false,
+      "updatedAt": "10/26/2026 22:44:02",
+      "priority": "medium"
+    },
+    {
+      "id": "kc-gform-edelossantos240000001315uiceduph-w8-1027202694937",
       "teamId": "edu-iskolar",
       "title": "Riverpod",
       "ticketNumber": "Issue # 13",
@@ -2425,7 +2737,7 @@
       "priority": "medium"
     },
     {
-      "id": "kc-gform-lfuentes240000000631uiceduph-w5",
+      "id": "kc-gform-lfuentes240000000631uiceduph-w5-1028202610106",
       "teamId": "bitetrack",
       "title": "Flutter Development",
       "ticketNumber": "Issue#1",
@@ -2441,7 +2753,7 @@
       "priority": "low"
     },
     {
-      "id": "kc-gform-vlulab240000000740uiceduph-w8",
+      "id": "kc-gform-vlulab240000000740uiceduph-w8-1028202691358",
       "teamId": "studysprint",
       "title": "Research",
       "ticketNumber": "11",
@@ -2457,7 +2769,7 @@
       "priority": "low"
     },
     {
-      "id": "kc-gform-vlulab240000000740uiceduph-w7",
+      "id": "kc-gform-vlulab240000000740uiceduph-w7-1028202691540",
       "teamId": "studysprint",
       "title": "Create a flutter folder",
       "ticketNumber": "2",
@@ -2473,7 +2785,7 @@
       "priority": "low"
     },
     {
-      "id": "kc-gform-vlulab240000000740uiceduph-w6",
+      "id": "kc-gform-vlulab240000000740uiceduph-w6-1028202691647",
       "teamId": "studysprint",
       "title": "Research",
       "ticketNumber": "N/A",
@@ -2489,7 +2801,7 @@
       "priority": "low"
     },
     {
-      "id": "kc-gform-vlulab240000000740uiceduph-w5",
+      "id": "kc-gform-vlulab240000000740uiceduph-w5-1028202691747",
       "teamId": "studysprint",
       "title": "Research",
       "ticketNumber": "N/A",
@@ -2505,7 +2817,7 @@
       "priority": "low"
     },
     {
-      "id": "kc-gform-jmendoza240000001091uiceduph-w8",
+      "id": "kc-gform-jmendoza240000001091uiceduph-w8-1028202693815",
       "teamId": "bantayko",
       "title": "Retouching UI/UX",
       "ticketNumber": "#1",
@@ -2521,7 +2833,7 @@
       "priority": "low"
     },
     {
-      "id": "kc-gform-dreyes240000001485uiceduph-w7",
+      "id": "kc-gform-dreyes240000001485uiceduph-w7-1028202693917",
       "teamId": "bantayko",
       "title": "App  Sign-in Implementation",
       "ticketNumber": "#3",
@@ -2537,7 +2849,7 @@
       "priority": "medium"
     },
     {
-      "id": "kc-gform-lfuentes240000000631uiceduph-w8",
+      "id": "kc-gform-lfuentes240000000631uiceduph-w8-1028202693948",
       "teamId": "bitetrack",
       "title": "Roles for Admin",
       "ticketNumber": "Issue#3",
@@ -2553,7 +2865,7 @@
       "priority": "low"
     },
     {
-      "id": "kc-gform-lfuentes240000000631uiceduph-w7",
+      "id": "kc-gform-lfuentes240000000631uiceduph-w7-1028202694515",
       "teamId": "bitetrack",
       "title": "Staff role",
       "ticketNumber": "Issue#4",
@@ -2569,7 +2881,7 @@
       "priority": "low"
     },
     {
-      "id": "kc-gform-lfuentes240000000631uiceduph-w6",
+      "id": "kc-gform-lfuentes240000000631uiceduph-w6-1028202694843",
       "teamId": "bitetrack",
       "title": "APK creation",
       "ticketNumber": "issue#8",
@@ -2585,7 +2897,7 @@
       "priority": "low"
     },
     {
-      "id": "kc-gform-dramos240000000449uiceduph-w8",
+      "id": "kc-gform-dramos240000000449uiceduph-w8-10282026105728",
       "teamId": "bitetrack",
       "title": "Developer",
       "ticketNumber": "Issue #1 - Development",
@@ -2599,11 +2911,138 @@
       "hasBlocker": true,
       "updatedAt": "10/28/2026 10:57:28",
       "priority": "high"
+    },
+    {
+      "id": "kc-gform-nmahipus240000001368uiceduph-w6-10212026111522",
+      "teamId": "brainbox",
+      "title": "Overall functionality",
+      "ticketNumber": "Issue #2",
+      "status": "done",
+      "assignee": "Mahipus Nico",
+      "assigneeGithub": "Niconnect_ka_kai_Nico",
+      "commitUrl": "580a2632d0e39d457e9f834c0c9ed068f2937d1d",
+      "weekNumber": 6,
+      "summary": "UI is finished but still trying to fix the logic errors in the code that preventing the UI to work with what its designed for. specially the functional requirements",
+      "blockers": "None",
+      "hasBlocker": false,
+      "updatedAt": "10/21/2026 11:15:22",
+      "priority": "low"
+    },
+    {
+      "id": "kc-gform-nmahipus240000001368uiceduph-w7-10212026112120",
+      "teamId": "brainbox",
+      "title": "Overall functionality",
+      "ticketNumber": "issue #3",
+      "status": "in_progress",
+      "assignee": "Mahipus Nico",
+      "assigneeGithub": "Niconnect_Ka_Kai_Nico",
+      "commitUrl": "b02c7c551963f220ccad5ae441552101daa3a543",
+      "weekNumber": 7,
+      "summary": "as of now functionality is coming together somehow half of what we want working is working.",
+      "blockers": "None",
+      "hasBlocker": false,
+      "updatedAt": "10/21/2026 11:21:20",
+      "priority": "medium"
+    },
+    {
+      "id": "kc-gform-bmalaga200000000123uiceduph-w8-1029202695844",
+      "teamId": "medcare-medicine-reminder-app",
+      "title": "login and registration page, navigation bar",
+      "ticketNumber": "issue #1 #2 #3",
+      "status": "done",
+      "assignee": "Malaga, Bobby Jr",
+      "assigneeGithub": "bobby736",
+      "commitUrl": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/Medicine-Reminder-App",
+      "weekNumber": 8,
+      "summary": "i implemented so many issues like bug and the errors",
+      "blockers": "i implemented so many issues like bug and the errors",
+      "hasBlocker": true,
+      "updatedAt": "10/29/2026 9:58:44",
+      "priority": "high"
+    },
+    {
+      "id": "kc-gform-elohera240000001068uiceduph-w8-1112026121559",
+      "teamId": "wordquest",
+      "title": "Achievements and Profile UI/UX Improvements",
+      "ticketNumber": "#7",
+      "status": "in_progress",
+      "assignee": "Lohera, Edziel R.",
+      "assigneeGithub": "Edziel-Tr",
+      "commitUrl": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/WordQuest/commit/f23174ee1480541d5bfd08a7a1a8f0f2f0f04c13",
+      "weekNumber": 8,
+      "summary": "This week I worked on the Boss Battle feature and on dictionary sourcing for the lesson vocabulary in WordQuest. implemented a boss battle map of 6 and added reward logic and updated the adventure map so the boss node shows locked, current progress or compeleted.\n\ntechnical blockers:\nA boss widget test failed with “Bad state: No element”. The cause was that Flutter reused the previous fight’s State when the same widget type was pumped again. I fixed it by giving the screen a UniqueKey so each fight starts fresh.\nSome dictionary pages could not be opened (Cambridge and Collins always failed, and some Oxford pages failed on the first try). I recorded those honestly as unverified instead of marking them Verified.\nThe A1 levels could not be confirmed from the dictionary entries we read, so we treat them as WordQuest course levels, labelled as ours.\nRemaining: finish verifying the other words and build the release APK.",
+      "blockers": "This week I worked on the Boss Battle feature and on dictionary sourcing for the lesson vocabulary in WordQuest. implemented a boss battle map of 6 and added reward logic and updated the adventure map so the boss node shows locked, current progress or compeleted.\n\ntechnical blockers:\nA boss widget test failed with “Bad state: No element”. The cause was that Flutter reused the previous fight’s State when the same widget type was pumped again. I fixed it by giving the screen a UniqueKey so each fight starts fresh.\nSome dictionary pages could not be opened (Cambridge and Collins always failed, and some Oxford pages failed on the first try). I recorded those honestly as unverified instead of marking them Verified.\nThe A1 levels could not be confirmed from the dictionary entries we read, so we treat them as WordQuest course levels, labelled as ours.\nRemaining: finish verifying the other words and build the release APK.",
+      "hasBlocker": true,
+      "updatedAt": "11/1/2026 12:15:59",
+      "priority": "high"
+    },
+    {
+      "id": "kc-gform-cvillacampa240000001082uiceduph-w8-1112026182409",
+      "teamId": "baonbuddy",
+      "title": "Programer",
+      "ticketNumber": "Issue #",
+      "status": "done",
+      "assignee": "Villacampa,Christian Louise",
+      "assigneeGithub": "CLVillacampa2",
+      "weekNumber": 8,
+      "summary": "Using supabase",
+      "blockers": "None",
+      "hasBlocker": false,
+      "updatedAt": "11/1/2026 18:24:09",
+      "priority": "low"
+    },
+    {
+      "id": "kc-gform-crivera240000001717uiceduph-w8-116202601502",
+      "teamId": "batid-patas",
+      "title": "Android APK Implementation",
+      "ticketNumber": "Issue #9",
+      "status": "done",
+      "assignee": "Rivera, Chantal M.",
+      "assigneeGithub": "@CreateToExtirpate",
+      "commitUrl": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/Batid-Patas-Aniag-Rivera/commit/761d62e3302fe54f00113535bca2870914103557",
+      "weekNumber": 8,
+      "summary": "- Set API_HOST variable to localhost:8000\n- Changed Android App name to \"Batid Patas\"\n- Added app icon to assets/icon folder\n- Tested app by uploading RA 1458 using Android phone",
+      "blockers": "None",
+      "hasBlocker": false,
+      "updatedAt": "11/6/2026 0:15:02",
+      "priority": "low"
+    },
+    {
+      "id": "kc-gform-dramos240000000449uiceduph-w5-116202601616",
+      "teamId": "bitetrack",
+      "title": "planning",
+      "ticketNumber": "2",
+      "status": "done",
+      "assignee": "Ramos, Dave Noel T.",
+      "assigneeGithub": "Davey22-prog",
+      "commitUrl": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/BiteTrack-Fuentes-Ramos.git",
+      "weekNumber": 5,
+      "summary": "in this week im planning about our system and the issue i face is that there is so much system and we cant plan directly because we want a unique one",
+      "blockers": "in this week im planning about our system and the issue i face is that there is so much system and we cant plan directly because we want a unique one",
+      "hasBlocker": true,
+      "updatedAt": "11/6/2026 0:16:16",
+      "priority": "high"
+    },
+    {
+      "id": "kc-gform-nmahipus240000001368uiceduph-w8-10282026225814",
+      "teamId": "brainbox",
+      "title": "Backend polishing and debuggin",
+      "ticketNumber": "Issue #6",
+      "status": "done",
+      "assignee": "Mahipus, Nico",
+      "assigneeGithub": "Niconnect_Ka_Kai_Nico",
+      "commitUrl": "https://github.com/UIC-CCS-MOBILE-DEVELOPMENT-2026-2027/BrainBox-Mobile-App/commit/75c2b5e3865d1b96ca6f60f0314a4fd74aa60b0c",
+      "weekNumber": 8,
+      "summary": "A lot of code bloating due to the bugs",
+      "blockers": "None",
+      "hasBlocker": false,
+      "updatedAt": "10/28/2026 23:03:00",
+      "priority": "low"
     }
   ],
   "teamOverrides": {},
   "deletedTeamIds": [],
   "googleSheetUrl": "https://docs.google.com/spreadsheets/d/1cfHSrSh8_BTOARHs58iavb3Zuxh-ehkZZFknmO8M_0o/edit?gid=200139442#gid=200139442",
-  "lastSyncedAt": "12:46:04 PM",
-  "lastUpdated": "2026-10-28T04:46:04.077Z"
+  "lastSyncedAt": "2026-11-05T16:34:15.627Z",
+  "lastUpdated": "2026-11-05T16:34:15.627Z"
 }

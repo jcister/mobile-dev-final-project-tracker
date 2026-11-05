@@ -32,6 +32,7 @@ const CARDS_STORAGE_KEY = 'uic_mobile_dev_kanban_cards_v2';
 const CUSTOM_TEAMS_STORAGE_KEY = 'uic_mobile_dev_custom_teams_v1';
 const TEAM_OVERRIDES_STORAGE_KEY = 'uic_mobile_dev_team_overrides_v1';
 const DELETED_TEAMS_STORAGE_KEY = 'uic_mobile_dev_deleted_teams_v1';
+const FINAL_TERM_START_WEEK = 5;
 
 // Helper to consolidate any fragmented raw rows and deduplicate records
 function sanitizeAudits(raw: AuditRecord[]): AuditRecord[] {
@@ -178,9 +179,17 @@ export default function App() {
   }, [deletedTeamIds]);
 
   // Compute live teams (seeded with custom registered teams, overrides, and deleted filter)
+  const finalTermAudits = useMemo(
+    () => audits.filter((audit) => audit.weekNumber >= FINAL_TERM_START_WEEK),
+    [audits]
+  );
+  const finalTermCards = useMemo(
+    () => customCards.filter((card) => card.weekNumber >= FINAL_TERM_START_WEEK),
+    [customCards]
+  );
   const allTeams = useMemo(
-    () => computeTeams(audits, customTeams, teamOverrides, deletedTeamIds),
-    [audits, customTeams, teamOverrides, deletedTeamIds]
+    () => computeTeams(finalTermAudits, customTeams, teamOverrides, deletedTeamIds),
+    [finalTermAudits, customTeams, teamOverrides, deletedTeamIds]
   );
 
   // Authentication & Role State
@@ -364,7 +373,10 @@ export default function App() {
       }
 
       if (json.audits && Array.isArray(json.audits)) {
-        const { merged, addedCount, updatedCount } = mergeAuditsDeduplicated(audits, json.audits);
+        const { merged, addedCount, updatedCount } = mergeAuditsDeduplicated(
+          audits.filter((audit) => audit.sourceType !== 'google_form'),
+          json.audits
+        );
         const nextCards = deduplicateCardsList(generateKanbanCards(merged));
         setAudits(merged);
         setCustomCards(nextCards);
@@ -501,7 +513,7 @@ export default function App() {
 
   // Filtered audits based on section and search
   const filteredAudits = useMemo(() => {
-    return audits.filter((a) => {
+    return finalTermAudits.filter((a) => {
       const matchesSection = currentSection === 'ALL' || a.section === currentSection;
       const q = searchQuery.toLowerCase().trim();
       const matchesSearch =
@@ -512,7 +524,7 @@ export default function App() {
         a.githubUsername.toLowerCase().includes(q);
       return matchesSection && matchesSearch;
     });
-  }, [audits, currentSection, searchQuery]);
+  }, [finalTermAudits, currentSection, searchQuery]);
 
   // Stats calculation
   const stats = useMemo(() => {
@@ -558,7 +570,11 @@ export default function App() {
   };
 
   const handleMergeAudits = (newAudits: AuditRecord[]) => {
-    const { merged, addedCount, updatedCount } = mergeAuditsDeduplicated(audits, newAudits);
+    const isFullFormSync = newAudits.length > 0 && newAudits.every((audit) => audit.sourceType === 'google_form');
+    const { merged, addedCount, updatedCount } = mergeAuditsDeduplicated(
+      isFullFormSync ? audits.filter((audit) => audit.sourceType !== 'google_form') : audits,
+      newAudits
+    );
     const nextCards = deduplicateCardsList(generateKanbanCards(merged));
     setAudits(merged);
     setCustomCards(nextCards);
@@ -934,7 +950,7 @@ export default function App() {
 
         {isEffectiveAdmin && activeView === 'kanban' && (
           <KanbanBoardView
-            cards={customCards}
+            cards={finalTermCards}
             teams={allTeams}
             selectedTeamId={selectedTeamForKanban}
             onSelectTeamId={setSelectedTeamForKanban}
@@ -992,7 +1008,7 @@ export default function App() {
       <TeamDetailModal
         team={selectedTeamForModal}
         onClose={() => setSelectedTeamForModal(null)}
-        audits={audits}
+        audits={finalTermAudits}
         onOpenDefense={handleOpenDefenseForTeam}
         onOpenKanban={handleOpenKanbanForTeam}
         onEditTeam={(t) => setEditingTeam(t)}
@@ -1034,7 +1050,7 @@ export default function App() {
         isOpen={defenseModalOpen}
         onClose={() => setDefenseModalOpen(false)}
         teams={allTeams}
-        audits={audits}
+        audits={finalTermAudits}
         initialTeamId={defenseTeamId}
       />
 

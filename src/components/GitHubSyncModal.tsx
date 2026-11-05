@@ -49,6 +49,29 @@ export const GitHubSyncModal: React.FC<GitHubSyncModalProps> = ({
     sessionStorage.setItem('github_pat_token', val);
   };
 
+  const handleClearToken = () => {
+    setToken('');
+    sessionStorage.removeItem('github_pat_token');
+    setSyncStatus({
+      type: 'info',
+      message: 'Saved GitHub token cleared. Public repositories can be synced without a token.',
+    });
+  };
+
+  const getSyncError = (response: Response, json: any, fallback: string) => {
+    const errorMessage = [json.error, json.details].filter(Boolean).join(': ');
+    if (response.status === 401) {
+      return 'GitHub rejected the saved token (401 Bad credentials). Clear it and retry, or enter a valid token.';
+    }
+    if (response.status === 403) {
+      return `${errorMessage || fallback} Check the token scopes and organization SSO authorization.`;
+    }
+    if (response.status === 429) {
+      return `${errorMessage || fallback} GitHub rate limit exceeded; try again later or use a valid token.`;
+    }
+    return errorMessage || fallback;
+  };
+
   // Sync a single URL
   const handleSyncUrl = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -117,7 +140,9 @@ export const GitHubSyncModal: React.FC<GitHubSyncModalProps> = ({
 
       const json = await response.json();
       if (!response.ok || !json.success) {
-        throw new Error(json.error || json.details || 'Failed to sync with GitHub Organization');
+        throw new Error(
+          getSyncError(response, json, 'Failed to sync with GitHub Organization')
+        );
       }
 
       if (json.cards && json.cards.length > 0) {
@@ -134,14 +159,21 @@ export const GitHubSyncModal: React.FC<GitHubSyncModalProps> = ({
         setSyncStatus({
           type: 'success',
           message: `Successfully scanned ${json.reposProcessed} team repositories and imported ${json.totalCards} live issues into your Kanban boards!`,
-          details: json.details?.map(
+          details: (json.details || []).map(
             (d: any) => `${d.repoName}: ${d.issuesCount} tickets (${d.closedIssues} closed/done)`
+          ).concat(
+            (json.failures || []).map(
+              (failure: any) => `${failure.repoName}: skipped (${failure.error})`
+            )
           ),
         });
       } else {
         setSyncStatus({
           type: 'info',
           message: `Scanned organization ${GITHUB_ORG_NAME}, but no issues or kanban cards were detected in public repositories.`,
+          details: (json.failures || []).map(
+            (failure: any) => `${failure.repoName}: skipped (${failure.error})`
+          ),
         });
       }
     } catch (err: any) {
@@ -319,6 +351,15 @@ export const GitHubSyncModal: React.FC<GitHubSyncModalProps> = ({
               placeholder="ghp_xxxxxxxxxxxxxxxxxxxx"
               className="w-full px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-700/80 text-xs text-white placeholder-slate-600 focus:outline-none focus:border-indigo-500 font-mono"
             />
+            {token && (
+              <button
+                type="button"
+                onClick={handleClearToken}
+                className="text-[11px] text-slate-400 hover:text-white underline"
+              >
+                Clear saved token
+              </button>
+            )}
           </div>
 
           {/* Professor Recommendation & Architecture Guide */}

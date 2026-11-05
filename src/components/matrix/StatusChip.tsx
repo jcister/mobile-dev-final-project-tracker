@@ -80,6 +80,11 @@ export const StatusChip: React.FC<Props> = ({ audits, compact, onSelect }) => {
               {first.assignedFeature || first.summary || 'Report'}
             </span>
           )}
+          {audits.length > 1 && (
+            <span className="shrink-0 rounded bg-indigo-500/20 px-1.5 py-0.5 text-[10px] font-semibold text-indigo-200">
+              {audits.length} submissions
+            </span>
+          )}
         </button>
       </Tooltip.Trigger>
       <Tooltip.Portal>

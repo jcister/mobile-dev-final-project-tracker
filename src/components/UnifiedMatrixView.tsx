@@ -53,7 +53,12 @@ export const UnifiedMatrixView: React.FC<UnifiedMatrixViewProps> = ({
   isAdmin = false,
 }) => {
   const [viewMode, setViewMode] = useLocalStorage<'team' | 'student'>('matrix.view.v1', 'team');
-  const [hidden, setHidden] = useLocalStorage<Record<string, boolean>>('matrix.cols.v1', {});
+  const [hidden, setHidden] = useLocalStorage<Record<string, boolean>>('matrix.cols.v2', {
+    w1: true,
+    w2: true,
+    w3: true,
+    w4: true,
+  });
   const [density, setDensity] = useLocalStorage<'comfortable' | 'compact'>('matrix.density.v1', 'comfortable');
   const [selectedAudit, setSelectedAudit] = useState<AuditRecord | null>(null);
   const [selectedAuditsGroup, setSelectedAuditsGroup] = useState<AuditRecord[]>([]);
@@ -74,12 +79,22 @@ export const UnifiedMatrixView: React.FC<UnifiedMatrixViewProps> = ({
   const allStudents = useMemo(() => {
     const map = new Map<
       string,
-      { name: string; studentId: string; githubUsername: string; section: string; teamName: string; teamId: string }
+      {
+        name: string;
+        studentEmail: string;
+        studentId: string;
+        githubUsername: string;
+        section: string;
+        teamName: string;
+        teamId: string;
+      }
     >();
     audits.forEach((a) => {
-      if (a.studentName && !map.has(a.studentName)) {
-        map.set(a.studentName, {
+      const identity = (a.studentEmail || a.studentId || a.studentName || '').toLowerCase().trim();
+      if (identity && !map.has(identity)) {
+        map.set(identity, {
           name: a.studentName,
+          studentEmail: a.studentEmail,
           studentId: a.studentId,
           githubUsername: a.githubUsername,
           section: a.section,
@@ -150,8 +165,7 @@ export const UnifiedMatrixView: React.FC<UnifiedMatrixViewProps> = ({
                 </span>
               </div>
               <p className="text-slate-400 text-[11px] leading-relaxed">
-                <strong className="text-amber-300 font-medium">Weeks 1–4 (Midterm):</strong> Sourced from individual progress report submissions in Google Classroom; counted towards your midterm grade.{' '}
-                <strong className="text-emerald-300 font-medium">Weeks 5–8 (Final Term):</strong> Recorded exclusively for the final term via weekly Google Form audits and active GitHub Kanban boards.
+                <strong className="text-emerald-300 font-medium">Final-term scope: Weeks 5–8 only.</strong> Midterm Weeks 1–4 are hidden and excluded from dashboard counts, percentages, readiness, and data summaries. Final-term progress is recorded via weekly Google Form audits and active GitHub Kanban boards.
               </p>
             </div>
 
@@ -404,7 +418,12 @@ export const UnifiedMatrixView: React.FC<UnifiedMatrixViewProps> = ({
                         )}
 
                         {visibleWeeks.map((w) => {
-                          const audit = audits.find((a) => a.studentName === st.name && a.weekNumber === w.num);
+                          const auditGroup = audits.filter(
+                            (a) =>
+                              a.weekNumber === w.num &&
+                              (a.studentEmail || a.studentId || a.studentName || '').toLowerCase().trim() ===
+                                (st.studentEmail || st.studentId || st.name).toLowerCase().trim()
+                          );
                           return (
                             <td
                               key={w.num}
@@ -412,8 +431,8 @@ export const UnifiedMatrixView: React.FC<UnifiedMatrixViewProps> = ({
                                 w.num === 5 ? 'border-l border-l-slate-800' : ''
                               }`}
                             >
-                              {audit ? (
-                                <StatusChip audits={[audit]} compact={compact} onSelect={openGroup} />
+                              {auditGroup.length > 0 ? (
+                                <StatusChip audits={auditGroup} compact={compact} onSelect={openGroup} />
                               ) : (
                                 renderEmptyCell(
                                   { teamId: st.teamId, studentName: st.name, weekNumber: w.num },
@@ -464,9 +483,18 @@ export const UnifiedMatrixView: React.FC<UnifiedMatrixViewProps> = ({
               {selectedAuditsGroup.length > 1 && (
                 <div className="bg-slate-950 p-2.5 rounded-xl border border-slate-800">
                   <div className="text-[11px] text-slate-400 mb-2">
-                    {selectedAuditsGroup.length} team members reported this week — pick an author:
+                    {(() => {
+                      const identities = new Set(
+                        selectedAuditsGroup.map((audit) =>
+                          (audit.studentEmail || audit.studentId || audit.studentName || '').toLowerCase().trim()
+                        )
+                      );
+                      return identities.size === 1
+                        ? `${selectedAuditsGroup.length} submissions for this student in Week ${selectedAudit.weekNumber} — pick a report:`
+                        : `${selectedAuditsGroup.length} team members reported this week — pick an author:`;
+                    })()}
                   </div>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="space-y-2">
                     {selectedAuditsGroup.map((sub, idx) => {
                       const isCurrent = sub.id ? sub.id === selectedAudit.id : sub.studentName === selectedAudit.studentName;
                       return (
@@ -474,15 +502,23 @@ export const UnifiedMatrixView: React.FC<UnifiedMatrixViewProps> = ({
                           key={sub.id || idx}
                           type="button"
                           onClick={() => setSelectedAudit(sub)}
-                          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition border ${
+                          className={`w-full flex items-center justify-between gap-3 px-3 py-2 rounded-lg text-xs font-medium transition border text-left ${
                             isCurrent
                               ? 'bg-indigo-500 border-indigo-500 text-white'
                               : 'bg-slate-900 border-slate-800 text-slate-300 hover:bg-slate-800'
                           }`}
                         >
-                          <User className="w-3.5 h-3.5" />
-                          {sub.studentName}
-                          <span className={`w-1.5 h-1.5 rounded-full ${TONE_DOT[toneOf(sub)]}`} />
+                          <span className="min-w-0 flex items-center gap-1.5">
+                            <User className="w-3.5 h-3.5 shrink-0" />
+                            <span className="truncate">
+                              {sub.studentName}
+                              <span className="block text-[10px] opacity-70 truncate">
+                                {sub.timestamp || sub.date || 'Submission date unavailable'} ·{' '}
+                                {sub.assignedFeature || 'Progress report'}
+                              </span>
+                            </span>
+                          </span>
+                          <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${TONE_DOT[toneOf(sub)]}`} />
                         </button>
                       );
                     })}

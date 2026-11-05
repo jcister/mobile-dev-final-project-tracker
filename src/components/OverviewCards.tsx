@@ -4,7 +4,6 @@ import {
   AlertTriangle,
   XCircle,
   TrendingUp,
-  FileText,
   FormInput,
   FolderGit2,
   ShieldAlert,
@@ -41,9 +40,7 @@ export const OverviewCards: React.FC<OverviewCardsProps> = ({
   const totalTickets = totalBacklog + totalInProgress + totalDone;
   const donePercent = totalTickets > 0 ? Math.round((totalDone / totalTickets) * 100) : 0;
 
-  // Document (W1-4) vs Form (W5-8) metrics
-  const docAuditsCount = audits.filter((a) => a.sourceType === 'document' || a.weekNumber <= 4).length;
-  const formAuditsCount = audits.filter((a) => a.sourceType === 'google_form' || a.weekNumber > 4).length;
+  const formAuditsCount = audits.filter((a) => a.weekNumber >= 5).length;
 
   return (
     <div className="space-y-4">
@@ -186,7 +183,7 @@ export const OverviewCards: React.FC<OverviewCardsProps> = ({
               Unified Data Records
             </span>
             <span className="text-xs font-mono px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300">
-              W1 – W8
+              W5 – W8
             </span>
           </div>
           <div className="mt-3 flex items-baseline gap-2">
@@ -195,22 +192,18 @@ export const OverviewCards: React.FC<OverviewCardsProps> = ({
           </div>
           <div className="mt-3 grid grid-cols-2 gap-2 text-xs">
             <div className="flex items-center gap-1.5 text-slate-300 bg-slate-800/60 p-1.5 rounded-lg border border-slate-800">
-              <FileText className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-              <div className="truncate">
-                <span className="font-semibold text-white">{docAuditsCount}</span>
-                <span className="text-[10px] text-slate-400 ml-1">Docs (W1-4)</span>
-              </div>
-            </div>
-            <div className="flex items-center gap-1.5 text-slate-300 bg-slate-800/60 p-1.5 rounded-lg border border-slate-800">
               <FormInput className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
               <div className="truncate">
-                <span className="font-semibold text-white">{formAuditsCount}</span>
-                <span className="text-[10px] text-slate-400 ml-1">Forms (W5-8)</span>
+              <span className="font-semibold text-white">{formAuditsCount}</span>
+              <span className="text-[10px] text-slate-400 ml-1">Forms (W5-8)</span>
               </div>
+            </div>
+            <div className="flex items-center justify-center text-[10px] text-slate-500 bg-slate-800/40 p-1.5 rounded-lg border border-slate-800">
+            Midterm excluded
             </div>
           </div>
           <p className="mt-2 text-[11px] text-slate-400">
-            Unifies pre-Kanban documents with modern Google Forms
+            Final-term Google Form audits only; midterm records excluded
           </p>
         </div>
       </div>

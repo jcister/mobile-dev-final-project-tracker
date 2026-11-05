@@ -1777,26 +1777,21 @@ export function computeTeams(
     const totalTickets = kanbanCounts.backlog + kanbanCounts.inProgress + kanbanCounts.review + kanbanCounts.done;
     const weeksLogged = Array.from(weeksLoggedSet).sort((a, b) => a - b);
 
-    // Calculate MVP milestone checklist
-    const hasW1 = weeksLogged.includes(1);
-    const hasW2 = weeksLogged.includes(2);
-    const hasW3 = weeksLogged.includes(3);
-    const hasW4 = weeksLogged.includes(4);
-    const hasW5or6 = weeksLogged.includes(5) || weeksLogged.includes(6);
+    // Calculate final-term milestone checklist (Weeks 5-8 only)
+    const hasW5 = weeksLogged.includes(5);
+    const hasW6 = weeksLogged.includes(6);
     const hasW7 = weeksLogged.includes(7);
     const hasW8 = weeksLogged.includes(8);
 
-    // Presentation readiness score (0-100)
-    let score = 20; // Base score for project formation
-    if (hasW1 && hasW2) score += 15;
-    if (hasW3 && hasW4) score += 15;
-    if (hasW5or6) score += 15;
-    if (hasW7) score += 15;
-    if (hasW8) score += 10;
+    // Final-term readiness score (0-100)
+    const completedWeeks = [hasW5, hasW6, hasW7, hasW8].filter(Boolean).length;
+    let score = completedWeeks * 20;
 
-    // Done ratio bonus/penalty
-    const doneRatio = totalTickets > 0 ? kanbanCounts.done / totalTickets : 0;
-    score += Math.round(doneRatio * 10);
+    // Completion quality is based on unique weeks, so repeated submissions do not inflate readiness.
+    const doneWeeks = new Set(
+      teamAudits.filter((audit) => audit.ticketStatus === 'Done').map((audit) => audit.weekNumber)
+    );
+    score += Math.round((doneWeeks.size / 4) * 20);
 
     // Blockers penalty
     const activeBlockersCount = blockersSet.size;
@@ -1846,11 +1841,11 @@ export function computeTeams(
       latestCommitDate: latestCommit || undefined,
       weeksLogged,
       mvpChecklist: {
-        ideationApproved: hasW1,
-        wireframesDone: hasW2,
-        architectureDesigned: hasW3,
-        initialRepoSetup: hasW4,
-        coreBackendOrDb: hasW5or6,
+        ideationApproved: false,
+        wireframesDone: false,
+        architectureDesigned: false,
+        initialRepoSetup: false,
+        coreBackendOrDb: hasW5 && hasW6,
         primaryScreensWorking: hasW7,
         packagingAndTesting: hasW8,
       },
@@ -1971,10 +1966,6 @@ export function areAuditsDuplicate(a: AuditRecord, b: AuditRecord): boolean {
   const timeB = (b.timestamp || '').trim();
   if (timeA && timeB && timeA === timeB) return true;
 
-  if (a.weekNumber && b.weekNumber && a.weekNumber === b.weekNumber) {
-    return true;
-  }
-
   return false;
 }
 
@@ -2067,4 +2058,3 @@ export function mergeAuditsDeduplicated(
 
   return { merged: result, addedCount, updatedCount };
 }
-

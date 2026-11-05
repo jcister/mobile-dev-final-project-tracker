@@ -696,7 +696,7 @@ Only return valid parseable JSON.`;
 async function fetchGithub(url: string, token?: string) {
   const headers: Record<string, string> = {
     'User-Agent': 'UIC-MobileDev-Audit-Dashboard',
-    'Accept': 'application/vnd.github.v3+json',
+    Accept: 'application/vnd.github+json',
   };
   if (token) {
     headers['Authorization'] = `token ${token.trim()}`;
@@ -704,9 +704,37 @@ async function fetchGithub(url: string, token?: string) {
   const response = await fetch(url, { headers });
   if (!response.ok) {
     const errorText = await response.text();
-    throw new Error(`GitHub API Error (${response.status}): ${errorText}`);
+    let message = errorText;
+    try {
+      const errorJson = JSON.parse(errorText);
+      message = errorJson.message || errorText;
+      if (errorJson.documentation_url) {
+        message += ` (${errorJson.documentation_url})`;
+      }
+    } catch {
+      // Keep the response body when GitHub does not return JSON.
+    }
+    throw new Error(`GitHub API Error (${response.status}): ${message}`);
   }
   return response.json();
+}
+
+async function fetchGithubPages(url: string, token?: string, perPage = 100): Promise<any[]> {
+  const parsedUrl = new URL(url);
+  parsedUrl.searchParams.set('per_page', String(perPage));
+  const items: any[] = [];
+
+  for (let page = 1; page <= 100; page++) {
+    parsedUrl.searchParams.set('page', String(page));
+    const pageItems = await fetchGithub(parsedUrl.toString(), token);
+    if (!Array.isArray(pageItems)) {
+      throw new Error('GitHub API returned an unexpected repository list response.');
+    }
+    items.push(...pageItems);
+    if (pageItems.length < perPage) break;
+  }
+
+  return items;
 }
 
 // Endpoint: Sync Kanban board from a specific GitHub URL (Repo, Issues, or Project)
@@ -836,12 +864,13 @@ app.post('/api/github/sync-org', async (req, res) => {
   try {
     const { orgName = 'UIC-CCS-MOBILE-DEVELOPMENT-2026-2027', token } = req.body;
 
-    const repos = await fetchGithub(
-      `https://api.github.com/orgs/${orgName}/repos?per_page=100&type=all`,
+    const repos = await fetchGithubPages(
+      `https://api.github.com/orgs/${encodeURIComponent(orgName)}/repos?type=all`,
       token
     );
 
     const results: any[] = [];
+    const failures: { repoName: string; error: string }[] = [];
     const allCards: any[] = [];
 
     // Fetch issues for each repo (parallel with limit)
@@ -897,6 +926,10 @@ app.post('/api/github/sync-org', async (req, res) => {
         });
       } catch (err: any) {
         console.warn(`Could not fetch issues for ${repo.name}:`, err.message);
+        failures.push({
+          repoName: repo.name,
+          error: err.message || 'Unknown GitHub API error',
+        });
       }
     }
 
@@ -908,11 +941,15 @@ app.post('/api/github/sync-org', async (req, res) => {
       totalCards: allCards.length,
       cards: allCards,
       details: results,
+      failures,
       syncedAt: new Date().toISOString(),
     });
   } catch (error: any) {
     console.error('Org sync error:', error);
-    return res.status(500).json({
+    const statusMatch = String(error?.message || '').match(/GitHub API Error \((\d{3})\)/);
+    const githubStatus = statusMatch ? Number(statusMatch[1]) : 500;
+    const responseStatus = [401, 403, 429].includes(githubStatus) ? githubStatus : 500;
+    return res.status(responseStatus).json({
       error: 'Failed to sync organization with GitHub API',
       details: error.message || String(error),
     });
@@ -1045,7 +1082,10 @@ app.post('/api/forms/sync-live-sheet', async (req, res) => {
       const name = (nameIdx >= 0 ? r[nameIdx] : r[4]) || 'Student';
       const studentId = (studentIdIdx >= 0 ? r[studentIdIdx] : r[5]) || '';
       const cleanIdent = (email || studentId || name).toLowerCase().replace(/[^a-z0-9]/g, '');
-      const id = `gform-${cleanIdent}-w${weekNumber}`;
+      const submissionKey = ((timeIdx >= 0 ? r[timeIdx] : r[0]) || `row-${i}`)
+        .toLowerCase()
+        .replace(/[^a-z0-9]/g, '');
+      const id = `gform-${cleanIdent}-w${weekNumber}-${submissionKey}`;
 
       const { teamId, teamName } = normalizeTeam(rawTeam);
 
