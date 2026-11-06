@@ -2417,6 +2417,28 @@
       "summary": "Developed a 5+ page interactive HTML/CSS prototype to map out core user flows (Home, Inventory, Item Details, Add Item, Settings). Transitioned the validated layouts into initial Flutter UI widgets and navigation routing. A minor blocker was ensuring state and layout consistency when converting raw HTML prototypes into responsive Flutter Material design views.",
       "blockers": "Developed a 5+ page interactive HTML/CSS prototype to map out core user flows (Home, Inventory, Item Details, Add Item, Settings). Transitioned the validated layouts into initial Flutter UI widgets and navigation routing. A minor blocker was ensuring state and layout consistency when converting raw HTML prototypes into responsive Flutter Material design views.",
       "sourceType": "google_form"
+    },
+    {
+      "id": "gform-rcorbita240000001010uiceduph-w7-1162026105824",
+      "timestamp": "11/6/2026 10:58:24",
+      "studentEmail": "rcorbita_240000001010@uic.edu.ph",
+      "weekNumber": 7,
+      "weekLabel": "Week 7 (Oct 10 - Oct 16)",
+      "section": "BSIT 3B",
+      "studentName": "Corbita, Raymark Jan",
+      "studentId": "240000001010",
+      "rawTeamName": "TindaTrack",
+      "teamId": "tindatrack",
+      "teamName": "TindaTrack",
+      "githubUsername": "RaymarkC",
+      "orgInviteAccepted": true,
+      "assignedFeature": "HTML Interactive Prototype, Flutter UI Navigation & Firebase Database Integration",
+      "ticketNumber": "3",
+      "ticketStatus": "Done",
+      "commitUrl": "https://github.com/RaymarkC/TindaTrack/commit/531115e",
+      "summary": "firebase.json configuration for real-time cloud data storage and sync. Main technical blockers included configuring FlutterFire initialization and managing asynchronous stream listeners across screen navigation.",
+      "blockers": "firebase.json configuration for real-time cloud data storage and sync. Main technical blockers included configuring FlutterFire initialization and managing asynchronous stream listeners across screen navigation.",
+      "sourceType": "google_form"
     }
   ],
   "customTeams": [],
@@ -3780,17 +3802,17 @@
     {
       "id": "kc-gform-rcorbita240000001010uiceduph-w7-1162026100117",
       "teamId": "tindatrack",
-      "title": "Export Daily Sales Reports (PDF/CSV) & Bug Fixes",
-      "ticketNumber": "13",
-      "status": "in_progress",
+      "title": "HTML Interactive Prototype, Flutter UI Navigation & Firebase Database Integration",
+      "ticketNumber": "3",
+      "status": "done",
       "assignee": "Corbita, Raymark Jan",
       "assigneeGithub": "RaymarkC",
       "commitUrl": "https://github.com/RaymarkC/TindaTrack/commit/531115e",
       "weekNumber": 7,
-      "summary": "Worked on implementing daily sales report export capabilities in PDF/CSV format and resolving UI/state bugs identified during testing. Blockers included handling local file permission requirements across different Android API versions during export operations.",
-      "blockers": "Worked on implementing daily sales report export capabilities in PDF/CSV format and resolving UI/state bugs identified during testing. Blockers included handling local file permission requirements across different Android API versions during export operations.",
+      "summary": "firebase.json configuration for real-time cloud data storage and sync. Main technical blockers included configuring FlutterFire initialization and managing asynchronous stream listeners across screen navigation.",
+      "blockers": "firebase.json configuration for real-time cloud data storage and sync. Main technical blockers included configuring FlutterFire initialization and managing asynchronous stream listeners across screen navigation.",
       "hasBlocker": true,
-      "updatedAt": "11/6/2026 10:01:17",
+      "updatedAt": "11/6/2026 10:58:24",
       "priority": "high"
     },
     {
@@ -3988,6 +4010,6 @@
   "teamOverrides": {},
   "deletedTeamIds": [],
   "googleSheetUrl": "https://docs.google.com/spreadsheets/d/1cfHSrSh8_BTOARHs58iavb3Zuxh-ehkZZFknmO8M_0o/edit?gid=200139442#gid=200139442",
-  "lastSyncedAt": "2026-11-06T02:43:04.874Z",
-  "lastUpdated": "2026-11-06T02:43:04.874Z"
+  "lastSyncedAt": "2026-11-06T03:19:18.349Z",
+  "lastUpdated": "2026-11-06T03:19:18.349Z"
 }
