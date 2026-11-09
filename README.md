@@ -41,6 +41,68 @@ This dashboard is a unified progress monitoring and academic audit system design
 
 ---
 
+## 🔄 Data Ingestion, Synchronization & Deduplication
+
+The tracker combines historical reports, Google Forms responses, and optional GitHub/Kanban updates. Data is normalized before it is displayed or saved so that naming differences do not create extra students or teams.
+
+### Student identity matching
+
+Student identity is resolved in this order:
+
+1. Normalized email address (case-insensitive and trimmed).
+2. Student ID.
+3. Tokenized name comparison as a fallback.
+
+Therefore, submissions such as `Ramos, Dave Noel T.` and another spelling of the same student are counted as one member when they use the same email address. Team member lists are also merged by email, so a changed name does not increase the team size.
+
+### Audit and ticket deduplication
+
+- An audit with the same record ID is considered the same record.
+- Otherwise, audits are duplicates when they identify the same student and have the same timestamp.
+- During a sync, incoming data updates the matching record instead of appending another row.
+- Existing useful values such as summaries, commit links, and non-`None` blocker details are preserved when the incoming response is incomplete.
+- Kanban cards are deduplicated by card ID, or by team, week, and assignee when no shared ID exists.
+- Team names are normalized to canonical team IDs, preventing variations such as capitalization or common spelling differences from creating separate teams.
+
+### Google Forms synchronization
+
+The **Live Sync** action downloads the linked Google Sheet as CSV through `/api/forms/sync-live-sheet`. The server:
+
+1. Detects common response columns such as email, week, student name, team, status, feature, and commit.
+2. Converts each response into an audit record.
+3. Normalizes the team name and maps the response status to `Done`, `In Progress`, `Review`, or `Backlog`.
+4. Removes duplicate responses before returning the results.
+5. Merges the results with existing audits and saves the updated shared state.
+
+The application also supports a Google Apps Script webhook at `/api/webhooks/google-form` for receiving form-submit events. Automatic background sync runs every five minutes while an administrator is signed in. A valid Google Sheet must be shared so the server can read its CSV export.
+
+### Data sources and scope
+
+- **Weeks 1–4** use historical document/PDF reports.
+- **Weeks 5–8** are the final-term dashboard scope and use Google Forms audits plus Kanban/GitHub data.
+- Repeated submissions do not inflate readiness because the score uses distinct logged weeks and distinct completed weeks.
+
+### Team readiness calculation
+
+For final-term Weeks 5–8:
+
+- Each logged week contributes 20 points.
+- Each week containing a `Done` audit contributes up to 5 additional quality points.
+- Scores are capped between 10% and 100%.
+- Teams with all four final-term weeks completed remain at 100%; historical blocker notes do not reduce an already complete team.
+- Incomplete teams with three or more distinct blocker messages receive a 10-point penalty.
+
+This means a team can have many audit rows while still being counted correctly as one person per email and one completion milestone per week.
+
+### Persistence, recovery, and reset
+
+- Browser preferences and local fallback data are stored in `localStorage`.
+- Shared audits, custom teams, team overrides, deleted team IDs, and Kanban cards are stored in `server_data/tracker_store.json`.
+- On startup, the client loads shared server state and automatically cleans duplicate audits/cards.
+- Administrators can use **Reset to Default** to clear local custom data and restore the seeded tracker dataset. This also resets the server store when an authenticated admin session is active.
+
+---
+
 ## 🔗 Official Course Links
 
 - **Student Progress Report Submission Form**:  
