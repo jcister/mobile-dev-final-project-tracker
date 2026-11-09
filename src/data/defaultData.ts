@@ -1662,7 +1662,14 @@ export function computeTeams(
   customRegisteredTeams.forEach((t) => {
     if (deletedSet.has(t.id)) return;
     const membersMap = new Map();
-    (t.members || []).forEach((m) => membersMap.set(m.name, m));
+    (t.members || []).forEach((m) => {
+      const identity = studentIdentityKey({
+        studentEmail: m.email,
+        studentId: m.studentId,
+        studentName: m.name,
+      });
+      if (identity) membersMap.set(identity, m);
+    });
     teamMap.set(t.id, {
       id: t.id,
       name: t.name,
@@ -1717,7 +1724,8 @@ export function computeTeams(
           email: mem.email || a.studentEmail || '',
         });
       } else {
-        t.membersMap.set(a.studentName, {
+        const identity = studentIdentityKey(a) || `name:${a.studentName}`;
+        t.membersMap.set(identity, {
           name: a.studentName,
           studentId: a.studentId || '',
           githubUsername: a.githubUsername || '',
@@ -1795,7 +1803,9 @@ export function computeTeams(
 
     // Blockers penalty
     const activeBlockersCount = blockersSet.size;
-    if (activeBlockersCount >= 3) score -= 10;
+    // A team with a verified Done audit in every final-term week is complete.
+    // Historical blocker notes should not lower its completion score.
+    if (activeBlockersCount >= 3 && completedWeeks < 4) score -= 10;
 
     score = Math.max(10, Math.min(100, score));
 
@@ -1944,6 +1954,17 @@ export function areNamesSamePerson(name1: string, name2: string): boolean {
   const mainTokens2 = tokens2.filter((t) => t.length > 1);
   if (mainTokens1.length > 0 && mainTokens1.join(' ') === mainTokens2.join(' ')) return true;
   return false;
+}
+
+function studentIdentityKey(student: Pick<AuditRecord, 'studentEmail' | 'studentId' | 'studentName'>): string {
+  const email = (student.studentEmail || '').toLowerCase().trim();
+  if (email) return `email:${email}`;
+
+  const studentId = (student.studentId || '').trim();
+  if (studentId) return `id:${studentId}`;
+
+  const name = normalizeNameTokens(student.studentName || '').join(' ');
+  return name ? `name:${name}` : '';
 }
 
 export function areAuditsDuplicate(a: AuditRecord, b: AuditRecord): boolean {
